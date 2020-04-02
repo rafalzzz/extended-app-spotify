@@ -34,7 +34,7 @@ export const itemsReducer = (
 ): itemsState => {
   switch (action.type) {
     case SET_SONG:
-      return { ...state, song: action.payload };
+      return { ...state, song: action.payload.song };
     case SET_INDEX:
       console.log(action);
       return { ...state, index: action.payload.id - 1 };

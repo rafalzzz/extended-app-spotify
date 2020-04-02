@@ -14,7 +14,7 @@ export const favSongsReducer = (
 ): favSongsState => {
   switch (action.type) {
     case ADD_SONG_TO_FAV_LIST:
-      return [...state, action.payload];
+      return [...state, action.payload.song];
     case DELETE_SONG_FROM_FAV_LIST:
       return state.filter(song => song.previewUrl !== action.payload.id);
     default:

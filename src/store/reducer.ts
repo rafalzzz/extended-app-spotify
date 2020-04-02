@@ -15,11 +15,13 @@ export type AppState = {
 };
 
 const reducers = {
-  favSongsReducer,
   songsListReducer,
+  favSongsReducer,
   itemsReducer,
   playerReducer,
   playlistsReducer
 };
 
 export const rootReducer = combineReducers<AppState>(reducers);
+
+export type RootState = ReturnType<typeof rootReducer>;

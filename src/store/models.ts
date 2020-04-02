@@ -5,6 +5,8 @@ export type Song = {
   collectionName?: string;
   releaseDate?: string;
   artworkUrl60?: string;
+  artworkUrl100?: string;
+  artworkUrl30?: string;
   trackTimeMillis?: number;
 };
 
