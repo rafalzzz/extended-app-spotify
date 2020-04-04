@@ -6,14 +6,14 @@ import {
   currentCategory,
   currentIndex,
   currentPlaylist,
-  NowPlayedSong
+  NowPlayedSong,
 } from "../../../../store/items/selectors";
 
 import { playRX, loopRX, shuffleRX } from "../../../../store/player/selectors";
 
 import {
   songsList,
-  songsListLength
+  songsListLength,
 } from "../../../../store/fetchSongs/selectors";
 import { favSongsList } from "../../../../store/favSongs/selectors";
 import { playlists } from "../../../../store/playlists/selectors";
@@ -22,13 +22,13 @@ import {
   handlePlayThisSong,
   setIndex,
   handlePlayNextSong,
-  handlePlayPrevSong
+  handlePlayPrevSong,
 } from "../../../../store/items/actions";
 
 import {
   handlePlayOrStop,
   setLoop,
-  handleShuffle
+  handleShuffle,
 } from "../../../../store/player/actions";
 
 import { PlayerButtonsLayout } from "./layout";
@@ -66,7 +66,7 @@ export const PlayerButtons = () => {
   }, [currentPlaylistName]);
 
   const handleShuffleButton = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       shuffleSongs
         ? dispatch(handleShuffle({ shuffle: false }))
         : dispatch(handleShuffle({ shuffle: true }));
@@ -75,7 +75,7 @@ export const PlayerButtons = () => {
   );
 
   const handlePreviewButton = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       if (category === "search") {
         if (songIndex === 0) {
           let song = searchSongsArr[searchSongsArrLength - 1];
@@ -146,12 +146,12 @@ export const PlayerButtons = () => {
       favSongArr,
       currentPlaylistSongsList,
       category,
-      currentPlayedSong
+      currentPlayedSong,
     ]
   );
 
   const handlePlayPause = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       playing === true
         ? dispatch(handlePlayOrStop({ play: false }))
         : dispatch(handlePlayOrStop({ play: true }));
@@ -160,7 +160,7 @@ export const PlayerButtons = () => {
   );
 
   const handleNextButton = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       if (shuffleSongs === true) {
         if (category === "search") {
           let index = Math.floor(
@@ -182,7 +182,7 @@ export const PlayerButtons = () => {
           dispatch(handlePlayThisSong({ song }));
           dispatch(setIndex({ id: index }));
         }
-      } else if (shuffleSongs !== true && category === "search") {
+      } else if (shuffleSongs === false && category === "search") {
         if (songIndex < searchSongsArrLength - 1) {
           let song = searchSongsArr[songIndex + 1];
           dispatch(handlePlayThisSong({ song }));
@@ -192,17 +192,17 @@ export const PlayerButtons = () => {
           dispatch(handlePlayThisSong({ song }));
           dispatch(setIndex({ id: 0 }));
         }
-      } else if (shuffleSongs !== true && category === "favList") {
+      } else if (shuffleSongs === false && category === "favList") {
         if (songIndex < favSongArr.length - 1) {
-          let song = favSongArr[songIndex + 1].song;
+          let song = favSongArr[songIndex + 1];
           dispatch(handlePlayThisSong({ song }));
           dispatch(handlePlayNextSong({ value: 1 }));
         } else {
-          let song = favSongArr[0].song;
+          let song = favSongArr[0];
           dispatch(handlePlayThisSong({ song }));
           dispatch(setIndex({ id: 0 }));
         }
-      } else if (shuffleSongs !== true && category === "playlist") {
+      } else if (shuffleSongs === false && category === "playlist") {
         if (songIndex < currentPlaylistSongsList.length - 1) {
           let song = currentPlaylistSongsList[songIndex + 1];
           dispatch(handlePlayThisSong({ song }));
@@ -221,12 +221,12 @@ export const PlayerButtons = () => {
       currentPlaylistSongsList,
       category,
       currentPlayedSong,
-      shuffleSongs
+      shuffleSongs,
     ]
   );
 
   const handleToggleLoop = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       loop === true
         ? dispatch(setLoop({ loop: false }))
         : dispatch(setLoop({ loop: true }));

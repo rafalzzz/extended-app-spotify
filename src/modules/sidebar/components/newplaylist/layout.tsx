@@ -6,8 +6,8 @@ import { NewPlaylistForm } from "./components/newplaylistForm";
 
 type NewPlaylistLayoutProps = {
   handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  handlePlaylistForm: (event: MouseEvent) => void;
-  handlePlaylistName: string;
+  handlePlaylistForm: (event: React.MouseEvent) => void;
+  handlePlaylistName: (event: React.ChangeEvent<HTMLInputElement>) => void;
   playlistFormIsOpen: boolean;
 };
 
@@ -15,7 +15,7 @@ export const NewPlaylistLayout = ({
   handleOnSubmit,
   handlePlaylistForm,
   handlePlaylistName,
-  playlistFormIsOpen
+  playlistFormIsOpen,
 }: NewPlaylistLayoutProps) => (
   <NewPlaylistContainer>
     <div onClick={handlePlaylistForm}>

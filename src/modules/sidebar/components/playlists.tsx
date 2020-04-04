@@ -5,14 +5,14 @@ import { Playlist } from "../../../store/models";
 
 type PlaylistsProps = {
   playlists: Playlist[];
-  handleSetPlaylist: (name: string) => (event: MouseEvent) => void;
+  handleSetPlaylist: (name: string) => (event: React.MouseEvent) => void;
   currentPlaylistName: string;
 };
 
 export const Playlists = ({
   playlists,
   handleSetPlaylist,
-  currentPlaylistName
+  currentPlaylistName,
 }: PlaylistsProps) => {
   return (
     <PlaylistsContainer>
@@ -26,7 +26,7 @@ export const Playlists = ({
                 backgroundColor:
                   currentPlaylistName === playlist.name
                     ? "#ffffff10"
-                    : "transparent"
+                    : "transparent",
               }}
               className="playlistElement"
               onClick={handleSetPlaylist(playlist.name)}

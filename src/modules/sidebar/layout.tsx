@@ -9,14 +9,14 @@ import { Playlist } from "../../store/models";
 
 type SidebarLayoutProps = {
   playlists: Playlist[];
-  handleSetPlaylist: (name: string) => (event: MouseEvent) => void;
+  handleSetPlaylist: (name: string) => (event: React.MouseEvent) => void;
   currentPlaylistName: string;
 };
 
 export const SidebarLayout = ({
   playlists,
   handleSetPlaylist,
-  currentPlaylistName
+  currentPlaylistName,
 }: SidebarLayoutProps) => (
   <SidebarContainer>
     <Menu />

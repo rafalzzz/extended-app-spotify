@@ -9,12 +9,12 @@ type MoreOptionsProps = {
   handleAddSongToPlaylist: (
     playlist: string,
     song: Song
-  ) => (event: MouseEvent) => void;
+  ) => (event: React.MouseEvent) => void;
   handleDeleteSongFromPlaylist: (
     playlist: string,
     song: Song
-  ) => (event: MouseEvent) => void;
-  handleDeletePlaylist: (name: string) => (event: MouseEvent) => void;
+  ) => (event: React.MouseEvent) => void;
+  handleDeletePlaylist: (name: string) => (event: React.MouseEvent) => void;
   currentPlaylistName: string;
   currentSong: Song;
 };
@@ -25,7 +25,7 @@ export const MoreOptions = ({
   handleDeleteSongFromPlaylist,
   handleDeletePlaylist,
   currentPlaylistName,
-  currentSong
+  currentSong,
 }: MoreOptionsProps) => (
   <MoreOptionsContainer>
     <div

@@ -4,14 +4,14 @@ import { NewPlaylistFormContainer } from "./newplaylistForm.styled";
 
 type NewPlaylistFormProps = {
   handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  handlePlaylistForm: (event: MouseEvent) => void;
-  handlePlaylistName: string;
+  handlePlaylistForm: (event: React.MouseEvent) => void;
+  handlePlaylistName: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const NewPlaylistForm = ({
   handlePlaylistForm,
   handleOnSubmit,
-  handlePlaylistName
+  handlePlaylistName,
 }: NewPlaylistFormProps) => (
   <NewPlaylistFormContainer>
     <div className="formContainer">

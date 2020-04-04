@@ -15,7 +15,7 @@ export const NewPlaylist = () => {
 
   const dispatch: AppDispatch = useDispatch();
 
-  const handlePlaylistForm = useCallback((event: MouseEvent) => {
+  const handlePlaylistForm = useCallback((event: React.MouseEvent) => {
     if (playlistFormIsOpen === false) {
       setPlaylistFormIsOpen(true);
     } else {

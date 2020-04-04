@@ -7,21 +7,21 @@ import { favSongsList } from "../../../../store/favSongs/selectors";
 import {
   currentSong,
   currentIndex,
-  NowPlayedSong
+  NowPlayedSong,
 } from "../../../../store/items/selectors";
 
 import { playRX } from "../../../../store/player/selectors";
 
 import {
   addSongToFav,
-  deleteSongFromFav
+  deleteSongFromFav,
 } from "../../../../store/favSongs/actions";
 
 import { setSong, setCategory } from "../../../../store/items/actions";
 
 import {
   handleSendFavSongToFirestore,
-  handleDeleteFavSongFromFirestore
+  handleDeleteFavSongFromFirestore,
 } from "../../../../helpers/FireStoreData";
 
 import { FavsListLayout } from "./layout";
@@ -48,7 +48,7 @@ export const FavsList = memo(() => {
   // Favourite songs functions
 
   const handleAddSongToFav = useCallback(
-    (song: Song) => (event: MouseEvent) => {
+    (song: Song) => (event: React.MouseEvent) => {
       dispatch(addSongToFav({ song }));
       handleSendFavSongToFirestore(song);
     },
@@ -56,7 +56,7 @@ export const FavsList = memo(() => {
   );
 
   const handleDeleteSongFromFav = useCallback(
-    (song: Song, id: number) => (event: MouseEvent) => {
+    (song: Song, id: number) => (event: React.MouseEvent) => {
       dispatch(deleteSongFromFav({ id }));
       handleDeleteFavSongFromFirestore(song);
     },
@@ -66,7 +66,7 @@ export const FavsList = memo(() => {
   // CurrentItems function
 
   const handleSetSong = useCallback(
-    (song: Song) => (event: MouseEvent) => {
+    (song: Song) => (event: React.MouseEvent) => {
       dispatch(setSong({ song }));
     },
     [currentSongIndex]

@@ -7,23 +7,23 @@ import { Song } from "../../../../store/models";
 
 type MainHeaderLayoutProps = {
   favListIsOpen: boolean;
-  handleOpenFavList: (event: MouseEvent) => void;
-  handleCloseFavList: (event: MouseEvent) => void;
+  handleOpenFavList: (event: React.MouseEvent) => void;
+  handleCloseFavList: (event: React.MouseEvent) => void;
   moreOptionsIsOpen: boolean;
-  handleMoreOptions: (event: MouseEvent) => void;
+  handleMoreOptions: (event: React.MouseEvent) => void;
   currentSong: Song;
   currentPlaylistName: string;
   playOrNot: boolean;
-  handlePlayPause: (event: MouseEvent) => void;
+  handlePlayPause: (event: React.MouseEvent) => void;
   handleAddSongToPlaylist: (
     playlist: string,
     song: Song
-  ) => (event: MouseEvent) => void;
+  ) => (event: React.MouseEvent) => void;
   handleDeleteSongFromPlaylist: (
     playlist: string,
     song: Song
-  ) => (event: MouseEvent) => void;
-  handleDeletePlaylist: (name: string) => (event: MouseEvent) => void;
+  ) => (event: React.MouseEvent) => void;
+  handleDeletePlaylist: (name: string) => (event: React.MouseEvent) => void;
 };
 
 export const MainHeaderLayout = ({
@@ -38,7 +38,7 @@ export const MainHeaderLayout = ({
   handlePlayPause,
   handleAddSongToPlaylist,
   handleDeleteSongFromPlaylist,
-  handleDeletePlaylist
+  handleDeletePlaylist,
 }: MainHeaderLayoutProps) => {
   return (
     <MainHeaderContainer>
@@ -58,7 +58,7 @@ export const MainHeaderLayout = ({
         <button
           className="more rb"
           style={{
-            border: moreOptionsIsOpen ? "solid 1px white" : "solid 1px #7f7f7f"
+            border: moreOptionsIsOpen ? "solid 1px white" : "solid 1px #7f7f7f",
           }}
           onClick={handleMoreOptions}
         >
@@ -76,7 +76,7 @@ export const MainHeaderLayout = ({
           className="favs rb"
           onClick={favListIsOpen ? handleCloseFavList : handleOpenFavList}
           style={{
-            border: favListIsOpen ? "solid 1px white" : "solid 1px #7f7f7f"
+            border: favListIsOpen ? "solid 1px white" : "solid 1px #7f7f7f",
           }}
         >
           <i className="icon-heart" />

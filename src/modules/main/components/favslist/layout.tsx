@@ -11,12 +11,12 @@ type FavListLayoutProps = {
   currentSong: Song;
   NowIsPlaying: Song;
   playOrNot: boolean;
-  handleAddSongToFav: (song: Song) => (event: MouseEvent) => void;
+  handleAddSongToFav: (song: Song) => (event: React.MouseEvent) => void;
   handleDeleteSongFromFav: (
     song: Song,
     id: number
-  ) => (event: MouseEvent) => void;
-  handleSetSong: (song: Song) => (event: MouseEvent) => void;
+  ) => (event: React.MouseEvent) => void;
+  handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
 };
 
 export const FavsListLayout = ({
@@ -26,7 +26,7 @@ export const FavsListLayout = ({
   playOrNot,
   handleAddSongToFav,
   handleDeleteSongFromFav,
-  handleSetSong
+  handleSetSong,
 }: FavListLayoutProps) => {
   return (
     <TableContainer>

@@ -19,7 +19,7 @@ export const Sidebar = () => {
   const dispatch: AppDispatch = useDispatch();
 
   const handleSetPlaylist = useCallback(
-    (name: string) => (event: MouseEvent) => {
+    (name: string) => (event: React.MouseEvent) => {
       dispatch(setPlaylist({ name }));
       console.log(currentPlaylistName);
     },

@@ -3,13 +3,13 @@ import React from "react";
 import { PlayerButtonsContainer } from "./layout.styled";
 
 type PlayerButtonsLayoutProps = {
-  handleShuffleButton: (event: MouseEvent) => void;
+  handleShuffleButton: (event: React.MouseEvent) => void;
   shuffleSongs: boolean;
-  handlePreviewButton: (event: MouseEvent) => void;
-  handlePlayPause: (event: MouseEvent) => void;
+  handlePreviewButton: (event: React.MouseEvent) => void;
+  handlePlayPause: (event: React.MouseEvent) => void;
   playing: boolean;
-  handleNextButton: (event: MouseEvent) => void;
-  handleToggleLoop: (event: MouseEvent) => void;
+  handleNextButton: (event: React.MouseEvent) => void;
+  handleToggleLoop: (event: React.MouseEvent) => void;
   loop: boolean;
 };
 
@@ -21,7 +21,7 @@ export const PlayerButtonsLayout = ({
   playing,
   handleNextButton,
   handleToggleLoop,
-  loop
+  loop,
 }: PlayerButtonsLayoutProps) => {
   return (
     <PlayerButtonsContainer>

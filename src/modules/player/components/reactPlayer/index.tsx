@@ -11,25 +11,25 @@ import {
   mutedRX,
   loopRX,
   seekToRX,
-  shuffleRX
+  shuffleRX,
 } from "../../../../store/player/selectors";
 
 import {
   handlePlayOrStop,
   setPlayed,
-  setDuration
+  setDuration,
 } from "../../../../store/player/actions";
 
 import {
   currentIndex,
   currentCategory,
   currentPlaylist,
-  NowPlayedSong
+  NowPlayedSong,
 } from "../../../../store/items/selectors";
 
 import {
   songsList,
-  songsListLength
+  songsListLength,
 } from "../../../../store/fetchSongs/selectors";
 
 import { favSongsList } from "../../../../store/favSongs/selectors";
@@ -39,7 +39,7 @@ import { playlists } from "../../../../store/playlists/selectors";
 import {
   handlePlayThisSong,
   setIndex,
-  handlePlayNextSong
+  handlePlayNextSong,
 } from "../../../../store/items/actions";
 
 import { Song, Playlist } from "../../../../store/models";
@@ -97,7 +97,7 @@ export const ReactMusicPlayer = () => {
         dispatch(setIndex({ id: index }));
       } else if (category === "favList") {
         let index = Math.floor(1 + (Math.random() * favSongArr.length - 1));
-        let song = favSongArr[index - 1].song;
+        let song = favSongArr[index - 1];
         dispatch(handlePlayThisSong({ song }));
         dispatch(setIndex({ id: index }));
       } else if (category === "playlist") {
@@ -108,7 +108,7 @@ export const ReactMusicPlayer = () => {
         dispatch(handlePlayThisSong({ song }));
         dispatch(setIndex({ id: index }));
       }
-    } else if (shuffleSongs !== true && category === "search") {
+    } else if (shuffleSongs === false && category === "search") {
       if (songIndex < searchSongsArrLength - 1) {
         let song = searchSongsArr[songIndex + 1];
         dispatch(handlePlayThisSong({ song }));
@@ -118,9 +118,9 @@ export const ReactMusicPlayer = () => {
         dispatch(handlePlayThisSong({ song }));
         dispatch(setIndex({ id: 0 }));
       }
-    } else if (shuffleSongs !== true && category === "favList") {
+    } else if (shuffleSongs === false && category === "favList") {
       if (songIndex < favSongArr.length - 1) {
-        let song = favSongArr[songIndex + 1].song;
+        let song = favSongArr[songIndex + 1];
         dispatch(handlePlayThisSong({ song }));
         dispatch(handlePlayNextSong({ value: 1 }));
       } else {
@@ -128,7 +128,7 @@ export const ReactMusicPlayer = () => {
         dispatch(handlePlayThisSong({ song }));
         dispatch(setIndex({ id: 0 }));
       }
-    } else if (shuffleSongs !== true && category === "playlist") {
+    } else if (shuffleSongs === false && category === "playlist") {
       if (songIndex < currentPlaylistSongsList.length - 1) {
         let song = currentPlaylistSongsList[songIndex + 1];
         dispatch(handlePlayThisSong({ song }));
@@ -147,7 +147,7 @@ export const ReactMusicPlayer = () => {
     currentPlaylistSongsList,
     category,
     currentPlayedSong,
-    shuffleSongs
+    shuffleSongs,
   ]);
 
   const ref: RefProps = useRef(null);
@@ -172,7 +172,7 @@ export const ReactMusicPlayer = () => {
   // Get current playlist songs
 
   useEffect(() => {
-    currentPlaylistSongs.map(playlist =>
+    currentPlaylistSongs.map((playlist) =>
       playlist.name === currentPlaylistName
         ? setCurrentPlaylistSongsList(playlist.songs)
         : null
@@ -196,10 +196,10 @@ export const ReactMusicPlayer = () => {
       onPlay={handlePlay}
       onPause={handlePause}
       onBuffer={() => console.log("onBuffer")}
-      onSeek={e => console.log("onSeek", e)}
+      onSeek={(e) => console.log("onSeek", e)}
       onStart={() => console.log("onStart")}
       onEnded={handleEnded}
-      onError={e => console.log("onError", e)}
+      onError={(e) => console.log("onError", e)}
       onProgress={handleProgress}
       onDuration={handleDuration}
     />

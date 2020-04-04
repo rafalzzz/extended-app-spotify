@@ -14,12 +14,12 @@ type SearchListLayoutProps = {
   currentSong: Song;
   NowIsPlaying: Song;
   playOrNot: boolean;
-  handleAddSongToFav: (song: Song) => (event: MouseEvent) => void;
+  handleAddSongToFav: (song: Song) => (event: React.MouseEvent) => void;
   handleDeleteSongFromFav: (
     song: Song,
     id: number
-  ) => (event: MouseEvent) => void;
-  handleSetSong: (song: Song) => (event: MouseEvent) => void;
+  ) => (event: React.MouseEvent) => void;
+  handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
   loading: boolean;
   arrLength: number;
 };
@@ -34,7 +34,7 @@ export const SearchListLayout = ({
   handleDeleteSongFromFav,
   handleSetSong,
   loading,
-  arrLength
+  arrLength,
 }: SearchListLayoutProps) => {
   return (
     <TableContainer>

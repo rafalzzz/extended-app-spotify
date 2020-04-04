@@ -30,7 +30,7 @@ export const Volume = () => {
   // Mute or unmute
 
   const handleToggleMuted = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       muted
         ? dispatch(setMuted({ muted: false }))
         : dispatch(setMuted({ muted: true }));

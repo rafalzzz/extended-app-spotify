@@ -3,7 +3,7 @@ import React from "react";
 import { LoginContainer } from "./login.styled";
 
 type LoginLayoutProps = {
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
 };
 
 export const LoginLayout = ({ onClick }: LoginLayoutProps) => {

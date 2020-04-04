@@ -7,7 +7,7 @@ type VolumeLayoutProps = {
   muted: boolean;
   volumeIcon: string;
   handleVolumeChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleToggleMuted: (event: MouseEvent) => void;
+  handleToggleMuted: (event: React.MouseEvent) => void;
 };
 
 export const VolumeLayout = ({
@@ -15,7 +15,7 @@ export const VolumeLayout = ({
   muted,
   volumeIcon,
   handleVolumeChange,
-  handleToggleMuted
+  handleToggleMuted,
 }: VolumeLayoutProps) => {
   return (
     <VolumeContainer>

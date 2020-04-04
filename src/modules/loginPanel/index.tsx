@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { addSongToFav } from "../../store/favSongs/actions";
 import {
   createPlaylist,
-  addSongToPlaylist
+  addSongToPlaylist,
 } from "../../store/playlists/actions";
 import { LoginLayout } from "./layout";
 
@@ -13,7 +13,7 @@ import { Song } from "../../store/models";
 import { AppDispatch } from "../../store/index";
 
 type LoginProps = {
-  onClick: () => void;
+  onClick: (event: React.MouseEvent) => void;
 };
 
 type handleDispatchAddSongToFavProps = {
@@ -43,14 +43,14 @@ export const Login = ({ onClick }: LoginProps) => {
           handleDispatchAddSongToFav(song);
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error getting document:", error);
       });
 
     db.collection("playlists")
       .get()
-      .then(docs => {
-        docs.forEach(doc => {
+      .then((docs) => {
+        docs.forEach((doc) => {
           let name = doc.data().name;
           dispatch(createPlaylist({ name }));
           doc.data().songs.forEach((song: Song) => {
@@ -58,7 +58,7 @@ export const Login = ({ onClick }: LoginProps) => {
           });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error getting document:", error);
       });
   }, []);

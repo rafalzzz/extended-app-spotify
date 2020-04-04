@@ -9,7 +9,7 @@ type BarLayoutProps = {
   duration: number;
   showRemaining: boolean;
   handleSeekChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSetRemaining: (event: MouseEvent) => void;
+  handleSetRemaining: (event: React.MouseEvent) => void;
 };
 
 export const BarLayout = ({
@@ -17,7 +17,7 @@ export const BarLayout = ({
   duration,
   showRemaining,
   handleSeekChange,
-  handleSetRemaining
+  handleSetRemaining,
 }: BarLayoutProps) => {
   return (
     <BarContainer>

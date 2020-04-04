@@ -28,7 +28,7 @@ export const Bar = memo(() => {
   };
 
   const handleSetRemaining = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       setShowRemaining(!showRemaining);
     },
     [showRemaining]

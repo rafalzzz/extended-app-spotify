@@ -10,21 +10,21 @@ import {
   currentSong,
   currentIndex,
   currentPlaylist,
-  NowPlayedSong
+  NowPlayedSong,
 } from "../../../../store/items/selectors";
 
 import { playRX } from "../../../../store/player/selectors";
 
 import {
   addSongToFav,
-  deleteSongFromFav
+  deleteSongFromFav,
 } from "../../../../store/favSongs/actions";
 
 import { setCategory, setSong } from "../../../../store/items/actions";
 
 import {
   handleSendFavSongToFirestore,
-  handleDeleteFavSongFromFirestore
+  handleDeleteFavSongFromFirestore,
 } from "../../../../helpers/FireStoreData";
 
 import { PlaylistLayout } from "./layout";
@@ -70,7 +70,7 @@ export const Playlists = memo(() => {
   // Favourite songs functions
 
   const handleAddSongToFav = useCallback(
-    song => (event: MouseEvent) => {
+    (song) => (event: React.MouseEvent) => {
       dispatch(addSongToFav({ song }));
       handleSendFavSongToFirestore(song);
     },
@@ -78,7 +78,7 @@ export const Playlists = memo(() => {
   );
 
   const handleDeleteSongFromFav = useCallback(
-    (song, id) => (event: MouseEvent) => {
+    (song, id) => (event: React.MouseEvent) => {
       dispatch(deleteSongFromFav({ id }));
       handleDeleteFavSongFromFirestore(song);
     },
@@ -88,7 +88,7 @@ export const Playlists = memo(() => {
   // CurrentItems function
 
   const handleSetSong = useCallback(
-    song => (event: MouseEvent) => {
+    (song) => (event: React.MouseEvent) => {
       dispatch(setSong({ song }));
     },
     [currentSongIndex]

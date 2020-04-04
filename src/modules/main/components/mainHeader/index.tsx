@@ -8,7 +8,7 @@ import { MainHeaderLayout } from "./layout";
 
 import {
   currentSong,
-  currentPlaylist
+  currentPlaylist,
 } from "../../../../store/items/selectors";
 
 import { playRX } from "../../../../store/player/selectors";
@@ -18,13 +18,13 @@ import { handlePlayOrStop } from "../../../../store/player/actions";
 import {
   addSongToPlaylist,
   deleteSongFromPlaylist,
-  deletePlaylist
+  deletePlaylist,
 } from "../../../../store/playlists/actions";
 
 import {
   handleAddSongToPlaylistOnFirestore,
   handleDeleteSongFromPlaylistOnFirestore,
-  handleDeletePlaylistFromFirestore
+  handleDeletePlaylistFromFirestore,
 } from "../../../../helpers/FireStoreData";
 
 import { Song } from "../../../../store/models";
@@ -45,12 +45,12 @@ export const MainHeader = memo(() => {
 
   let history = useHistory();
 
-  const handleOpenFavList = useCallback((event: MouseEvent): void => {
+  const handleOpenFavList = useCallback((event: React.MouseEvent): void => {
     history.push("/user/favourite-list");
     setFavListIsOpen(true);
   }, []);
 
-  const handleCloseFavList = useCallback((event: MouseEvent): void => {
+  const handleCloseFavList = useCallback((event: React.MouseEvent): void => {
     history.push("/user/main");
     setFavListIsOpen(false);
   }, []);
@@ -58,7 +58,7 @@ export const MainHeader = memo(() => {
   // PlayButton function
 
   const handlePlayPause = useCallback(
-    (event: MouseEvent): void => {
+    (event: React.MouseEvent): void => {
       playOrNot
         ? dispatch(handlePlayOrStop({ play: false }))
         : dispatch(handlePlayOrStop({ play: true }));
@@ -69,7 +69,7 @@ export const MainHeader = memo(() => {
   // Open/Close more
 
   const handleMoreOptions = useCallback(
-    (event: MouseEvent) => {
+    (event: React.MouseEvent) => {
       moreOptionsIsOpen
         ? setMoreOptionsIsOpen(false)
         : setMoreOptionsIsOpen(true);
@@ -80,7 +80,7 @@ export const MainHeader = memo(() => {
   // Playlists functions
 
   const handleAddSongToPlaylist = useCallback(
-    (playlist: string, song: Song) => (event: MouseEvent) => {
+    (playlist: string, song: Song) => (event: React.MouseEvent) => {
       dispatch(addSongToPlaylist({ playlistName: playlist, song: song }));
       handleAddSongToPlaylistOnFirestore(playlist, song);
       setMoreOptionsIsOpen(false);
@@ -89,7 +89,7 @@ export const MainHeader = memo(() => {
   );
 
   const handleDeleteSongFromPlaylist = useCallback(
-    (playlist: string, song: Song) => (event: MouseEvent) => {
+    (playlist: string, song: Song) => (event: React.MouseEvent) => {
       dispatch(deleteSongFromPlaylist({ playlistName: playlist, song: song }));
       handleDeleteSongFromPlaylistOnFirestore(playlist, song);
       setMoreOptionsIsOpen(false);
@@ -98,7 +98,7 @@ export const MainHeader = memo(() => {
   );
 
   const handleDeletePlaylist = useCallback(
-    (name: string) => (event: MouseEvent) => {
+    (name: string) => (event: React.MouseEvent) => {
       dispatch(deletePlaylist({ name }));
       handleDeletePlaylistFromFirestore(name);
       setMoreOptionsIsOpen(false);

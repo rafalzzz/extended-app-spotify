@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { LogoutContainer } from "./layout.styled";
 
 type LogoutMenuProps = {
-  handleSignOut: (event: MouseEvent) => void;
+  handleSignOut: (event: React.MouseEvent) => void;
   username: any;
 };
 
