@@ -2,14 +2,9 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import { Duration } from "../../../helpers/Duration";
 
-import { setIndex, handlePlayThisSong } from "../../../store/items/actions";
+import { setIndex, playThisSong } from "../../../store/items/actions";
 
-import { handlePlayOrStop } from "../../../store/player/actions";
-
-import {
-  addSongToFav,
-  deleteSongFromFav,
-} from "../../../store/favSongs/actions";
+import { setPlay } from "../../../store/player/actions";
 
 import { useDispatch } from "react-redux";
 
@@ -26,10 +21,10 @@ type ListItemProps = {
   currentSong: Song;
   NowIsPlaying: Song;
   playOrNot: boolean;
-  handleAddSongToFav?: (song: Song) => (event: React.MouseEvent) => void;
+  handleAddSongToFav: (song: Song) => (event: React.MouseEvent) => void;
   handleDeleteSongFromFav: (
     song: Song,
-    id: number
+    songId: string
   ) => (event: React.MouseEvent) => void;
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
   /* onClick: (event: MouseEvent) => void; */
@@ -62,13 +57,13 @@ export const ListItem = ({
 
   // FavSongs functions
 
-  const handleOnClick = (song: Song, id: string) => {
+  const handleOnClick = (song: Song, songId: string) => {
     if (favChecked === false) {
-      addSongToFav(song);
+      handleAddSongToFav(song);
       setFavChecked(true);
     }
     if (favChecked === true) {
-      deleteSongFromFav(song, id);
+      handleDeleteSongFromFav(song, songId);
       setFavChecked(false);
     }
   };
@@ -99,22 +94,22 @@ export const ListItem = ({
     (event: React.MouseEvent) => {
       if (NowIsPlaying.previewUrl === song.previewUrl) {
         if (playOrNot === true) {
-          dispatch(handlePlayOrStop({ play: false }));
+          dispatch(setPlay({ play: false }));
           setPlayingThisSongNow(false);
           setShowPlayButton(true);
           dispatch(setIndex({ id }));
         } else {
-          dispatch(handlePlayOrStop({ play: true }));
+          dispatch(setPlay({ play: true }));
           setPlayingThisSongNow(true);
           setShowPlayButton(true);
           dispatch(setIndex({ id }));
         }
       } else {
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         setPlayingThisSongNow(true);
         setShowPlayButton(true);
         dispatch(setIndex({ id }));
-        dispatch(handlePlayOrStop({ play: true }));
+        dispatch(setPlay({ play: true }));
       }
     },
     [currentSong]

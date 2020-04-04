@@ -15,7 +15,7 @@ import {
 } from "../../../../store/player/selectors";
 
 import {
-  handlePlayOrStop,
+  setPlay,
   setPlayed,
   setDuration,
 } from "../../../../store/player/actions";
@@ -37,9 +37,9 @@ import { favSongsList } from "../../../../store/favSongs/selectors";
 import { playlists } from "../../../../store/playlists/selectors";
 
 import {
-  handlePlayThisSong,
+  playThisSong,
   setIndex,
-  handlePlayNextSong,
+  playNextSong,
 } from "../../../../store/items/actions";
 
 import { Song, Playlist } from "../../../../store/models";
@@ -80,12 +80,12 @@ export const ReactMusicPlayer = () => {
 
   // ReactPlayer functions
 
-  const handlePlay = useCallback((event): void => {
-    dispatch(handlePlayOrStop({ play: true }));
+  const handlePlay = useCallback((): void => {
+    dispatch(setPlay({ play: true }));
   }, []);
 
-  const handlePause = useCallback((event): void => {
-    dispatch(handlePlayOrStop({ play: false }));
+  const handlePause = useCallback((): void => {
+    dispatch(setPlay({ play: false }));
   }, []);
 
   const handleEnded = useCallback(() => {
@@ -93,53 +93,53 @@ export const ReactMusicPlayer = () => {
       if (category === "search") {
         let index = Math.floor(1 + (Math.random() * searchSongsArrLength - 1));
         let song = searchSongsArr[index - 1];
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         dispatch(setIndex({ id: index }));
       } else if (category === "favList") {
         let index = Math.floor(1 + (Math.random() * favSongArr.length - 1));
         let song = favSongArr[index - 1];
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         dispatch(setIndex({ id: index }));
       } else if (category === "playlist") {
         let index = Math.floor(
           1 + (Math.random() * currentPlaylistSongsList.length - 1)
         );
         let song = currentPlaylistSongsList[index - 1];
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         dispatch(setIndex({ id: index }));
       }
     } else if (shuffleSongs === false && category === "search") {
       if (songIndex < searchSongsArrLength - 1) {
         let song = searchSongsArr[songIndex + 1];
-        dispatch(handlePlayThisSong({ song }));
-        dispatch(handlePlayNextSong({ value: 1 }));
+        dispatch(playThisSong({ song }));
+        dispatch(playNextSong({ value: 1 }));
       } else {
         let song = searchSongsArr[0];
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         dispatch(setIndex({ id: 0 }));
       }
     } else if (shuffleSongs === false && category === "favList") {
       if (songIndex < favSongArr.length - 1) {
         let song = favSongArr[songIndex + 1];
-        dispatch(handlePlayThisSong({ song }));
-        dispatch(handlePlayNextSong({ value: 1 }));
+        dispatch(playThisSong({ song }));
+        dispatch(playNextSong({ value: 1 }));
       } else {
         let song = favSongArr[0];
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         dispatch(setIndex({ id: 0 }));
       }
     } else if (shuffleSongs === false && category === "playlist") {
       if (songIndex < currentPlaylistSongsList.length - 1) {
         let song = currentPlaylistSongsList[songIndex + 1];
-        dispatch(handlePlayThisSong({ song }));
-        dispatch(handlePlayNextSong({ value: 1 }));
+        dispatch(playThisSong({ song }));
+        dispatch(playNextSong({ value: 1 }));
       } else {
         let song = currentPlaylistSongsList[0];
-        dispatch(handlePlayThisSong({ song }));
+        dispatch(playThisSong({ song }));
         dispatch(setIndex({ id: 0 }));
       }
     }
-    dispatch(handlePlayOrStop({ play: true }));
+    dispatch(setPlay({ play: true }));
   }, [
     songIndex,
     searchSongsArr,

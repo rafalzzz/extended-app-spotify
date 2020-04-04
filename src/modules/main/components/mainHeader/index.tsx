@@ -13,7 +13,7 @@ import {
 
 import { playRX } from "../../../../store/player/selectors";
 
-import { handlePlayOrStop } from "../../../../store/player/actions";
+import { setPlay } from "../../../../store/player/actions";
 
 import {
   addSongToPlaylist,
@@ -60,8 +60,8 @@ export const MainHeader = memo(() => {
   const handlePlayPause = useCallback(
     (event: React.MouseEvent): void => {
       playOrNot
-        ? dispatch(handlePlayOrStop({ play: false }))
-        : dispatch(handlePlayOrStop({ play: true }));
+        ? dispatch(setPlay({ play: false }))
+        : dispatch(setPlay({ play: true }));
     },
     [playOrNot]
   );

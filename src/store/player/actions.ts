@@ -11,62 +11,62 @@ import {
   SET_PLAYBACK_RATE,
   SET_LOOP,
   SEEK_TO,
-  SET_SHUFFLE
+  SET_SHUFFLE,
 } from "./consts";
 
 import { createAction } from "typesafe-actions";
 
-export const handlePlayOrStop = createAction(PLAY_OR_STOP, (play: boolean) => ({
-  play
-}));
+export const setPlay = createAction(PLAY_OR_STOP, (play: boolean) => ({
+  play,
+}))();
 
 export const setPlayed = createAction(SET_PLAYED, (played: number) => ({
-  played
-}));
+  played,
+}))();
 
 export const setPip = createAction(SET_PIP, (pip: boolean) => ({
-  pip
-}));
+  pip,
+}))();
 
 export const setControls = createAction(SET_CONTROLS, (controls: boolean) => ({
-  controls
-}));
+  controls,
+}))();
 
 export const setLight = createAction(SET_LIGHT, (light: boolean) => ({
-  light
-}));
+  light,
+}))();
 
 export const setVolume = createAction(SET_VOLUME, (volume: number) => ({
-  volume
-}));
+  volume,
+}))();
 
 export const setMuted = createAction(SET_MUTED, (muted: boolean) => ({
-  muted
-}));
+  muted,
+}))();
 
 export const setLoaded = createAction(SET_LOADED, (loaded: number) => ({
-  loaded
-}));
+  loaded,
+}))();
 
 export const setDuration = createAction(SET_DURATION, (duration: number) => ({
-  duration
-}));
+  duration,
+}))();
 
 export const setPlaybackRate = createAction(
   SET_PLAYBACK_RATE,
   (playbackRate: number) => ({
-    playbackRate
+    playbackRate,
   })
-);
+)();
 
 export const setLoop = createAction(SET_LOOP, (loop: boolean) => ({
-  loop
-}));
+  loop,
+}))();
 
 export const seekTo = createAction(SEEK_TO, (seekTo: number) => ({
-  seekTo
-}));
+  seekTo,
+}))();
 
-export const handleShuffle = createAction(SET_SHUFFLE, (shuffle: boolean) => ({
-  shuffle
-}));
+export const setShuffle = createAction(SET_SHUFFLE, (shuffle: boolean) => ({
+  shuffle,
+}))();

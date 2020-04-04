@@ -5,15 +5,12 @@ import { get } from "../../common/axios";
 
 import { FETCH_SONGS_LIST } from "./consts";
 
-type FetchSongsByTermParams = {
-  payload: string;
-};
-
-export function* fetchSongs({ payload }: FetchSongsByTermParams) {
+export function* fetchSongs({ payload }) {
   try {
+    const { term } = payload;
     const request = yield call(
       get,
-      `search?entity=song&limit=100&term=${payload}`
+      `search?entity=song&limit=100&term=${term}`
     );
     console.log(request);
     yield put({ type: FETCH_SONGS_LIST.success, payload: request });

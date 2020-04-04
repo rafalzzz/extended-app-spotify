@@ -15,7 +15,7 @@ type PlaylistLayoutProps = {
   handleAddSongToFav: (song: Song) => (event: React.MouseEvent) => void;
   handleDeleteSongFromFav: (
     song: Song,
-    id: number
+    id: string
   ) => (event: React.MouseEvent) => void;
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
 };

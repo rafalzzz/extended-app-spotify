@@ -9,23 +9,43 @@ import {
   SET_CATEGORY,
   PLAY_THIS_SONG,
   PLAY_NEXT_SONG,
-  PLAY_PREV_SONG
+  PLAY_PREV_SONG,
 } from "./consts";
 
 export type itemsState = {
-  song: { song: Song };
+  song: Song;
   index: number;
   category: string;
   playlist: string;
-  currentPlayed: { song: Song };
+  currentPlayed: Song;
 };
 
 const initialState = {
-  song: { song: { previewUrl: "" } },
+  song: {
+    previewUrl: "",
+    trackName: "",
+    artistName: "",
+    collectionName: "",
+    releaseDate: "",
+    artworkUrl60: "",
+    artworkUrl100: "",
+    artworkUrl30: "",
+    trackTimeMillis: 0,
+  },
   index: 0,
   category: "search",
   playlist: "",
-  currentPlayed: { song: { previewUrl: "" } }
+  currentPlayed: {
+    previewUrl: "",
+    trackName: "",
+    artistName: "",
+    collectionName: "",
+    releaseDate: "",
+    artworkUrl60: "",
+    artworkUrl100: "",
+    artworkUrl30: "",
+    trackTimeMillis: 0,
+  },
 };
 
 export const itemsReducer = (

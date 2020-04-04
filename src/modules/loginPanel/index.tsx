@@ -16,23 +16,12 @@ type LoginProps = {
   onClick: (event: React.MouseEvent) => void;
 };
 
-type handleDispatchAddSongToFavProps = {
-  (song: Song): void;
-};
-
-type NameProps = {
-  name: string;
-};
-
 export const Login = ({ onClick }: LoginProps) => {
   const dispatch: AppDispatch = useDispatch();
 
-  const handleDispatchAddSongToFav: handleDispatchAddSongToFavProps = useCallback(
-    (song: Song) => {
-      dispatch(addSongToFav({ song }));
-    },
-    []
-  );
+  const handleDispatchAddSongToFav = useCallback((song: Song) => {
+    dispatch(addSongToFav({ song }));
+  }, []);
 
   useEffect(() => {
     db.collection("favList")
@@ -51,9 +40,9 @@ export const Login = ({ onClick }: LoginProps) => {
       .get()
       .then((docs) => {
         docs.forEach((doc) => {
-          let name = doc.data().name;
+          let name: any = doc.data().name;
           dispatch(createPlaylist({ name }));
-          doc.data().songs.forEach((song: Song) => {
+          doc.data().songs.forEach((name: string, song: Song) => {
             dispatch(addSongToPlaylist({ playlistName: name, song: song }));
           });
         });

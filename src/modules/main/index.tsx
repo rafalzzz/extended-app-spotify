@@ -9,7 +9,7 @@ import { MainLayout } from "./layout";
 import { AppDispatch } from "../../store/index";
 
 export const Main = memo(() => {
-  const [term, setTerm] = useState<string | undefined>("");
+  const [term, setTerm] = useState<string>("");
 
   const dispatch: AppDispatch = useDispatch();
 

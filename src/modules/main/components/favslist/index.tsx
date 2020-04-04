@@ -56,8 +56,8 @@ export const FavsList = memo(() => {
   );
 
   const handleDeleteSongFromFav = useCallback(
-    (song: Song, id: number) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ id }));
+    (song: Song) => (event: React.MouseEvent) => {
+      dispatch(deleteSongFromFav({ song }));
       handleDeleteFavSongFromFirestore(song);
     },
     []
@@ -67,7 +67,7 @@ export const FavsList = memo(() => {
 
   const handleSetSong = useCallback(
     (song: Song) => (event: React.MouseEvent) => {
-      dispatch(setSong({ song }));
+      dispatch(setSong({ song: song }));
     },
     [currentSongIndex]
   );
