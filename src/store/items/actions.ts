@@ -11,30 +11,71 @@ import {
 import { createAction } from "typesafe-actions";
 import { Song } from "../models";
 
-export const setSong = createAction(SET_SONG, (song: Song) => ({
-  song,
-}))();
+export type SongProps = {
+  payload: { song: Song };
+};
 
-export const setIndex = createAction(SET_INDEX, (id: number) => ({
-  id,
-}))();
+export const setSong = createAction(
+  SET_SONG,
+  (payload): SongProps => ({
+    payload,
+  })
+)();
 
-export const setCategory = createAction(SET_CATEGORY, (category: string) => ({
-  category,
-}))();
+export type IdProps = {
+  payload: { id: number };
+};
 
-export const setPlaylist = createAction(SET_PLAYLIST, (name: string) => ({
-  name,
-}))();
+export const setIndex = createAction(
+  SET_INDEX,
+  (payload): IdProps => ({
+    payload,
+  })
+)();
 
-export const playThisSong = createAction(PLAY_THIS_SONG, (song: Song) => ({
-  song,
-}))();
+export type CategoryProps = {
+  payload: { category: string };
+};
 
-export const playNextSong = createAction(PLAY_NEXT_SONG, (value: number) => ({
-  value,
-}))();
+export const setCategory = createAction(
+  SET_CATEGORY,
+  (payload): CategoryProps => ({
+    payload,
+  })
+)();
 
-export const playPrevSong = createAction(PLAY_PREV_SONG, (value: number) => ({
-  value,
-}))();
+export type NameProps = {
+  payload: { name: string };
+};
+
+export const setPlaylist = createAction(
+  SET_PLAYLIST,
+  (payload): NameProps => ({
+    payload,
+  })
+)();
+
+export const playThisSong = createAction(
+  PLAY_THIS_SONG,
+  (payload): SongProps => ({
+    payload,
+  })
+)();
+
+export type ValueProps = {
+  payload: { value: number };
+};
+
+export const playNextSong = createAction(
+  PLAY_NEXT_SONG,
+  (payload): ValueProps => ({
+    payload,
+  })
+)();
+
+export const playPrevSong = createAction(
+  PLAY_PREV_SONG,
+  (payload): ValueProps => ({
+    payload,
+  })
+)();

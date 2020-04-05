@@ -29,8 +29,6 @@ import {
 
 import { Song } from "../../../../store/models";
 
-import { AppDispatch } from "../../../../store/index";
-
 export const MainHeader = memo(() => {
   const [favListIsOpen, setFavListIsOpen] = useState<boolean>(false);
   const [moreOptionsIsOpen, setMoreOptionsIsOpen] = useState<boolean>(false);
@@ -39,7 +37,7 @@ export const MainHeader = memo(() => {
   const currentSongName: Song = useSelector(currentSong);
   const playOrNot: boolean = useSelector(playRX);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Redirect to FavList function
 
@@ -99,7 +97,7 @@ export const MainHeader = memo(() => {
 
   const handleDeletePlaylist = useCallback(
     (name: string) => (event: React.MouseEvent) => {
-      dispatch(deletePlaylist({ name }));
+      dispatch(deletePlaylist({ name: name }));
       handleDeletePlaylistFromFirestore(name);
       setMoreOptionsIsOpen(false);
     },

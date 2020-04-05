@@ -44,8 +44,6 @@ import {
 
 import { Song, Playlist } from "../../../../store/models";
 
-import { AppDispatch } from "../../../../store";
-
 type RefProps = {
   current: any;
 };
@@ -76,7 +74,7 @@ export const ReactMusicPlayer = () => {
   const loop: boolean = useSelector(loopRX);
   const seekTo: number = useSelector(seekToRX);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // ReactPlayer functions
 
@@ -93,49 +91,49 @@ export const ReactMusicPlayer = () => {
       if (category === "search") {
         let index = Math.floor(1 + (Math.random() * searchSongsArrLength - 1));
         let song = searchSongsArr[index - 1];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(setIndex({ id: index }));
       } else if (category === "favList") {
         let index = Math.floor(1 + (Math.random() * favSongArr.length - 1));
         let song = favSongArr[index - 1];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(setIndex({ id: index }));
       } else if (category === "playlist") {
         let index = Math.floor(
           1 + (Math.random() * currentPlaylistSongsList.length - 1)
         );
         let song = currentPlaylistSongsList[index - 1];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(setIndex({ id: index }));
       }
     } else if (shuffleSongs === false && category === "search") {
       if (songIndex < searchSongsArrLength - 1) {
         let song = searchSongsArr[songIndex + 1];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(playNextSong({ value: 1 }));
       } else {
         let song = searchSongsArr[0];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(setIndex({ id: 0 }));
       }
     } else if (shuffleSongs === false && category === "favList") {
       if (songIndex < favSongArr.length - 1) {
         let song = favSongArr[songIndex + 1];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(playNextSong({ value: 1 }));
       } else {
         let song = favSongArr[0];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(setIndex({ id: 0 }));
       }
     } else if (shuffleSongs === false && category === "playlist") {
       if (songIndex < currentPlaylistSongsList.length - 1) {
         let song = currentPlaylistSongsList[songIndex + 1];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(playNextSong({ value: 1 }));
       } else {
         let song = currentPlaylistSongsList[0];
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong({ song: song }));
         dispatch(setIndex({ id: 0 }));
       }
     }

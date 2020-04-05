@@ -10,17 +10,16 @@ import {
 import { LoginLayout } from "./layout";
 
 import { Song } from "../../store/models";
-import { AppDispatch } from "../../store/index";
 
 type LoginProps = {
   onClick: (event: React.MouseEvent) => void;
 };
 
 export const Login = ({ onClick }: LoginProps) => {
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleDispatchAddSongToFav = useCallback((song: Song) => {
-    dispatch(addSongToFav({ song }));
+    dispatch(addSongToFav({ song: song }));
   }, []);
 
   useEffect(() => {

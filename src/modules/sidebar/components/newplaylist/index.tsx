@@ -7,13 +7,12 @@ import { createPlaylist } from "../../../../store/playlists/actions";
 import { NewPlaylistLayout } from "./layout";
 
 import { handleAddPlaylistToFirestore } from "../../../../helpers/FireStoreData";
-import { AppDispatch } from "../../../../store";
 
 export const NewPlaylist = () => {
   const [playlistName, setPlaylistName] = useState<string>("");
   const [playlistFormIsOpen, setPlaylistFormIsOpen] = useState<boolean>(false);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handlePlaylistForm = useCallback((event: React.MouseEvent) => {
     if (playlistFormIsOpen === false) {
@@ -30,7 +29,7 @@ export const NewPlaylist = () => {
   };
 
   const handleCreatePlaylist = useCallback((name: string) => {
-    dispatch(createPlaylist({ name }));
+    dispatch(createPlaylist({ name: name }));
 
     handleAddPlaylistToFirestore(name);
   }, []);

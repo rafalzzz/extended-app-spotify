@@ -31,8 +31,6 @@ import { PlaylistLayout } from "./layout";
 
 import { Song, Playlist } from "../../../../store/models";
 
-import { AppDispatch } from "../../../../store/index";
-
 export const Playlists = memo(() => {
   const [currentPlaylistSongsList, setCurrentPlaylistSongsList] = useState<
     Song[]
@@ -50,7 +48,7 @@ export const Playlists = memo(() => {
 
   const currentSongIndex: number | undefined = useSelector(currentIndex);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Download songs from current playlist
 
@@ -71,7 +69,7 @@ export const Playlists = memo(() => {
 
   const handleAddSongToFav = useCallback(
     (song) => (event: React.MouseEvent) => {
-      dispatch(addSongToFav({ song }));
+      dispatch(addSongToFav({ song: song }));
       handleSendFavSongToFirestore(song);
     },
     []
@@ -79,7 +77,7 @@ export const Playlists = memo(() => {
 
   const handleDeleteSongFromFav = useCallback(
     (song, id) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ id }));
+      dispatch(deleteSongFromFav({ id: id }));
       handleDeleteFavSongFromFirestore(song);
     },
     []
@@ -89,7 +87,7 @@ export const Playlists = memo(() => {
 
   const handleSetSong = useCallback(
     (song) => (event: React.MouseEvent) => {
-      dispatch(setSong({ song }));
+      dispatch(setSong({ song: song }));
     },
     [currentSongIndex]
   );

@@ -36,8 +36,6 @@ import { SearchListLayout } from "./layout";
 
 import { Song } from "../../../../store/models";
 
-import { AppDispatch } from "../../../../store";
-
 export const SearchList = memo(() => {
   // Selectors
 
@@ -52,7 +50,7 @@ export const SearchList = memo(() => {
 
   const currentSongIndex: number = useSelector(currentIndex);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCategory({ term: "playlist" }));
@@ -63,7 +61,7 @@ export const SearchList = memo(() => {
 
   const handleAddSongToFav = useCallback(
     (song) => (event: React.MouseEvent) => {
-      dispatch(addSongToFav({ song }));
+      dispatch(addSongToFav({ song: song }));
       handleSendFavSongToFirestore(song);
     },
     []
@@ -71,7 +69,7 @@ export const SearchList = memo(() => {
 
   const handleDeleteSongFromFav = useCallback(
     (song, id) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ id }));
+      dispatch(deleteSongFromFav({ id: id }));
       handleDeleteFavSongFromFirestore(song);
     },
     []
@@ -81,7 +79,7 @@ export const SearchList = memo(() => {
 
   const handleSetCurrentSong = useCallback(
     (song) => (event: React.MouseEvent) => {
-      dispatch(setSong({ song }));
+      dispatch(setSong({ song: song }));
     },
     [currentSongIndex]
   );

@@ -53,7 +53,7 @@ export const ListItem = ({
   const [playingThisSongNow, setPlayingThisSongNow] = useState<boolean>(false);
   const [showPlayButton, setShowPlayButton] = useState<boolean>(false);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // FavSongs functions
 
@@ -90,8 +90,13 @@ export const ListItem = ({
 
   // Play this song functions
 
+  type asdProps = {
+    id: string;
+    song: Song;
+  };
+
   const handlePlayThisSongNow = useCallback(
-    (event: React.MouseEvent) => {
+    (event: React.MouseEvent) => ({ id, song }: asdProps) => {
       if (NowIsPlaying.previewUrl === song.previewUrl) {
         if (playOrNot === true) {
           dispatch(setPlay({ play: false }));
@@ -268,7 +273,7 @@ export const ListItem = ({
                 : "#b3b3b3",
           }}
         >
-          <Duration seconds={parseInt(song.trackTimeMillis / 1000)} />
+          <Duration seconds={/* parseInt(...) */ song.trackTimeMillis / 1000} />
         </div>
       </div>
     </ListItemContainer>

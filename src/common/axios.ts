@@ -6,7 +6,7 @@ const axiosCustom = axios.create({
   baseURL: apiUrl,
 });
 
-export const get = (url: string, payload: any) =>
+export const get = (url: any, payload: any) =>
   axiosCustom
     .get(url, payload)
     .then((res) => res.data)

@@ -4,24 +4,24 @@ import { FETCH_SONGS_LIST } from "./consts";
 
 import { Song } from "../models";
 
-type songsList = {
+export type fetchResults = {
   resultCount: number;
-  songsArray: Song[];
+  results: Song[];
 };
 
 export type songsListState = {
   isLoading: boolean;
   isError: boolean;
-  request: songsList;
+  songs: fetchResults;
 };
 
 export const initialState = {
   isLoading: false,
   isError: false,
-  request: {
+  songs: {
     resultCount: 0,
-    songsArray: []
-  }
+    results: [],
+  },
 };
 
 export const songsListReducer = (
@@ -32,20 +32,21 @@ export const songsListReducer = (
     case FETCH_SONGS_LIST.started:
       return {
         ...state,
+        songs: action.payload.songs,
         isLoading: true,
-        isError: false
+        isError: false,
       };
     case FETCH_SONGS_LIST.success:
       return {
         ...state,
         isLoading: false,
-        isError: false
+        isError: false,
       };
     case FETCH_SONGS_LIST.failure:
       return {
         ...state,
         isLoading: false,
-        isError: true
+        isError: true,
       };
     default:
       return { ...state };

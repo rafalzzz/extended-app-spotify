@@ -1,19 +1,25 @@
 import { SagaIterator } from "redux-saga";
-import { call, put, takeLatest } from "redux-saga/effects";
+import { put, takeLatest } from "redux-saga/effects";
 
-import { get } from "../../common/axios";
+import axios from "axios";
+
+/* import { get } from "../../common/axios"; */
 
 import { FETCH_SONGS_LIST } from "./consts";
 
-export function* fetchSongs({ payload }) {
+export type payloadProps = {
+  payload: { term: string };
+};
+
+export function* fetchSongs({ payload }: payloadProps) {
   try {
     const { term } = payload;
-    const request = yield call(
-      get,
-      `search?entity=song&limit=100&term=${term}`
-    );
+    const request = () =>
+      yield axios.get(
+        `https://itunes.apple.com/search?entity=song&limit=100&term=${term}`
+      );
     console.log(request);
-    yield put({ type: FETCH_SONGS_LIST.success, payload: request });
+    yield put({ type: FETCH_SONGS_LIST.success, payload: Request });
   } catch (e) {
     yield put({ type: FETCH_SONGS_LIST.failure, message: e });
   }

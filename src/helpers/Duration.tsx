@@ -2,7 +2,7 @@ import React from "react";
 
 export const Duration: React.FC<{ className?: string; seconds: number }> = ({
   className,
-  seconds
+  seconds,
 }) => {
   return (
     <time dateTime={`P${Math.round(seconds)}S`} className={className}>
@@ -22,6 +22,6 @@ function format(seconds: number): string {
   return `${mm}:${ss}`;
 }
 
-function pad(number: number) {
+function pad(number: number): string {
   return ("0" + number).slice(-2);
 }

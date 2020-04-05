@@ -1,1 +1,1 @@
-export const apiUrl = `https://itunes.apple.com`
+export const apiUrl: string = `https://itunes.apple.com`;

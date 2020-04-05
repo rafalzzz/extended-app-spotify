@@ -28,8 +28,6 @@ import { FavsListLayout } from "./layout";
 
 import { Song } from "../../../../store/models";
 
-import { AppDispatch } from "../../../../store/index";
-
 export const FavsList = memo(() => {
   // Selectors
   const favList: Song[] = useSelector(favSongsList);
@@ -39,7 +37,7 @@ export const FavsList = memo(() => {
 
   const currentSongIndex: number = useSelector(currentIndex);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(setCategory({ term: "favList" }));
@@ -49,7 +47,7 @@ export const FavsList = memo(() => {
 
   const handleAddSongToFav = useCallback(
     (song: Song) => (event: React.MouseEvent) => {
-      dispatch(addSongToFav({ song }));
+      dispatch(addSongToFav({ song: song }));
       handleSendFavSongToFirestore(song);
     },
     []
@@ -57,7 +55,7 @@ export const FavsList = memo(() => {
 
   const handleDeleteSongFromFav = useCallback(
     (song: Song) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ song }));
+      dispatch(deleteSongFromFav({ song: song }));
       handleDeleteFavSongFromFirestore(song);
     },
     []
