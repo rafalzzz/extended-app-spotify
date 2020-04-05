@@ -8,8 +8,6 @@ import { setVolume, setMuted } from "../../../../store/player/actions";
 
 import { VolumeLayout } from "./layout";
 
-import { AppDispatch } from "../../../../store";
-
 export const Volume = () => {
   const [volumeIcon, setVolumeIcon] = useState("icon-volume-up");
 
@@ -18,7 +16,7 @@ export const Volume = () => {
   const muted: boolean = useSelector(mutedRX);
   const volume: number = useSelector(volumeRX);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Change volume
 
