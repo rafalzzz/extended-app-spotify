@@ -6,12 +6,10 @@ import { fetchSongsStarted } from "../../store/fetchSongs/actions";
 
 import { MainLayout } from "./layout";
 
-import { AppDispatch } from "../../store/index";
-
 export const Main = memo(() => {
   const [term, setTerm] = useState<string>("");
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setTerm(e.target.value);

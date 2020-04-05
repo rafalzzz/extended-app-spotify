@@ -12,8 +12,6 @@ import { ListItemContainer } from "./listItem.styled";
 
 import { Song } from "../../../store/models";
 
-import { AppDispatch } from "../../../store/index";
-
 type ListItemProps = {
   id: number;
   song: Song;
@@ -102,18 +100,18 @@ export const ListItem = ({
           dispatch(setPlay({ play: false }));
           setPlayingThisSongNow(false);
           setShowPlayButton(true);
-          dispatch(setIndex({ id }));
+          dispatch(setIndex({ id: id }));
         } else {
           dispatch(setPlay({ play: true }));
           setPlayingThisSongNow(true);
           setShowPlayButton(true);
-          dispatch(setIndex({ id }));
+          dispatch(setIndex({ id: id }));
         }
       } else {
         dispatch(playThisSong({ song }));
         setPlayingThisSongNow(true);
         setShowPlayButton(true);
-        dispatch(setIndex({ id }));
+        dispatch(setIndex({ id: id }));
         dispatch(setPlay({ play: true }));
       }
     },

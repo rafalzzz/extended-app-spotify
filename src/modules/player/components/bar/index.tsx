@@ -8,8 +8,6 @@ import { seekTo } from "../../../../store/player/actions";
 
 import { BarLayout } from "./layout";
 
-import { AppDispatch } from "../../../../store";
-
 export const Bar = memo(() => {
   const [showRemaining, setShowRemaining] = useState<boolean>(false);
 
@@ -18,7 +16,7 @@ export const Bar = memo(() => {
   const played: number = useSelector(playedRX);
   const duration: number = useSelector(durationRX);
 
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Skip song to any second
 
