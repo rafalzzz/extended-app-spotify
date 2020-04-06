@@ -6,18 +6,18 @@ import axios from "axios";
 /* import { get } from "../../common/axios"; */
 
 import { FETCH_SONGS_LIST } from "./consts";
+import { AnyAction } from "redux";
 
-export type payloadProps = {
+export type FetchSongsProps = {
   payload: { term: string };
 };
 
-export function* fetchSongs({ payload }: payloadProps) {
+export function* fetchSongs({ payload }: AnyAction) {
   try {
     const { term } = payload;
-    const request = () =>
-      yield axios.get(
-        `https://itunes.apple.com/search?entity=song&limit=100&term=${term}`
-      );
+    const request = yield axios.get(
+      `https://itunes.apple.com/search?entity=song&limit=100&term=${term}`
+    );
     console.log(request);
     yield put({ type: FETCH_SONGS_LIST.success, payload: Request });
   } catch (e) {

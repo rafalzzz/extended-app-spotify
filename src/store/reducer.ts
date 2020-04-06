@@ -7,21 +7,19 @@ import { playerState, playerReducer } from "./player/reducer";
 import { playlistsState, playlistsReducer } from "./playlists/reducer";
 
 export type AppState = {
-  songsList: songsListState;
+  songsListState: songsListState;
   favSongsState: favSongsState;
   itemsState: itemsState;
   playerState: playerState;
   playlistsState: playlistsState;
 };
 
-const reducers = {
+export const rootReducer = combineReducers<AppState>({
   songsListReducer,
   favSongsReducer,
   itemsReducer,
   playerReducer,
-  playlistsReducer
-};
-
-export const rootReducer = combineReducers<AppState>(reducers);
+  playlistsReducer,
+});
 
 export type RootState = ReturnType<typeof rootReducer>;

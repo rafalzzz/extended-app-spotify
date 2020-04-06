@@ -10,10 +10,6 @@ import { Sidebar } from "./sidebar/index";
 import { Main } from "./main/index";
 import { Player } from "./player/index";
 
-type DisplayNameProps = {
-  displayName: any;
-};
-
 export const Layout = () => {
   const [user, setUser] = useState<string>("");
   const history = useHistory();
