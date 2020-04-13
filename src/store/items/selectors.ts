@@ -1,11 +1,11 @@
 import { AppState } from "../reducer";
 import { Song } from "../models";
 
-export const currentSong = (state: AppState): Song => state.itemsState.song;
-export const currentIndex = (state: AppState): number => state.itemsState.index;
+export const currentSong = (state: AppState): Song => state.items.song;
+export const currentIndex = (state: AppState): number => state.items.index;
 export const currentCategory = (state: AppState): string =>
-  state.itemsState.category;
+  state.items.category;
 export const currentPlaylist = (state: AppState): string =>
-  state.itemsState.playlist;
+  state.items.playlist;
 export const NowPlayedSong = (state: AppState): Song =>
-  state.itemsState.currentPlayed;
+  state.items.currentPlayed;

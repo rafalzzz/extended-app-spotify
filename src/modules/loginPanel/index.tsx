@@ -19,7 +19,7 @@ export const Login = ({ onClick }: LoginProps) => {
   const dispatch = useDispatch();
 
   const handleDispatchAddSongToFav = useCallback((song: Song) => {
-    dispatch(addSongToFav({ song: song }));
+    dispatch(addSongToFav(song));
   }, []);
 
   useEffect(() => {
@@ -39,10 +39,10 @@ export const Login = ({ onClick }: LoginProps) => {
       .get()
       .then((docs) => {
         docs.forEach((doc) => {
-          let name: any = doc.data().name;
-          dispatch(createPlaylist({ name }));
-          doc.data().songs.forEach((name: string, song: Song) => {
-            dispatch(addSongToPlaylist({ playlistName: name, song: song }));
+          let name = doc.data().name;
+          dispatch(createPlaylist(name));
+          doc.data().songs.forEach((song: Song) => {
+            dispatch(addSongToPlaylist(name, song));
           });
         });
       })

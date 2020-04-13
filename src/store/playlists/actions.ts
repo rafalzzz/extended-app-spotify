@@ -10,42 +10,40 @@ import { createAction } from "typesafe-actions";
 import { Song } from "../models";
 
 export type AddOrDeleteSongPlaylistProps = {
-  payload: {
-    playlistName: string;
-    song: Song;
-  };
+  name: string;
+  song: Song;
 };
 
 export const addSongToPlaylist = createAction(
   ADD_SONG_TO_PLAYLIST,
-  (payload): AddOrDeleteSongPlaylistProps => ({
-    payload,
+  (name, song): AddOrDeleteSongPlaylistProps => ({
+    name,
+    song,
   })
 )();
 
 export const deleteSongFromPlaylist = createAction(
   DELETE_MUSIC_FROM_PLAYLIST,
-  (payload): AddOrDeleteSongPlaylistProps => ({
-    payload,
+  (name, song): AddOrDeleteSongPlaylistProps => ({
+    name,
+    song,
   })
 )();
 
 export type CreateOrDeletePlaylistProps = {
-  payload: {
-    name: string;
-  };
+  name: string;
 };
 
 export const createPlaylist = createAction(
   CREATE_PLAYLIST,
-  (payload): CreateOrDeletePlaylistProps => ({
-    payload,
+  (name): CreateOrDeletePlaylistProps => ({
+    name,
   })
 )();
 
 export const deletePlaylist = createAction(
   DELETE_PLAYLIST,
-  (payload): CreateOrDeletePlaylistProps => ({
-    payload,
+  (name): CreateOrDeletePlaylistProps => ({
+    name,
   })
 )();

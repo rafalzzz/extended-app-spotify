@@ -22,16 +22,14 @@ export const Volume = () => {
 
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = parseFloat(e.target.value);
-    dispatch(setVolume({ volume: value }));
+    dispatch(setVolume(value));
   };
 
   // Mute or unmute
 
   const handleToggleMuted = useCallback(
     (event: React.MouseEvent) => {
-      muted
-        ? dispatch(setMuted({ muted: false }))
-        : dispatch(setMuted({ muted: true }));
+      muted ? dispatch(setMuted(false)) : dispatch(setMuted(true));
     },
     [muted]
   );

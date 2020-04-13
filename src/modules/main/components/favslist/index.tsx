@@ -39,33 +39,29 @@ export const FavsList = memo(() => {
 
   const dispatch = useDispatch();
 
+  console.log("favListSongs", favList);
+
   useEffect(() => {
-    dispatch(setCategory({ term: "favList" }));
+    dispatch(setCategory("favList"));
   }, []);
 
   // Favourite songs functions
 
-  const handleAddSongToFav = useCallback(
-    (song: Song) => (event: React.MouseEvent) => {
-      dispatch(addSongToFav({ song: song }));
-      handleSendFavSongToFirestore(song);
-    },
-    []
-  );
+  const handleAddSongToFav = useCallback((song: Song) => {
+    dispatch(addSongToFav(song));
+    handleSendFavSongToFirestore(song);
+  }, []);
 
-  const handleDeleteSongFromFav = useCallback(
-    (song: Song) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ song: song }));
-      handleDeleteFavSongFromFirestore(song);
-    },
-    []
-  );
+  const handleDeleteSongFromFav = useCallback((song: Song) => {
+    dispatch(deleteSongFromFav(song));
+    handleDeleteFavSongFromFirestore(song);
+  }, []);
 
   // CurrentItems function
 
   const handleSetSong = useCallback(
     (song: Song) => (event: React.MouseEvent) => {
-      dispatch(setSong({ song: song }));
+      dispatch(setSong(song));
     },
     [currentSongIndex]
   );

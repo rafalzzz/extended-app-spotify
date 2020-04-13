@@ -13,10 +13,10 @@ import {
   SET_PLAYBACK_RATE,
   SET_LOOP,
   SEEK_TO,
-  SET_SHUFFLE
+  SET_SHUFFLE,
 } from "./consts";
 
-export type playerState = {
+export type PlayerState = {
   play: boolean;
   played: number;
   pip: boolean;
@@ -45,13 +45,10 @@ const initialState = {
   playbackRate: 0,
   loop: false,
   seekTo: 0,
-  shuffle: false
+  shuffle: false,
 };
 
-export const playerReducer = (
-  state = initialState,
-  action: Action
-): playerState => {
+export const player = (state = initialState, action: Action): PlayerState => {
   switch (action.type) {
     case PLAY_OR_STOP:
       return { ...state, play: action.payload.play };

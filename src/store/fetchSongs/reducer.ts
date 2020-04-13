@@ -1,44 +1,41 @@
-import { Action } from "../../helpers/actions";
-
 import { FETCH_SONGS_LIST } from "./consts";
+
+import { Action } from "../../helpers/actions";
 
 import { Song } from "../models";
 
-export type fetchResults = {
-  resultCount: number;
-  results: Song[];
-};
+export type Results = {};
 
-export type songsListState = {
+export type SongsListState = {
   isLoading: boolean;
   isError: boolean;
-  songs: fetchResults;
+  songs: any;
 };
 
 export const initialState = {
   isLoading: false,
   isError: false,
-  songs: {
-    resultCount: 0,
-    results: [],
-  },
+  songs: [],
 };
 
-export const songsListReducer = (
+export const songsList = (
   state = initialState,
   action: Action
-): songsListState => {
+): SongsListState => {
   switch (action.type) {
     case FETCH_SONGS_LIST.started:
+      console.log(action);
       return {
         ...state,
-        songs: action.payload.songs,
+        songs: action.payload,
         isLoading: true,
         isError: false,
       };
     case FETCH_SONGS_LIST.success:
+      console.log(action);
       return {
         ...state,
+        songs: action.payload.data,
         isLoading: false,
         isError: false,
       };

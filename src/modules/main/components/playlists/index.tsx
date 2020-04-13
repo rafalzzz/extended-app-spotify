@@ -58,36 +58,35 @@ export const Playlists = memo(() => {
         ? setCurrentPlaylistSongsList(playlist.songs)
         : null
     );
+    console.log("asdasdsa", currentPlaylistSongs);
   };
 
   useEffect(() => {
-    dispatch(setCategory({ term: "playlist" }));
+    dispatch(setCategory("playlist"));
     returnCurrentPlaylistSongs();
-  }, []);
+  }, [currentPlaylistName, currentPlaylistSongs]);
+
+  useEffect(() => {
+    console.log("name", currentPlaylistName);
+  }, [currentPlaylistName]);
 
   // Favourite songs functions
 
-  const handleAddSongToFav = useCallback(
-    (song) => (event: React.MouseEvent) => {
-      dispatch(addSongToFav({ song: song }));
-      handleSendFavSongToFirestore(song);
-    },
-    []
-  );
+  const handleAddSongToFav = useCallback((song: Song) => {
+    dispatch(addSongToFav(song));
+    handleSendFavSongToFirestore(song);
+  }, []);
 
-  const handleDeleteSongFromFav = useCallback(
-    (song, id) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ id: id }));
-      handleDeleteFavSongFromFirestore(song);
-    },
-    []
-  );
+  const handleDeleteSongFromFav = useCallback((song: Song) => {
+    dispatch(deleteSongFromFav(song));
+    handleDeleteFavSongFromFirestore(song);
+  }, []);
 
   // CurrentItems function
 
   const handleSetSong = useCallback(
     (song) => (event: React.MouseEvent) => {
-      dispatch(setSong({ song: song }));
+      dispatch(setSong(song));
     },
     [currentSongIndex]
   );

@@ -5,19 +5,19 @@ import { createAction } from "typesafe-actions";
 import { Song } from "../models";
 
 export type AddOrDeleteSongFav = {
-  payload: { song: Song };
+  song: Song;
 };
 
 export const addSongToFav = createAction(
   ADD_SONG_TO_FAV_LIST,
-  (payload): AddOrDeleteSongFav => ({
-    payload,
+  (song): AddOrDeleteSongFav => ({
+    song,
   })
 )();
 
 export const deleteSongFromFav = createAction(
   DELETE_SONG_FROM_FAV_LIST,
-  (payload): AddOrDeleteSongFav => ({
-    payload,
+  (song): AddOrDeleteSongFav => ({
+    song,
   })
 )();

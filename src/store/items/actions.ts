@@ -12,70 +12,70 @@ import { createAction } from "typesafe-actions";
 import { Song } from "../models";
 
 export type SongProps = {
-  payload: { song: Song };
+  song: Song;
 };
 
 export const setSong = createAction(
   SET_SONG,
-  (payload): SongProps => ({
-    payload,
+  (song): SongProps => ({
+    song,
   })
 )();
 
 export type IdProps = {
-  payload: { id: number };
+  id: number;
 };
 
 export const setIndex = createAction(
   SET_INDEX,
-  (payload): IdProps => ({
-    payload,
+  (id): IdProps => ({
+    id,
   })
 )();
 
 export type CategoryProps = {
-  payload: { category: string };
+  category: string;
 };
 
 export const setCategory = createAction(
   SET_CATEGORY,
-  (payload): CategoryProps => ({
-    payload,
+  (category): CategoryProps => ({
+    category,
   })
 )();
 
 export type NameProps = {
-  payload: { name: string };
+  name: string;
 };
 
 export const setPlaylist = createAction(
   SET_PLAYLIST,
-  (payload): NameProps => ({
-    payload,
+  (name): NameProps => ({
+    name,
   })
 )();
 
 export const playThisSong = createAction(
   PLAY_THIS_SONG,
-  (payload): SongProps => ({
-    payload,
+  (song): SongProps => ({
+    song,
   })
 )();
 
 export type ValueProps = {
-  payload: { value: number };
+  value: number;
 };
 
 export const playNextSong = createAction(
   PLAY_NEXT_SONG,
-  (payload): ValueProps => ({
-    payload,
+  (value): ValueProps => ({
+    value,
   })
 )();
 
 export const playPrevSong = createAction(
   PLAY_PREV_SONG,
-  (payload): ValueProps => ({
-    payload,
+  (value): ValueProps => ({
+    value,
   })
 )();

@@ -12,7 +12,7 @@ import {
   PLAY_PREV_SONG,
 } from "./consts";
 
-export type itemsState = {
+export type ItemsState = {
   song: Song;
   index: number;
   category: string;
@@ -48,10 +48,7 @@ const initialState = {
   },
 };
 
-export const itemsReducer = (
-  state = initialState,
-  action: Action
-): itemsState => {
+export const items = (state = initialState, action: Action): ItemsState => {
   switch (action.type) {
     case SET_SONG:
       return { ...state, song: action.payload.song };
@@ -60,12 +57,13 @@ export const itemsReducer = (
       return { ...state, index: action.payload.id - 1 };
     case SET_CATEGORY:
       console.log(action);
-      return { ...state, category: action.payload.term };
+      return { ...state, category: action.payload.category };
     case SET_PLAYLIST:
       return { ...state, playlist: action.payload.name };
     case PLAY_THIS_SONG:
       return { ...state, currentPlayed: action.payload.song };
     case PLAY_NEXT_SONG:
+      console.log(action);
       return { ...state, index: state.index + action.payload.value };
     case PLAY_PREV_SONG:
       console.log(action);

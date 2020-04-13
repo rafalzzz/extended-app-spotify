@@ -14,11 +14,8 @@ type SearchListLayoutProps = {
   currentSong: Song;
   NowIsPlaying: Song;
   playOrNot: boolean;
-  handleAddSongToFav: (song: Song) => (event: React.MouseEvent) => void;
-  handleDeleteSongFromFav: (
-    song: Song,
-    id: string
-  ) => (event: React.MouseEvent) => void;
+  handleAddSongToFav: (song: Song) => void;
+  handleDeleteSongFromFav: (song: Song) => void;
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
   loading: boolean;
   arrLength: number;

@@ -34,7 +34,7 @@ export const MainHeader = memo(() => {
   const [moreOptionsIsOpen, setMoreOptionsIsOpen] = useState<boolean>(false);
 
   const currentPlaylistName: string = useSelector(currentPlaylist);
-  const currentSongName: Song = useSelector(currentSong);
+  const currentSongName: Song | undefined = useSelector(currentSong);
   const playOrNot: boolean = useSelector(playRX);
 
   const dispatch = useDispatch();
@@ -57,9 +57,7 @@ export const MainHeader = memo(() => {
 
   const handlePlayPause = useCallback(
     (event: React.MouseEvent): void => {
-      playOrNot
-        ? dispatch(setPlay({ play: false }))
-        : dispatch(setPlay({ play: true }));
+      playOrNot ? dispatch(setPlay(false)) : dispatch(setPlay(true));
     },
     [playOrNot]
   );
@@ -79,7 +77,7 @@ export const MainHeader = memo(() => {
 
   const handleAddSongToPlaylist = useCallback(
     (playlist: string, song: Song) => (event: React.MouseEvent) => {
-      dispatch(addSongToPlaylist({ playlistName: playlist, song: song }));
+      dispatch(addSongToPlaylist(playlist, song));
       handleAddSongToPlaylistOnFirestore(playlist, song);
       setMoreOptionsIsOpen(false);
     },
@@ -88,7 +86,7 @@ export const MainHeader = memo(() => {
 
   const handleDeleteSongFromPlaylist = useCallback(
     (playlist: string, song: Song) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromPlaylist({ playlistName: playlist, song: song }));
+      dispatch(deleteSongFromPlaylist(playlist, song));
       handleDeleteSongFromPlaylistOnFirestore(playlist, song);
       setMoreOptionsIsOpen(false);
     },

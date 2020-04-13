@@ -17,144 +17,144 @@ import {
 import { createAction } from "typesafe-actions";
 
 export type PlayProps = {
-  payload: { play: boolean };
+  play: boolean;
 };
 
 export const setPlay = createAction(
   PLAY_OR_STOP,
-  (payload): PlayProps => ({
-    payload,
+  (play): PlayProps => ({
+    play,
   })
 )();
 
 export type PlayedProps = {
-  payload: { played: number };
+  played: number;
 };
 
 export const setPlayed = createAction(
   SET_PLAYED,
-  (payload): PlayedProps => ({
-    payload,
+  (played): PlayedProps => ({
+    played,
   })
 )();
 
 export type PipProps = {
-  payload: { pip: boolean };
+  pip: boolean;
 };
 
 export const setPip = createAction(
   SET_PIP,
-  (payload): PipProps => ({
-    payload,
+  (pip): PipProps => ({
+    pip,
   })
 )();
 
 export type ControlsProps = {
-  payload: { controls: boolean };
+  controls: boolean;
 };
 
 export const setControls = createAction(
   SET_CONTROLS,
-  (payload): ControlsProps => ({
-    payload,
+  (controls): ControlsProps => ({
+    controls,
   })
 )();
 
 export type LightProps = {
-  payload: { light: boolean };
+  light: boolean;
 };
 
 export const setLight = createAction(
   SET_LIGHT,
-  (payload): LightProps => ({
-    payload,
+  (light): LightProps => ({
+    light,
   })
 )();
 
 export type VolumeProps = {
-  payload: { volume: number };
+  volume: number;
 };
 
 export const setVolume = createAction(
   SET_VOLUME,
-  (payload): VolumeProps => ({
-    payload,
+  (volume): VolumeProps => ({
+    volume,
   })
 )();
 
 export type MutedProps = {
-  payload: { muted: boolean };
+  muted: boolean;
 };
 
 export const setMuted = createAction(
   SET_MUTED,
-  (payload): MutedProps => ({
-    payload,
+  (muted): MutedProps => ({
+    muted,
   })
 )();
 
 export type LoadedProps = {
-  payload: { loaded: number };
+  loaded: number;
 };
 
 export const setLoaded = createAction(
   SET_LOADED,
-  (payload): LoadedProps => ({
-    payload,
+  (loaded): LoadedProps => ({
+    loaded,
   })
 )();
 
 export type DurationProps = {
-  payload: { duration: number };
+  duration: number;
 };
 
 export const setDuration = createAction(
   SET_DURATION,
-  (payload): DurationProps => ({
-    payload,
+  (duration): DurationProps => ({
+    duration,
   })
 )();
 
 export type PlaybackRateProps = {
-  payload: { playbackRate: number };
+  playbackRate: number;
 };
 
 export const setPlaybackRate = createAction(
   SET_PLAYBACK_RATE,
-  (payload): PlaybackRateProps => ({
-    payload,
+  (playbackRate): PlaybackRateProps => ({
+    playbackRate,
   })
 )();
 
 export type LoopProps = {
-  payload: { loop: boolean };
+  loop: boolean;
 };
 
 export const setLoop = createAction(
   SET_LOOP,
-  (payload): LoopProps => ({
-    payload,
+  (loop): LoopProps => ({
+    loop,
   })
 )();
 
 export type SeekToProps = {
-  payload: { seekTo: number };
+  seekTo: number;
 };
 
 export const seekTo = createAction(
   SEEK_TO,
-  (payload): SeekToProps => ({
-    payload,
+  (seekTo): SeekToProps => ({
+    seekTo,
   })
 )();
 
 export type ShuffleProps = {
-  payload: { shuffle: boolean };
+  shuffle: boolean;
 };
 
 export const setShuffle = createAction(
   SET_SHUFFLE,
-  (payload): ShuffleProps => ({
-    payload,
+  (shuffle): ShuffleProps => ({
+    shuffle,
   })
 )();

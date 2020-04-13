@@ -9,21 +9,21 @@ import {
 
 import { Playlist } from "../models";
 
-export type playlistsState = Playlist[];
+export type PlaylistsState = Playlist[];
 
-const initialState: playlistsState = [];
+const initialState: PlaylistsState = [];
 
-export const playlistsReducer = (
+export const playlists = (
   state = initialState,
   action: Action
-): playlistsState => {
+): PlaylistsState => {
   switch (action.type) {
     case ADD_SONG_TO_PLAYLIST:
       console.log(action);
       return state.map((playlist) => ({
         ...playlist,
         songs:
-          playlist.name === action.payload.playlistName
+          playlist.name === action.payload.name
             ? [...playlist.songs, action.payload.song]
             : [...playlist.songs],
       }));
@@ -32,7 +32,7 @@ export const playlistsReducer = (
       return state.map((playlist) => ({
         ...playlist,
         songs:
-          playlist.name === action.payload.playlistName
+          playlist.name === action.payload.name
             ? playlist.songs.filter(
                 (song) => song.previewUrl !== action.payload.song.previewUrl
               )

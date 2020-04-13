@@ -29,7 +29,7 @@ export const NewPlaylist = () => {
   };
 
   const handleCreatePlaylist = useCallback((name: string) => {
-    dispatch(createPlaylist({ name: name }));
+    dispatch(createPlaylist(name));
 
     handleAddPlaylistToFirestore(name);
   }, []);

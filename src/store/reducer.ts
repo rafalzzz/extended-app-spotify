@@ -1,25 +1,25 @@
 import { combineReducers } from "redux";
 
-import { favSongsState, favSongsReducer } from "./favSongs/reducer";
-import { songsListState, songsListReducer } from "./fetchSongs/reducer";
-import { itemsState, itemsReducer } from "./items/reducer";
-import { playerState, playerReducer } from "./player/reducer";
-import { playlistsState, playlistsReducer } from "./playlists/reducer";
+import { FavSongsState, favSongs } from "./favSongs/reducer";
+import { SongsListState, songsList } from "./fetchSongs/reducer";
+import { ItemsState, items } from "./items/reducer";
+import { PlayerState, player } from "./player/reducer";
+import { PlaylistsState, playlists } from "./playlists/reducer";
 
 export type AppState = {
-  songsListState: songsListState;
-  favSongsState: favSongsState;
-  itemsState: itemsState;
-  playerState: playerState;
-  playlistsState: playlistsState;
+  songsList: SongsListState;
+  favSongs: FavSongsState;
+  items: ItemsState;
+  player: PlayerState;
+  playlists: PlaylistsState;
 };
 
-export const rootReducer = combineReducers<AppState>({
-  songsListReducer,
-  favSongsReducer,
-  itemsReducer,
-  playerReducer,
-  playlistsReducer,
+export const reducer = combineReducers<AppState>({
+  songsList,
+  favSongs,
+  items,
+  player,
+  playlists,
 });
 
-export type RootState = ReturnType<typeof rootReducer>;
+export type RootState = ReturnType<typeof reducer>;

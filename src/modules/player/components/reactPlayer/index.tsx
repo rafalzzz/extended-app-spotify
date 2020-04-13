@@ -79,11 +79,11 @@ export const ReactMusicPlayer = () => {
   // ReactPlayer functions
 
   const handlePlay = useCallback((): void => {
-    dispatch(setPlay({ play: true }));
+    dispatch(setPlay(true));
   }, []);
 
   const handlePause = useCallback((): void => {
-    dispatch(setPlay({ play: false }));
+    dispatch(setPlay(false));
   }, []);
 
   const handleEnded = useCallback(() => {
@@ -91,53 +91,53 @@ export const ReactMusicPlayer = () => {
       if (category === "search") {
         let index = Math.floor(1 + (Math.random() * searchSongsArrLength - 1));
         let song = searchSongsArr[index - 1];
-        dispatch(playThisSong({ song: song }));
-        dispatch(setIndex({ id: index }));
+        dispatch(playThisSong(song));
+        dispatch(setIndex(index));
       } else if (category === "favList") {
         let index = Math.floor(1 + (Math.random() * favSongArr.length - 1));
         let song = favSongArr[index - 1];
-        dispatch(playThisSong({ song: song }));
-        dispatch(setIndex({ id: index }));
+        dispatch(playThisSong(song));
+        dispatch(setIndex(index));
       } else if (category === "playlist") {
         let index = Math.floor(
           1 + (Math.random() * currentPlaylistSongsList.length - 1)
         );
         let song = currentPlaylistSongsList[index - 1];
-        dispatch(playThisSong({ song: song }));
-        dispatch(setIndex({ id: index }));
+        dispatch(playThisSong(song));
+        dispatch(setIndex(index));
       }
     } else if (shuffleSongs === false && category === "search") {
       if (songIndex < searchSongsArrLength - 1) {
         let song = searchSongsArr[songIndex + 1];
-        dispatch(playThisSong({ song: song }));
-        dispatch(playNextSong({ value: 1 }));
+        dispatch(playThisSong(song));
+        dispatch(playNextSong(1));
       } else {
         let song = searchSongsArr[0];
-        dispatch(playThisSong({ song: song }));
-        dispatch(setIndex({ id: 0 }));
+        dispatch(playThisSong(song));
+        dispatch(setIndex(0));
       }
     } else if (shuffleSongs === false && category === "favList") {
       if (songIndex < favSongArr.length - 1) {
         let song = favSongArr[songIndex + 1];
-        dispatch(playThisSong({ song: song }));
-        dispatch(playNextSong({ value: 1 }));
+        dispatch(playThisSong(song));
+        dispatch(playNextSong(1));
       } else {
         let song = favSongArr[0];
-        dispatch(playThisSong({ song: song }));
-        dispatch(setIndex({ id: 0 }));
+        dispatch(playThisSong(song));
+        dispatch(setIndex(0));
       }
     } else if (shuffleSongs === false && category === "playlist") {
       if (songIndex < currentPlaylistSongsList.length - 1) {
         let song = currentPlaylistSongsList[songIndex + 1];
-        dispatch(playThisSong({ song: song }));
-        dispatch(playNextSong({ value: 1 }));
+        dispatch(playThisSong(song));
+        dispatch(playNextSong(1));
       } else {
         let song = currentPlaylistSongsList[0];
-        dispatch(playThisSong({ song: song }));
-        dispatch(setIndex({ id: 0 }));
+        dispatch(playThisSong(song));
+        dispatch(setIndex(0));
       }
     }
-    dispatch(setPlay({ play: true }));
+    dispatch(setPlay(true));
   }, [
     songIndex,
     searchSongsArr,
@@ -153,18 +153,18 @@ export const ReactMusicPlayer = () => {
   const handleProgress = (value: any) => {
     console.log("obecnyIndex", songIndex);
     let playedValue = parseFloat(value.played);
-    dispatch(setPlayed({ played: playedValue }));
+    dispatch(setPlayed(playedValue));
   };
 
   const handleDuration = (duration: number) => {
-    dispatch(setDuration({ duration: duration }));
+    dispatch(setDuration(duration));
   };
 
   // Skip song to optional second
 
   useEffect(() => {
     ref.current.seekTo(seekTo);
-    dispatch(setPlayed({ played: seekTo }));
+    dispatch(setPlayed(seekTo));
   }, [seekTo]);
 
   // Get current playlist songs

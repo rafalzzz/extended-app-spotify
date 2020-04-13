@@ -39,7 +39,7 @@ import { Song } from "../../../../store/models";
 export const SearchList = memo(() => {
   // Selectors
 
-  const songs: Song[] = useSelector(songsList);
+  const songs = useSelector(songsList);
   const favList: Song[] = useSelector(favSongsList);
   const currentSongName: Song = useSelector(currentSong);
   const NowIsPlaying: Song = useSelector(NowPlayedSong);
@@ -53,33 +53,27 @@ export const SearchList = memo(() => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(setCategory({ term: "playlist" }));
-    dispatch(fetchSongsStarted({ term: "pop" }));
+    dispatch(setCategory("search"));
+    dispatch(fetchSongsStarted("pop"));
   }, []);
 
   // Favourite songs functions
 
-  const handleAddSongToFav = useCallback(
-    (song) => (event: React.MouseEvent) => {
-      dispatch(addSongToFav({ song: song }));
-      handleSendFavSongToFirestore(song);
-    },
-    []
-  );
+  const handleAddSongToFav = useCallback((song: Song) => {
+    dispatch(addSongToFav(song));
+    handleSendFavSongToFirestore(song);
+  }, []);
 
-  const handleDeleteSongFromFav = useCallback(
-    (song, id) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromFav({ id: id }));
-      handleDeleteFavSongFromFirestore(song);
-    },
-    []
-  );
+  const handleDeleteSongFromFav = useCallback((song: Song) => {
+    dispatch(deleteSongFromFav(song));
+    handleDeleteFavSongFromFirestore(song);
+  }, []);
 
   // CurrentItems function
 
   const handleSetCurrentSong = useCallback(
     (song) => (event: React.MouseEvent) => {
-      dispatch(setSong({ song: song }));
+      dispatch(setSong(song));
     },
     [currentSongIndex]
   );

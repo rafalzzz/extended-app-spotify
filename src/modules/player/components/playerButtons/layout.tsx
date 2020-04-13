@@ -3,7 +3,7 @@ import React from "react";
 import { PlayerButtonsContainer } from "./layout.styled";
 
 type PlayerButtonsLayoutProps = {
-  handleShuffleButton: (event: React.MouseEvent) => void;
+  handleShuffleButton: (event: any) => void;
   shuffleSongs: boolean;
   handlePreviewButton: (event: React.MouseEvent) => void;
   handlePlayPause: (event: React.MouseEvent) => void;

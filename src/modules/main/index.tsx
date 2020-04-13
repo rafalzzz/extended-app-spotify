@@ -17,7 +17,7 @@ export const Main = memo(() => {
 
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    dispatch(fetchSongsStarted({ term: term }));
+    dispatch(fetchSongsStarted(term));
   };
 
   return (

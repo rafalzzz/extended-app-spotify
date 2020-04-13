@@ -22,7 +22,7 @@ export const Bar = memo(() => {
 
   const handleSeekChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let second: number = parseFloat(e.target.value);
-    dispatch(seekTo({ seekTo: second }));
+    dispatch(seekTo(second));
   };
 
   const handleSetRemaining = useCallback(

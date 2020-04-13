@@ -19,11 +19,8 @@ type ListItemProps = {
   currentSong: Song;
   NowIsPlaying: Song;
   playOrNot: boolean;
-  handleAddSongToFav: (song: Song) => (event: React.MouseEvent) => void;
-  handleDeleteSongFromFav: (
-    song: Song,
-    songId: string
-  ) => (event: React.MouseEvent) => void;
+  handleAddSongToFav: (song: Song) => void;
+  handleDeleteSongFromFav: (song: Song) => void;
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
   /* onClick: (event: MouseEvent) => void; */
 };
@@ -55,16 +52,19 @@ export const ListItem = ({
 
   // FavSongs functions
 
-  const handleOnClick = (song: Song, songId: string) => {
-    if (favChecked === false) {
-      handleAddSongToFav(song);
-      setFavChecked(true);
-    }
-    if (favChecked === true) {
-      handleDeleteSongFromFav(song, songId);
-      setFavChecked(false);
-    }
-  };
+  const handleOnClick = useCallback(
+    (song: Song) => (event: React.MouseEvent) => {
+      if (favChecked === false) {
+        handleAddSongToFav(song);
+        setFavChecked(true);
+      }
+      if (favChecked === true) {
+        handleDeleteSongFromFav(song);
+        setFavChecked(false);
+      }
+    },
+    [favChecked]
+  );
 
   // Show/Hide Play/Stop Icon functions
 
@@ -88,34 +88,29 @@ export const ListItem = ({
 
   // Play this song functions
 
-  type asdProps = {
-    id: string;
-    song: Song;
-  };
-
   const handlePlayThisSongNow = useCallback(
-    (event: React.MouseEvent) => ({ id, song }: asdProps) => {
+    (id: number, song: Song) => (event: React.MouseEvent) => {
       if (NowIsPlaying.previewUrl === song.previewUrl) {
         if (playOrNot === true) {
-          dispatch(setPlay({ play: false }));
+          dispatch(setPlay(false));
           setPlayingThisSongNow(false);
           setShowPlayButton(true);
-          dispatch(setIndex({ id: id }));
+          dispatch(setIndex(id));
         } else {
-          dispatch(setPlay({ play: true }));
+          dispatch(setPlay(true));
           setPlayingThisSongNow(true);
           setShowPlayButton(true);
-          dispatch(setIndex({ id: id }));
+          dispatch(setIndex(id));
         }
       } else {
-        dispatch(playThisSong({ song }));
+        dispatch(playThisSong(song));
         setPlayingThisSongNow(true);
         setShowPlayButton(true);
-        dispatch(setIndex({ id: id }));
-        dispatch(setPlay({ play: true }));
+        dispatch(setIndex(id));
+        dispatch(setPlay(true));
       }
     },
-    [currentSong]
+    [currentSong, playOrNot]
   );
 
   // Show songs added to favList
@@ -167,7 +162,7 @@ export const ListItem = ({
                 ? "#ffffff10"
                 : "transparent",
           }}
-          onClick={handlePlayThisSongNow}
+          onClick={handlePlayThisSongNow(id, song)}
         >
           <div
             className="playStopIcon"
@@ -188,9 +183,7 @@ export const ListItem = ({
                 ? "#ffffff10"
                 : "transparent",
           }}
-          onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>): void =>
-            handleOnClick(song, song.previewUrl)
-          }
+          onClick={handleOnClick(song)}
         >
           {favChecked ? (
             <i className="icon-heart" />

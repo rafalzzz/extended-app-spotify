@@ -19,7 +19,7 @@ export function* fetchSongs({ payload }: AnyAction) {
       `https://itunes.apple.com/search?entity=song&limit=100&term=${term}`
     );
     console.log(request);
-    yield put({ type: FETCH_SONGS_LIST.success, payload: Request });
+    yield put({ type: FETCH_SONGS_LIST.success, payload: request });
   } catch (e) {
     yield put({ type: FETCH_SONGS_LIST.failure, message: e });
   }
