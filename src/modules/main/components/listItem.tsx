@@ -2,15 +2,27 @@ import React, { useState, useEffect, useCallback } from "react";
 
 import { Duration } from "../../../helpers/Duration";
 
-import { setIndex, playThisSong } from "../../../store/items/actions";
+import { setIndex, playThisSong, overflow } from "../../../store/items/actions";
 
 import { setPlay } from "../../../store/player/actions";
 
-import { useDispatch } from "react-redux";
+import {
+  addSongToPlaylist,
+  deleteSongFromPlaylist,
+} from "../../../store/playlists/actions";
+
+import { playlists } from "../../../store/playlists/selectors";
+
+import {
+  handleAddSongToPlaylistOnFirestore,
+  handleDeleteSongFromPlaylistOnFirestore,
+} from "../../../helpers/FireStoreData";
+
+import { useSelector, useDispatch } from "react-redux";
 
 import { ListItemContainer } from "./listItem.styled";
 
-import { Song } from "../../../store/models";
+import { Song, Playlist } from "../../../store/models";
 
 type ListItemProps = {
   id: number;
@@ -47,6 +59,11 @@ export const ListItem = ({
   const [favChecked, setFavChecked] = useState<boolean>(false);
   const [playingThisSongNow, setPlayingThisSongNow] = useState<boolean>(false);
   const [showPlayButton, setShowPlayButton] = useState<boolean>(false);
+  const [showMoreOptions, setShowMoreOptions] = useState<boolean>(false);
+
+  // Important selector
+
+  const playlistsList: Playlist[] = useSelector(playlists);
 
   const dispatch = useDispatch();
 
@@ -145,6 +162,39 @@ export const ListItem = ({
       ? setPlayingThisSongNow(false)
       : setPlayingThisSongNow(true);
   }, [showPlayButton]);
+
+  // Show more options functions
+
+  const handleShowMoreOption = useCallback(
+    (event: React.MouseEvent) => {
+      if (showMoreOptions === true) {
+        setShowMoreOptions(false);
+        dispatch(overflow(false));
+      } else if (showMoreOptions === false) {
+        setShowMoreOptions(true);
+        dispatch(overflow(true));
+      }
+    },
+    [showMoreOptions]
+  );
+
+  // Add or delete music from playlist
+
+  const handleAddSongToPlaylist = useCallback(
+    (playlist: string, song: Song) => (event: React.MouseEvent) => {
+      dispatch(addSongToPlaylist(playlist, song));
+      handleAddSongToPlaylistOnFirestore(playlist, song);
+    },
+    []
+  );
+
+  const handleDeleteSongFromPlaylist = useCallback(
+    (playlist: string, song: Song) => (event: React.MouseEvent) => {
+      dispatch(deleteSongFromPlaylist(playlist, song));
+      handleDeleteSongFromPlaylistOnFirestore(playlist, song);
+    },
+    []
+  );
 
   return (
     <ListItemContainer>
@@ -250,6 +300,68 @@ export const ListItem = ({
           }}
         >
           {song.releaseDate.slice(0, 10)}
+        </div>
+        <div
+          className="more"
+          style={{
+            backgroundColor:
+              currentSong.previewUrl === song.previewUrl
+                ? "#ffffff10"
+                : "transparent",
+          }}
+          onClick={handleShowMoreOption}
+        >
+          <span
+            style={{
+              visibility: showPlayButton ? "visible" : "hidden",
+            }}
+          >
+            <i className="icon-dot-3" />
+          </span>
+          <div
+            className="moreOptModal"
+            style={{ display: showMoreOptions ? "block" : "none" }}
+            onClick={handleShowMoreOption}
+          ></div>
+          <div
+            className="moreOpt"
+            style={{
+              display: showMoreOptions ? "block" : "none",
+              backgroundColor:
+                currentSong.previewUrl === song.previewUrl
+                  ? "#ffffff10"
+                  : "#181818",
+            }}
+          >
+            <div className="moreOptItem">
+              {" "}
+              Add music to playlist
+              <div className="playlistListItemsConstainer">
+                {playlistsList.map((playlist) => (
+                  <div
+                    className="playlistListItem"
+                    onClick={handleAddSongToPlaylist(playlist.name, song)}
+                  >
+                    {playlist.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="moreOptItem">
+              {" "}
+              Delete music from playlist
+              <div className="playlistListItemsConstainer">
+                {playlistsList.map((playlist) => (
+                  <div
+                    className="playlistListItem"
+                    onClick={handleDeleteSongFromPlaylist(playlist.name, song)}
+                  >
+                    {playlist.name}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <div
           className="time"

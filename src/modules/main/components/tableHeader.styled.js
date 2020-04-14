@@ -1,19 +1,19 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const TableHeaderContainer = styled.div`
-    height: 47px;
-    width: 100vw;
-    background-color: transparent;
-    margin-left: 15px;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 15px;
+  height: 47px;
+  width: 100vw;
+  background-color: transparent;
+  margin-left: 15px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 15px;
 
-.col1 {
+  .col1 {
     background-color: transparent;
     border-bottom: solid 1px #252525;
     height: 17px;
-    width: 346px;
+    width: 337px;
     padding-top: 0px;
     font-size: 0.65em;
     text-align: left;
@@ -23,11 +23,11 @@ export const TableHeaderContainer = styled.div`
     padding-left: 72px;
     padding-top: 3px;
     letter-spacing: 2px;
-}
+  }
 
-.col2 {
+  .col2 {
     background-color: transparent;
-    width: 241px;
+    width: 238px;
     border-bottom: solid 1px #252525;
     height: 17px;
     font-size: 0.65em;
@@ -36,12 +36,12 @@ export const TableHeaderContainer = styled.div`
     letter-spacing: 2px;
     margin-top: 41px;
     text-align: left;
-}
+  }
 
-.col3 {
+  .col3 {
     background-color: transparent;
     border-bottom: solid 1px #252525;
-    width: 271px;
+    width: 246px;
     height: 17px;
     font-size: 0.65em;
     letter-spacing: 2px;
@@ -49,12 +49,12 @@ export const TableHeaderContainer = styled.div`
     padding-left: 1px;
     text-align: left;
     margin-top: 41px;
-}
+  }
 
-.col4 {
+  .col4 {
     background-color: transparent;
     border-bottom: solid 1px #252525;
-    width: 123px;
+    width: 143px;
     height: 17px;
     font-size: 0.7em;
     padding-top: 3px;
@@ -62,9 +62,9 @@ export const TableHeaderContainer = styled.div`
     text-align: left;
     margin-top: 41px;
     font-weight: 300;
-}
+  }
 
-.col5 {
+  .col5 {
     background-color: transparent;
     border-bottom: solid 1px #252525;
     width: 42px;
@@ -75,5 +75,5 @@ export const TableHeaderContainer = styled.div`
     padding-left: 1px;
     text-align: left;
     margin-top: 41px;
-}
-`
+  }
+`;

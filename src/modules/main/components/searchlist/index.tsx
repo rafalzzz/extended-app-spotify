@@ -14,6 +14,7 @@ import {
   currentSong,
   currentIndex,
   NowPlayedSong,
+  showOverflow,
 } from "../../../../store/items/selectors";
 
 import { playRX } from "../../../../store/player/selectors";
@@ -44,6 +45,7 @@ export const SearchList = memo(() => {
   const currentSongName: Song = useSelector(currentSong);
   const NowIsPlaying: Song = useSelector(NowPlayedSong);
   const playOrNot: boolean = useSelector(playRX);
+  const overflow: boolean = useSelector(showOverflow);
 
   const loading: boolean = useSelector(isLoading);
   const arrLength: number = useSelector(songsListLength);
@@ -90,6 +92,7 @@ export const SearchList = memo(() => {
       handleSetSong={handleSetCurrentSong}
       loading={loading}
       arrLength={arrLength}
+      overflow={overflow}
     />
   );
 });

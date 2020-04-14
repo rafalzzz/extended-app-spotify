@@ -14,6 +14,7 @@ type FavListLayoutProps = {
   handleAddSongToFav: (song: Song) => void;
   handleDeleteSongFromFav: (song: Song) => void;
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
+  overflow: boolean;
 };
 
 export const FavsListLayout = ({
@@ -24,10 +25,14 @@ export const FavsListLayout = ({
   handleAddSongToFav,
   handleDeleteSongFromFav,
   handleSetSong,
+  overflow,
 }: FavListLayoutProps) => {
   return (
     <TableContainer>
-      <div className="table">
+      <div
+        className="table"
+        style={{ overflowY: overflow ? "hidden" : "scroll" }}
+      >
         <TableHeader />
         {favList &&
           favList.map((favListItem: Song, i: number = 0) => (

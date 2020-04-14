@@ -19,6 +19,7 @@ type SearchListLayoutProps = {
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
   loading: boolean;
   arrLength: number;
+  overflow: boolean;
 };
 
 export const SearchListLayout = ({
@@ -32,10 +33,14 @@ export const SearchListLayout = ({
   handleSetSong,
   loading,
   arrLength,
+  overflow,
 }: SearchListLayoutProps) => {
   return (
     <TableContainer>
-      <div className="table">
+      <div
+        className="table"
+        style={{ overflowY: overflow ? "hidden" : "scroll" }}
+      >
         {loading && <Loading />}
         {arrLength === 0 && <Error />}
         {arrLength > 0 && <TableHeader />}

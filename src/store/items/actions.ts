@@ -6,6 +6,7 @@ import {
   PLAY_THIS_SONG,
   PLAY_NEXT_SONG,
   PLAY_PREV_SONG,
+  OVERFLOW,
 } from "./consts";
 
 import { createAction } from "typesafe-actions";
@@ -77,5 +78,16 @@ export const playPrevSong = createAction(
   PLAY_PREV_SONG,
   (value): ValueProps => ({
     value,
+  })
+)();
+
+export type OverflowProps = {
+  show: boolean;
+};
+
+export const overflow = createAction(
+  OVERFLOW,
+  (show): OverflowProps => ({
+    show,
   })
 )();

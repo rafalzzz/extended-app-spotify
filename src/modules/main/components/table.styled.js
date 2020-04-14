@@ -8,7 +8,6 @@ export const TableContainer = styled.div`
   position: absolute;
 
   .table {
-    z-index: 1;
     /* background-color: #181818; */
     height: calc(100vh - 300px);
     width: 100%;

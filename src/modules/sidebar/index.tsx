@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, memo } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -11,7 +11,7 @@ import { SidebarLayout } from "./layout";
 
 import { Playlist } from "../../store/models";
 
-export const Sidebar = () => {
+export const Sidebar = memo(() => {
   const playlistsList: Playlist[] = useSelector(playlists);
   const currentPlaylistName: string = useSelector(currentPlaylist);
 
@@ -34,4 +34,4 @@ export const Sidebar = () => {
       />
     </div>
   );
-};
+});

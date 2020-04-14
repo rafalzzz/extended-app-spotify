@@ -10,6 +10,7 @@ import {
   PLAY_THIS_SONG,
   PLAY_NEXT_SONG,
   PLAY_PREV_SONG,
+  OVERFLOW,
 } from "./consts";
 
 export type ItemsState = {
@@ -18,6 +19,7 @@ export type ItemsState = {
   category: string;
   playlist: string;
   currentPlayed: Song;
+  overflow: boolean;
 };
 
 const initialState = {
@@ -46,6 +48,7 @@ const initialState = {
     artworkUrl30: "",
     trackTimeMillis: 0,
   },
+  overflow: false,
 };
 
 export const items = (state = initialState, action: Action): ItemsState => {
@@ -68,6 +71,9 @@ export const items = (state = initialState, action: Action): ItemsState => {
     case PLAY_PREV_SONG:
       console.log(action);
       return { ...state, index: state.index - action.payload.value };
+    case OVERFLOW:
+      console.log(action);
+      return { ...state, overflow: action.payload.show };
     default:
       return state;
   }

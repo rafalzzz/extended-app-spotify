@@ -95,7 +95,7 @@ export const MainHeader = memo(() => {
 
   const handleDeletePlaylist = useCallback(
     (name: string) => (event: React.MouseEvent) => {
-      dispatch(deletePlaylist({ name: name }));
+      dispatch(deletePlaylist(name));
       handleDeletePlaylistFromFirestore(name);
       setMoreOptionsIsOpen(false);
     },

@@ -9,5 +9,8 @@
         "song",
         "time",
         "track"
+    ],
+    "cSpell.ignoreWords": [
+        "playstopiconborder"
     ]
 }
