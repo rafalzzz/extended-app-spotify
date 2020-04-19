@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ListItemContainer = styled.div`
+export const TableElementContainer = styled.div`
   height: 35px;
   width: 100%;
   background-color: transparent;

@@ -18,7 +18,7 @@ type MainLayoutProps = {
 
 export const MainLayout = ({
   handleOnChange,
-  handleOnSubmit
+  handleOnSubmit,
 }: MainLayoutProps) => (
   <MainContainer>
     <SearchBar
@@ -29,7 +29,7 @@ export const MainLayout = ({
       <Route path="/user/about">
         <About />
       </Route>
-      <Route path="/user/main">
+      <Route path="/user/search">
         <MainHeader />
         <SearchList />
       </Route>

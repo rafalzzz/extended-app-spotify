@@ -33,15 +33,20 @@ export const PlaylistsContainer = styled.div`
   }
 
   .playlistElement {
-    margin-left: 16px;
+    margin-left: 10px;
     font-weight: 700;
     font-size: 0.6em;
     padding-top: 7px;
     padding-bottom: 5px;
+    padding-left: 6px;
     width: 100%;
     text-align: left;
     color: #8e8e8e;
     background-color: transparent;
     border: none;
+  }
+
+  .playlistElement:hover {
+    cursor: pointer;
   }
 `;

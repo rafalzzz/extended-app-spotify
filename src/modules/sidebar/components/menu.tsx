@@ -13,7 +13,7 @@ export const Menu = () => (
         About
       </div>
     </Link>
-    <Link to="/user/main" style={{ textDecoration: "none" }}>
+    <Link to="/user/search" style={{ textDecoration: "none" }}>
       <div>
         <i className="icon-folder-empty" />
         Browse

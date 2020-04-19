@@ -143,6 +143,12 @@
       "css": "clock",
       "code": 59410,
       "src": "fontawesome"
+    },
+    {
+      "uid": "517522647a556192fbc78aa391b7b0c2",
+      "css": "cancel-circled-outline",
+      "code": 59411,
+      "src": "typicons"
     }
   ]
 }

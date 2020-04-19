@@ -1,5 +1,7 @@
 import React, { useCallback, memo } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import { useSelector, useDispatch } from "react-redux";
 
 import { playlists } from "../../store/playlists/selectors";
@@ -17,10 +19,13 @@ export const Sidebar = memo(() => {
 
   const dispatch = useDispatch();
 
+  const history = useHistory();
+
   const handleSetPlaylist = useCallback(
     (name: string) => (event: React.MouseEvent) => {
       dispatch(setPlaylist(name));
       console.log(currentPlaylistName);
+      history.push(`/user/playlist/list/${name}`);
     },
     []
   );

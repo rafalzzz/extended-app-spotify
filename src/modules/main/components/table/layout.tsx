@@ -1,40 +1,40 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-import { Duration } from "../../../helpers/Duration";
-
-import { setIndex, playThisSong, overflow } from "../../../store/items/actions";
-
-import { setPlay } from "../../../store/player/actions";
+import { Duration } from "../../../../helpers/Duration";
 
 import {
-  addSongToPlaylist,
-  deleteSongFromPlaylist,
-} from "../../../store/playlists/actions";
+  setIndex,
+  playThisSong,
+  overflow,
+} from "../../../../store/items/actions";
 
-import { playlists } from "../../../store/playlists/selectors";
+import { setPlay } from "../../../../store/player/actions";
 
-import {
-  handleAddSongToPlaylistOnFirestore,
-  handleDeleteSongFromPlaylistOnFirestore,
-} from "../../../helpers/FireStoreData";
+import { useDispatch } from "react-redux";
 
-import { useSelector, useDispatch } from "react-redux";
+import { TableElementContainer } from "./layout.styled";
 
-import { TableElementContainer } from "./table/layout.styled";
+import { Song, Playlist } from "../../../../store/models";
 
-import { Song, Playlist } from "../../../store/models";
-
-type ListItemProps = {
+type TableElementProps = {
   id: number;
   song: Song;
   favList: Song[];
+  playlistsList: Playlist[];
   currentSong: Song;
   NowIsPlaying: Song;
   playOrNot: boolean;
   handleAddSongToFav: (song: Song) => void;
   handleDeleteSongFromFav: (song: Song) => void;
   handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
-  /* onClick: (event: MouseEvent) => void; */
+  handleAddSongToPlaylist: (
+    playlist: string,
+    song: Song
+  ) => (event: React.MouseEvent) => void;
+  handleDeleteSongFromPlaylist: (
+    playlist: string,
+    song: Song
+  ) => (event: React.MouseEvent) => void;
 };
 
 type handleOnMouseEnterProps = {
@@ -45,25 +45,24 @@ type handleOnMouseLeaveProps = {
   (event: React.MouseEvent): void;
 };
 
-export const ListItem = ({
+export const TableElement = ({
   id,
   song,
   favList,
+  playlistsList,
   currentSong,
   NowIsPlaying,
   playOrNot,
   handleAddSongToFav,
   handleDeleteSongFromFav,
   handleSetSong,
-}: ListItemProps) => {
+  handleAddSongToPlaylist,
+  handleDeleteSongFromPlaylist,
+}: TableElementProps) => {
   const [favChecked, setFavChecked] = useState<boolean>(false);
   const [playingThisSongNow, setPlayingThisSongNow] = useState<boolean>(false);
   const [showPlayButton, setShowPlayButton] = useState<boolean>(false);
   const [showMoreOptions, setShowMoreOptions] = useState<boolean>(false);
-
-  // Important selector
-
-  const playlistsList: Playlist[] = useSelector(playlists);
 
   const dispatch = useDispatch();
 
@@ -176,24 +175,6 @@ export const ListItem = ({
       }
     },
     [showMoreOptions]
-  );
-
-  // Add or delete music from playlist
-
-  const handleAddSongToPlaylist = useCallback(
-    (playlist: string, song: Song) => (event: React.MouseEvent) => {
-      dispatch(addSongToPlaylist(playlist, song));
-      handleAddSongToPlaylistOnFirestore(playlist, song);
-    },
-    []
-  );
-
-  const handleDeleteSongFromPlaylist = useCallback(
-    (playlist: string, song: Song) => (event: React.MouseEvent) => {
-      dispatch(deleteSongFromPlaylist(playlist, song));
-      handleDeleteSongFromPlaylistOnFirestore(playlist, song);
-    },
-    []
   );
 
   return (
@@ -376,7 +357,7 @@ export const ListItem = ({
                 : "#b3b3b3",
           }}
         >
-          <Duration seconds={/* parseInt(...) */ song.trackTimeMillis / 1000} />
+          <Duration seconds={song.trackTimeMillis / 1000} />
         </div>
       </div>
     </TableElementContainer>

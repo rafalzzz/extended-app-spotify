@@ -1,59 +1,50 @@
 import React from "react";
 
-import { TableContainer } from "../table.styled";
-import { TableHeader } from "../tableHeader";
-import { ListItem } from "../listItem";
+import { Switch, Route } from "react-router-dom";
 
-import { Song } from "../../../../store/models";
+import { PlaylistLayoutContainer } from "./layout.styled";
 
-type PlaylistLayoutProps = {
-  songs: Song[];
-  favList: Song[];
-  currentSong: Song;
-  NowIsPlaying: Song;
-  playOrNot: boolean;
-  handleAddSongToFav: (song: Song) => void;
-  handleDeleteSongFromFav: (song: Song) => void;
-  handleSetSong: (song: Song) => (event: React.MouseEvent) => void;
-  overflow: boolean;
+import { PlaylistItem } from "./components/playlistItem";
+import { Playlist } from "../../../../store/models";
+import { Table } from "../table";
+
+export type PlaylistLayoutProps = {
+  playlistsList: Playlist[];
+  handlePlayPlaylist: (name: string) => (event: React.MouseEvent) => void;
+  handleDeletePlaylist: (name: string) => (event: React.MouseEvent) => void;
 };
 
 export const PlaylistLayout = ({
-  songs,
-  favList,
-  currentSong,
-  NowIsPlaying,
-  playOrNot,
-  handleAddSongToFav,
-  handleDeleteSongFromFav,
-  handleSetSong,
-  overflow,
+  playlistsList,
+  handlePlayPlaylist,
+  handleDeletePlaylist,
 }: PlaylistLayoutProps) => {
+  const asd = { name: "asd", songs: [] };
   return (
-    <TableContainer>
-      <div
-        className="table"
-        style={{ overflowY: overflow ? "hidden" : "scroll" }}
-      >
-        <TableHeader />
-        {favList &&
-          songs.map((song, i = 0) => (
-            <div key={i++}>
-              <ListItem
-                id={i++}
-                song={song}
-                favList={favList}
-                currentSong={currentSong}
-                NowIsPlaying={NowIsPlaying}
-                playOrNot={playOrNot}
-                handleAddSongToFav={handleAddSongToFav}
-                handleDeleteSongFromFav={handleDeleteSongFromFav}
-                handleSetSong={handleSetSong}
-              />
-            </div>
+    <Switch>
+      <Route path={`/user/playlist/list`}>
+        <Table />
+      </Route>
+      <Route exact path="/user/playlist">
+        <PlaylistLayoutContainer>
+          <PlaylistItem
+            playlist={asd}
+            handlePlayPlaylist={handlePlayPlaylist}
+            handleDeletePlaylist={handleDeletePlaylist}
+            key={11}
+            id={11}
+          />
+          {playlistsList.map((playlist: Playlist, id: number = 0) => (
+            <PlaylistItem
+              playlist={playlist}
+              handlePlayPlaylist={handlePlayPlaylist}
+              handleDeletePlaylist={handleDeletePlaylist}
+              key={id++}
+              id={id++}
+            />
           ))}
-        <div style={{ height: "17px" }}></div>
-      </div>
-    </TableContainer>
+        </PlaylistLayoutContainer>
+      </Route>
+    </Switch>
   );
 };

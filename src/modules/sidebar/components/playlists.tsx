@@ -27,6 +27,8 @@ export const Playlists = ({
                   currentPlaylistName === playlist.name
                     ? "#ffffff10"
                     : "transparent",
+                color:
+                  currentPlaylistName === playlist.name ? "white" : "#8e8e8e",
               }}
               className="playlistElement"
               onClick={handleSetPlaylist(playlist.name)}

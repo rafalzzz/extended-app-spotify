@@ -1,109 +1,70 @@
-import React, { useState, useEffect, useCallback, memo } from "react";
+import React, { useEffect, useCallback } from "react";
+
+import { useHistory } from "react-router-dom";
 
 import { useSelector, useDispatch } from "react-redux";
-
-import { favSongsList } from "../../../../store/favSongs/selectors";
 
 import { playlists } from "../../../../store/playlists/selectors";
 
 import {
-  currentSong,
-  currentIndex,
-  currentPlaylist,
-  NowPlayedSong,
-  showOverflow,
-} from "../../../../store/items/selectors";
+  setPlaylist,
+  setCategory,
+  playThisSong,
+  setIndex,
+} from "../../../../store/items/actions";
 
-import { playRX } from "../../../../store/player/selectors";
+import { setPlay } from "../../../../store/player/actions";
 
-import {
-  addSongToFav,
-  deleteSongFromFav,
-} from "../../../../store/favSongs/actions";
+import { deletePlaylist } from "../../../../store/playlists/actions";
 
-import { setCategory, setSong } from "../../../../store/items/actions";
-
-import {
-  handleSendFavSongToFirestore,
-  handleDeleteFavSongFromFirestore,
-} from "../../../../helpers/FireStoreData";
+import { handleDeletePlaylistFromFirestore } from "../../../../helpers/FireStoreData";
 
 import { PlaylistLayout } from "./layout";
+import { Playlist } from "../../../../store/models";
 
-import { Song, Playlist } from "../../../../store/models";
-
-export const Playlists = memo(() => {
-  const [currentPlaylistSongsList, setCurrentPlaylistSongsList] = useState<
-    Song[]
-  >([]);
-
-  // Selectors
-
-  const favList: Song[] = useSelector(favSongsList);
-  const currentSongName: Song = useSelector(currentSong);
-  const NowIsPlaying: Song = useSelector(NowPlayedSong);
-  const playOrNot: boolean = useSelector(playRX);
-  const overflow: boolean = useSelector(showOverflow);
-
-  const currentPlaylistSongs: Playlist[] = useSelector(playlists);
-  const currentPlaylistName: string | undefined = useSelector(currentPlaylist);
-
-  const currentSongIndex: number | undefined = useSelector(currentIndex);
+export const Playlists = () => {
+  const playlistsList: Playlist[] = useSelector(playlists);
 
   const dispatch = useDispatch();
 
-  // Download songs from current playlist
-
-  const returnCurrentPlaylistSongs = () => {
-    currentPlaylistSongs.map((playlist: Playlist) =>
-      playlist.name === currentPlaylistName
-        ? setCurrentPlaylistSongsList(playlist.songs)
-        : null
-    );
-    console.log("asdasdsa", currentPlaylistSongs);
-  };
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(setCategory("playlist"));
-    returnCurrentPlaylistSongs();
-  }, [currentPlaylistName, currentPlaylistSongs]);
-
-  useEffect(() => {
-    console.log("name", currentPlaylistName);
-  }, [currentPlaylistName]);
-
-  // Favourite songs functions
-
-  const handleAddSongToFav = useCallback((song: Song) => {
-    dispatch(addSongToFav(song));
-    handleSendFavSongToFirestore(song);
   }, []);
 
-  const handleDeleteSongFromFav = useCallback((song: Song) => {
-    dispatch(deleteSongFromFav(song));
-    handleDeleteFavSongFromFirestore(song);
-  }, []);
-
-  // CurrentItems function
-
-  const handleSetSong = useCallback(
-    (song) => (event: React.MouseEvent) => {
-      dispatch(setSong(song));
+  const handlePlayPlaylist = useCallback(
+    (name: string) => (event: React.MouseEvent) => {
+      dispatch(setPlaylist(name));
+      playlistsList.map((playlist: Playlist) => {
+        if (name === playlist.name) {
+          if (playlist.songs.length !== 0) {
+            dispatch(playThisSong(playlist.songs[0]));
+            dispatch(setIndex(1));
+            dispatch(setPlay(true));
+            history.push(`/user/playlist/list/${name}`);
+          } else {
+            return null;
+          }
+        }
+      });
     },
-    [currentSongIndex]
+    []
+  );
+
+  const handleDeletePlaylist = useCallback(
+    (name: string) => (event: React.MouseEvent) => {
+      dispatch(deletePlaylist(name));
+      handleDeletePlaylistFromFirestore(name);
+    },
+    []
   );
 
   return (
     <PlaylistLayout
-      songs={currentPlaylistSongsList}
-      favList={favList}
-      currentSong={currentSongName}
-      NowIsPlaying={NowIsPlaying}
-      playOrNot={playOrNot}
-      handleAddSongToFav={handleAddSongToFav}
-      handleDeleteSongFromFav={handleDeleteSongFromFav}
-      handleSetSong={handleSetSong}
-      overflow={overflow}
+      playlistsList={playlistsList}
+      handlePlayPlaylist={handlePlayPlaylist}
+      handleDeletePlaylist={handleDeletePlaylist}
     />
   );
-});
+};

@@ -67,7 +67,7 @@ export const TableHeaderContainer = styled.div`
   .col5 {
     background-color: transparent;
     border-bottom: solid 1px #252525;
-    width: 42px;
+    width: 59px;
     height: 19px;
     font-weight: 300;
     font-size: 0.8em;

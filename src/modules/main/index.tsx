@@ -1,5 +1,7 @@
 import React, { memo, useState } from "react";
 
+import { useHistory } from "react-router-dom";
+
 import { useDispatch } from "react-redux";
 
 import { fetchSongsStarted } from "../../store/fetchSongs/actions";
@@ -15,9 +17,12 @@ export const Main = memo(() => {
     setTerm(e.target.value);
   };
 
+  const history = useHistory();
+
   const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     dispatch(fetchSongsStarted(term));
+    history.push(`/user/search`);
   };
 
   return (
