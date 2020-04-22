@@ -1,7 +1,11 @@
-import { all } from "redux-saga/effects";
+import { fork } from "redux-saga/effects";
 
+import { albumsSaga } from "./fetchAlbums/saga";
+import { artistsSaga } from "./fetchArtists/saga";
 import { songsSaga } from "./fetchSongs/saga";
 
 export function* rootSaga(services = {}) {
-  return yield all([songsSaga()]);
+  yield fork(albumsSaga);
+  yield fork(artistsSaga);
+  yield fork(songsSaga);
 }

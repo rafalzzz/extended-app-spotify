@@ -21,7 +21,6 @@ export const TableElementContainer = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    /* border-bottom: solid 1px #252525; */
   }
 
   .row:hover {

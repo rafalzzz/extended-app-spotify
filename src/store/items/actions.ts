@@ -7,6 +7,7 @@ import {
   PLAY_NEXT_SONG,
   PLAY_PREV_SONG,
   OVERFLOW,
+  TERM,
 } from "./consts";
 
 import { createAction } from "typesafe-actions";
@@ -89,5 +90,16 @@ export const overflow = createAction(
   OVERFLOW,
   (show): OverflowProps => ({
     show,
+  })
+)();
+
+export type TermProps = {
+  term: string;
+};
+
+export const setCurrentTerm = createAction(
+  TERM,
+  (term): TermProps => ({
+    term,
   })
 )();

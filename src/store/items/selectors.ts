@@ -10,3 +10,4 @@ export const currentPlaylist = (state: AppState): string =>
 export const NowPlayedSong = (state: AppState): Song =>
   state.items.currentPlayed;
 export const showOverflow = (state: AppState): boolean => state.items.overflow;
+export const currentTerm = (state: AppState): string => state.items.term;

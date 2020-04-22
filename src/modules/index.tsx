@@ -22,7 +22,7 @@ export const Layout = () => {
         console.log(result);
         setUser(result.user.displayName);
         console.log(result.user.displayName);
-        history.push("/user/main");
+        history.push("/user/about");
       })
       .catch(function (error: any) {
         console.log(error);

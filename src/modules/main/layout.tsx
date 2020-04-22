@@ -7,9 +7,12 @@ import { MainContainer } from "./layout.styled";
 import { MainHeader } from "./components/mainHeader";
 import { About } from "./components/about";
 import { SearchBar } from "./components/searchbar";
-import { SearchList } from "./components/searchlist/index";
+import { Search } from "./components/searchlist/index";
 import { FavsList } from "./components/favslist/index";
 import { Playlists } from "./components/playlists/index";
+import { Albums } from "./components/albums/index";
+import { Table } from "./components/table";
+import { TracksHeader } from "./components/tracksHeader/index";
 
 type MainLayoutProps = {
   handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -29,9 +32,15 @@ export const MainLayout = ({
       <Route path="/user/about">
         <About />
       </Route>
-      <Route path="/user/search">
-        <MainHeader />
-        <SearchList />
+      <Route exact path="/user/search">
+        <Search />
+      </Route>
+      <Route exact path="/user/search/albums">
+        <Albums />
+      </Route>
+      <Route exact path="/user/search/tracks">
+        <TracksHeader />
+        <Table />
       </Route>
       <Route path="/user/favourite-list">
         <MainHeader />

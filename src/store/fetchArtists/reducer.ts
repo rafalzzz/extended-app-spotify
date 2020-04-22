@@ -1,41 +1,41 @@
-import { FETCH_SONGS_LIST } from "./consts";
+import { FETCH_ARTIST_LIST } from "./consts";
 
 import { Action } from "../../helpers/actions";
 
-export type SongsListState = {
+export type ArtistsListState = {
   isLoading: boolean;
   isError: boolean;
-  songs: any;
+  artists: any;
 };
 
 export const initialState = {
   isLoading: false,
   isError: false,
-  songs: [],
+  artists: [],
 };
 
-export const songsList = (
+export const artistsList = (
   state = initialState,
   action: Action
-): SongsListState => {
+): ArtistsListState => {
   switch (action.type) {
-    case FETCH_SONGS_LIST.started:
+    case FETCH_ARTIST_LIST.started:
       console.log(action);
       return {
         ...state,
-        songs: action.payload,
+        artists: action.payload,
         isLoading: true,
         isError: false,
       };
-    case FETCH_SONGS_LIST.success:
+    case FETCH_ARTIST_LIST.success:
       console.log(action);
       return {
         ...state,
-        songs: action.payload.data,
+        artists: action.payload.data,
         isLoading: false,
         isError: false,
       };
-    case FETCH_SONGS_LIST.failure:
+    case FETCH_ARTIST_LIST.failure:
       return {
         ...state,
         isLoading: false,
