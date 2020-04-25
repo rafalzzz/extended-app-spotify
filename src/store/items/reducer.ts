@@ -12,6 +12,9 @@ import {
   PLAY_PREV_SONG,
   OVERFLOW,
   TERM,
+  ARTIST,
+  ALBUM,
+  SONGS_LIST,
 } from "./consts";
 
 export type ItemsState = {
@@ -22,6 +25,9 @@ export type ItemsState = {
   currentPlayed: Song;
   overflow: boolean;
   term: string;
+  artist: string;
+  album: string;
+  currentSongsArray: any;
 };
 
 const initialState = {
@@ -52,6 +58,9 @@ const initialState = {
   },
   overflow: false,
   term: "",
+  artist: "",
+  album: "",
+  currentSongsArray: "",
 };
 
 export const items = (state = initialState, action: Action): ItemsState => {
@@ -80,6 +89,15 @@ export const items = (state = initialState, action: Action): ItemsState => {
     case TERM:
       console.log(action);
       return { ...state, term: action.payload.term };
+    case ARTIST:
+      console.log(action);
+      return { ...state, artist: action.payload.term };
+    case ALBUM:
+      console.log(action);
+      return { ...state, album: action.payload.term };
+    case SONGS_LIST:
+      console.log(action);
+      return { ...state, currentSongsArray: action.payload.songsArray };
     default:
       return state;
   }

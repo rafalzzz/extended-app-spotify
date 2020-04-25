@@ -5,15 +5,33 @@ import { Album } from "../../../../../store/models";
 
 export type AlbumItemProps = {
   album: Album;
+  handleFetchTracksByAlbumName: (
+    term: string,
+    limit: number
+  ) => (event: React.MouseEvent) => void;
+  handlePlayThisAlbumNow: (
+    term: string,
+    limit: number
+  ) => (event: React.MouseEvent) => void;
 };
 
-export const AlbumItem = ({ album }: AlbumItemProps) => {
+export const AlbumItem = ({
+  album,
+  handleFetchTracksByAlbumName,
+  handlePlayThisAlbumNow,
+}: AlbumItemProps) => {
   const [mouseIsOver, setMouseIsOver] = useState<boolean>(false);
   const imgUrl: string = album.artworkUrl100;
 
   return (
     <AlbumsSectionItemContainer>
-      <div className="albumsSectionItem">
+      <div
+        className="albumsSectionItem"
+        onClick={handleFetchTracksByAlbumName(
+          album.collectionCensoredName,
+          album.trackCount
+        )}
+      >
         <div
           className="albumsSectionItemImgContainer"
           style={{
@@ -38,6 +56,10 @@ export const AlbumItem = ({ album }: AlbumItemProps) => {
             style={{
               display: mouseIsOver ? "flex" : "none",
             }}
+            onClick={handlePlayThisAlbumNow(
+              album.collectionCensoredName,
+              album.trackCount
+            )}
           >
             <i className="icon-play" />
           </div>

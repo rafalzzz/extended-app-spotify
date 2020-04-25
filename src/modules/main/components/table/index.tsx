@@ -6,6 +6,8 @@ import { setSong } from "../../../../store/items/actions";
 
 import { favSongsList } from "../../../../store/favSongs/selectors";
 
+import { setSongsList } from "../../../../store/items/actions";
+
 import {
   currentSong,
   currentIndex,
@@ -13,6 +15,7 @@ import {
   currentCategory,
   showOverflow,
   currentPlaylist,
+  currentSongsArray,
 } from "../../../../store/items/selectors";
 
 import { playRX } from "../../../../store/player/selectors";
@@ -26,6 +29,18 @@ import {
   addSongToPlaylist,
   deleteSongFromPlaylist,
 } from "../../../../store/playlists/actions";
+
+import {
+  songsListByArtist,
+  songsListByArtistIsLoading,
+  songsListByArtistLength,
+} from "../../../../store/fetchSongsByArtist/selectors";
+
+import {
+  songsListByAlbum,
+  songsListByAlbumIsLoading,
+  songsListByAlbumLength,
+} from "../../../../store/fetchSongsByAlbum/selectors";
 
 import {
   songsList,
@@ -52,8 +67,14 @@ import { Song, Playlist } from "../../../../store/models";
 
 export const Table = memo(() => {
   const [songs, setSongs] = useState<Song[]>([]);
+  const [nowIsLoading, setNowIsLoading] = useState<boolean>(false);
+  const [notFound, setNotFound] = useState<boolean>(false);
 
-  const searchSongs = useSelector(songsList);
+  const songsArr = useSelector(currentSongsArray);
+
+  const songsByArtist = useSelector(songsListByArtist);
+  const songsByAlbum = useSelector(songsListByAlbum);
+  const songsByTerm = useSelector(songsList);
   const favList: Song[] = useSelector(favSongsList);
   const playlistsList: Playlist[] = useSelector(playlists);
 
@@ -66,10 +87,18 @@ export const Table = memo(() => {
   const category: string = useSelector(currentCategory);
   const isOverflow: boolean = useSelector(showOverflow);
 
-  const loading: boolean = useSelector(isLoading);
-  const arrLength: number = useSelector(songsListLength);
+  const loadingSongsByArtist: boolean = useSelector(songsListByArtistIsLoading);
+  const loadingSongsByAlbum: boolean = useSelector(songsListByAlbumIsLoading);
+  const loadingSongsByTerm: boolean = useSelector(isLoading);
+
+  const songsByArtistLength: number = useSelector(songsListByArtistLength);
+  const songsByAlbumLength: number = useSelector(songsListByAlbumLength);
+  const songsByTermLength: number = useSelector(songsListLength);
 
   const dispatch = useDispatch();
+
+  console.log("currentCategory", category);
+  console.log("currentSongArrRedux", songsArr);
 
   // FavSongs functions
 
@@ -110,10 +139,57 @@ export const Table = memo(() => {
     []
   );
 
+  // Loading dependent from category
+  useEffect(() => {
+    if (category === "songsByArtist") {
+      setNowIsLoading(loadingSongsByArtist);
+    } else if (category === "songsByAlbum") {
+      setNowIsLoading(loadingSongsByAlbum);
+    } else if (category === "songsByTerm") {
+      setNowIsLoading(loadingSongsByTerm);
+    }
+  }, [
+    songsByArtist,
+    songsByAlbum,
+    songsByTerm,
+    loadingSongsByArtist,
+    loadingSongsByAlbum,
+    loadingSongsByTerm,
+    category,
+  ]);
+
+  // Error dependent from category
+  useEffect(() => {
+    if (songsByArtistLength === 0) {
+      setNotFound(true);
+    } else if (songsByAlbumLength === 0) {
+      setNotFound(true);
+    } else if (songsByTermLength === 0) {
+      setNotFound(true);
+    } else {
+      setNotFound(false);
+    }
+  }, [
+    songsByArtist,
+    songsByAlbum,
+    songsByTerm,
+    songsByArtistLength,
+    songsByAlbumLength,
+    songsByTermLength,
+    loadingSongsByArtist,
+    loadingSongsByAlbum,
+    loadingSongsByTerm,
+    category,
+  ]);
+
   // Songs dependent from category
   useEffect(() => {
-    if (category === "search") {
-      setSongs(searchSongs);
+    if (category === "songsByArtist") {
+      setSongs(songsByArtist);
+    } else if (category === "songsByAlbum") {
+      setSongs(songsByAlbum);
+    } else if (category === "songsByTerm") {
+      setSongs(songsByTerm);
     } else if (category === "favList") {
       setSongs(favList);
     } else if (category === "playlist") {
@@ -121,7 +197,43 @@ export const Table = memo(() => {
         currentPlaylistName === playlist.name ? setSongs(playlist.songs) : null
       );
     }
-  }, [category, searchSongs, favList, playlistsList, currentPlaylistName]);
+  }, [
+    songsByArtist,
+    songsByAlbum,
+    songsByTerm,
+    favList,
+    playlistsList,
+    currentPlaylistName,
+    category,
+  ]);
+
+  //Set SongsArr
+  const setSongsArr = useCallback(() => {
+    if (category === "songsByArtist") {
+      dispatch(setSongsList(songsByArtist));
+    } else if (category === "songsByAlbum") {
+      dispatch(setSongsList(songsByAlbum));
+    } else if (category === "songsByTerm") {
+      dispatch(setSongsList(songsByTerm));
+    } else if (category === "favList") {
+      dispatch(setSongsList(favList));
+    } else if (category === "playlist") {
+      playlistsList.map((playlist: Playlist) =>
+        currentPlaylistName === playlist.name
+          ? dispatch(setSongsList(playlist.songs))
+          : null
+      );
+    }
+  }, [
+    songsByArtist,
+    songsByAlbum,
+    songsByTerm,
+    favList,
+    playlistsList,
+    currentPlaylistName,
+    category,
+    songsArr,
+  ]);
 
   return (
     <TableContainer>
@@ -129,13 +241,14 @@ export const Table = memo(() => {
         className="table"
         style={{ overflowY: isOverflow ? "hidden" : "scroll" }}
       >
-        {loading && <Loading />}
-        {arrLength === 0 && <Error />}
-        {arrLength > 0 && <TableHeader />}
+        {nowIsLoading && <Loading />}
+        {notFound && <Error />}
+        {notFound === false && nowIsLoading === false && <TableHeader />}
         {songs &&
           songs.map((song, i = 0) => (
             <div key={i++}>
               <TableElement
+                key={i++}
                 id={i++}
                 song={song}
                 favList={favList}
@@ -148,6 +261,7 @@ export const Table = memo(() => {
                 handleSetSong={handleSetSong}
                 handleAddSongToPlaylist={handleAddSongToPlaylist}
                 handleDeleteSongFromPlaylist={handleDeleteSongFromPlaylist}
+                setSongsArr={setSongsArr}
               />
             </div>
           ))}

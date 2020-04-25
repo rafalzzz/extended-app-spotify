@@ -20,6 +20,8 @@ import {
   setDuration,
 } from "../../../../store/player/actions";
 
+import { currentSongsArray } from "../../../../store/items/selectors";
+
 import {
   currentIndex,
   currentCategory,
@@ -59,6 +61,10 @@ export const ReactMusicPlayer = () => {
   const favSongArr: Song[] = useSelector(favSongsList);
   const currentPlaylistSongs: Playlist[] = useSelector(playlists);
   const currentPlaylistName: string = useSelector(currentPlaylist);
+
+  const currentSongsArr: Song[] = useSelector(currentSongsArray);
+
+  console.log(currentSongsArr);
 
   const [currentPlaylistSongsList, setCurrentPlaylistSongsList] = useState<
     Song[]

@@ -7,9 +7,21 @@ import { Album } from "../../../../store/models";
 
 export type SearchLayoutProps = {
   albums: Album[];
+  handleFetchTracksByAlbumName: (
+    term: string,
+    limit: number
+  ) => (event: React.MouseEvent) => void;
+  handlePlayThisAlbumNow: (
+    term: string,
+    limit: number
+  ) => (event: React.MouseEvent) => void;
 };
 
-export const AlbumsLayout = ({ albums }: SearchLayoutProps) => {
+export const AlbumsLayout = ({
+  albums,
+  handleFetchTracksByAlbumName,
+  handlePlayThisAlbumNow,
+}: SearchLayoutProps) => {
   return (
     <AlbumsContainer>
       <div className="sectionTitle">
@@ -18,7 +30,14 @@ export const AlbumsLayout = ({ albums }: SearchLayoutProps) => {
 
       <div className="albumsSection">
         {albums &&
-          albums.map((album, i = 100) => <AlbumItem album={album} key={i++} />)}
+          albums.map((album, i = 100) => (
+            <AlbumItem
+              album={album}
+              key={i++}
+              handleFetchTracksByAlbumName={handleFetchTracksByAlbumName}
+              handlePlayThisAlbumNow={handlePlayThisAlbumNow}
+            />
+          ))}
       </div>
     </AlbumsContainer>
   );

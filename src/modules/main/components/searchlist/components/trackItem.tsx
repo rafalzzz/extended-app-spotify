@@ -4,15 +4,32 @@ import { Song } from "../../../../../store/models";
 
 export type TrackItemProps = {
   track: Song;
+  id: number;
+  handleSetCurrentSong: (
+    song: Song,
+    limit: number
+  ) => (event: React.MouseEvent) => void;
+  handlePlayThisTrackNow: (
+    song: Song,
+    id: number
+  ) => (event: React.MouseEvent) => void;
 };
 
-export const TrackItem = ({ track }: TrackItemProps) => {
+export const TrackItem = ({
+  track,
+  id,
+  handleSetCurrentSong,
+  handlePlayThisTrackNow,
+}: TrackItemProps) => {
   const [mouseIsOver, setMouseIsOver] = useState<boolean>(false);
   const imgUrl: string = track.artworkUrl100;
 
   return (
     <TracksSectionItemContainer>
-      <div className="tracksSectionItem">
+      <div
+        className="tracksSectionItem"
+        onClick={handleSetCurrentSong(track, id)}
+      >
         <div
           className="tracksSectionItemImgContainer"
           style={{
@@ -37,6 +54,7 @@ export const TrackItem = ({ track }: TrackItemProps) => {
             style={{
               display: mouseIsOver ? "flex" : "none",
             }}
+            onClick={handlePlayThisTrackNow(track, id)}
           >
             <i className="icon-play" />
           </div>

@@ -13,6 +13,8 @@ import { Playlists } from "./components/playlists/index";
 import { Albums } from "./components/albums/index";
 import { Table } from "./components/table";
 import { TracksHeader } from "./components/tracksHeader/index";
+import { ArtistHeader } from "./components/artistHeader/index";
+import { AlbumHeader } from "./components/albumHeader/index";
 
 type MainLayoutProps = {
   handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -40,6 +42,14 @@ export const MainLayout = ({
       </Route>
       <Route exact path="/user/search/tracks">
         <TracksHeader />
+        <Table />
+      </Route>
+      <Route path="/user/search/artist/">
+        <ArtistHeader />
+        <Table />
+      </Route>
+      <Route path="/user/search/album/">
+        <AlbumHeader />
         <Table />
       </Route>
       <Route path="/user/favourite-list">

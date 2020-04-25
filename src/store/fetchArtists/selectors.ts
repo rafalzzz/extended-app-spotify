@@ -1,7 +1,7 @@
 import { AppState } from "../reducer";
 import { Artist } from "../models";
 
-export const artistsListLength = (state: AppState): number =>
+export const artistsArrayLength = (state: AppState): number =>
   state.artistsList.artists.resultCount;
 
 export const artistsList = (state: AppState): Artist[] =>

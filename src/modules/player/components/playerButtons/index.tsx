@@ -9,7 +9,12 @@ import {
   NowPlayedSong,
 } from "../../../../store/items/selectors";
 
-import { playRX, loopRX, shuffleRX } from "../../../../store/player/selectors";
+import {
+  playRX,
+  playedRX,
+  loopRX,
+  shuffleRX,
+} from "../../../../store/player/selectors";
 
 import {
   songsList,
@@ -23,9 +28,15 @@ import {
   setIndex,
   playNextSong,
   playPrevSong,
+  setSongsList,
 } from "../../../../store/items/actions";
 
-import { setPlay, setLoop, setShuffle } from "../../../../store/player/actions";
+import {
+  setPlay,
+  seekTo,
+  setLoop,
+  setShuffle,
+} from "../../../../store/player/actions";
 
 import { PlayerButtonsLayout } from "./layout";
 
@@ -38,6 +49,7 @@ export const PlayerButtons = () => {
 
   const shuffleSongs: boolean = useSelector(shuffleRX);
   const playing: boolean = useSelector(playRX);
+  const played: number = useSelector(playedRX);
   const loop: boolean = useSelector(loopRX);
   const songIndex: number = useSelector(currentIndex);
   const currentPlayedSong: Song = useSelector(NowPlayedSong);
@@ -54,7 +66,8 @@ export const PlayerButtons = () => {
   useEffect(() => {
     currentPlaylistSongs.map((playlist: Playlist) =>
       playlist.name === currentPlaylistName
-        ? setCurrentPlaylistSongsList(playlist.songs)
+        ? /* setCurrentPlaylistSongsList(playlist.songs) */
+          dispatch(setSongsList(playlist.songs))
         : null
     );
   }, [currentPlaylistName]);
@@ -68,7 +81,9 @@ export const PlayerButtons = () => {
 
   const handlePreviewButton = useCallback(
     (event: React.MouseEvent) => {
-      if (category === "search") {
+      if (played > 0.25) {
+        dispatch(seekTo(0));
+      } else if (category === "search") {
         if (songIndex === 0) {
           let song: Song = searchSongsArr[searchSongsArrLength - 1];
           let index: number = searchSongsArrLength;
@@ -139,6 +154,7 @@ export const PlayerButtons = () => {
       currentPlaylistSongsList,
       category,
       currentPlayedSong,
+      played,
     ]
   );
 

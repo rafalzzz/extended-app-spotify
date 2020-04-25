@@ -11,6 +11,13 @@ export const SearchContainer = styled.div`
   height: calc(100vh - 110px);
   overflow-y: auto;
 
+  .info {
+  margin-left: 50%;
+  transform: translate(-50%);
+  margin-top: 100px;
+  font-size: 1.3em;
+  }
+
   .sectionTitle {
     width: calc(100% - 25px);
     display: flex;
@@ -43,7 +50,7 @@ export const SearchContainer = styled.div`
 
   h6: hover {
     text-decoration: underline;
-cursor: pointer;
+    cursor: pointer;
   }
 
   .artistsSection {
@@ -54,47 +61,6 @@ cursor: pointer;
     flex-direction: row;
     align-items: space-between;
     justify-content: space-around;
-  }
-
-  .artistsSectionItem {
-    background-color: transparent;
-    width: 150px;
-    height: 150px;
-  }
-
-  .artistsSectionItemImgContainer {
-    background-color: transparent;
-    width: 146px;
-    height: 146px;
-    border-radius: 73px;
-    border: 2px solid #252525;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .artistsSectionItemImgContainer: hover {
-    cursor: pointer;
-    background-color: #86868610;
-  }
-
-  .artistsSectionItemButton {
-    padding-top: 0px;
-    font-size: 1.5em;
-    height: 40px;
-    width: 36px;
-    border-radius: 22.5px;
-    padding-left: 4px;
-    border: solid 1px white;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .artistsSectionItemTitle {
-    margin-top: 5px;
-    font-size: 0.75em;
   }
 
   // Albums section
@@ -111,74 +77,6 @@ cursor: pointer;
     flex-wrap: wrap;
   }
 
-  .albumsItem {
-    background-color: transparent;
-    width: 25%;
-  }
-
-  .albumsSectionItem {
-    background-color: transparent;
-    width: 95%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-  }
-
-  .albumsSectionItem:hover {
-    background-color: #86868610;
-    cursor: pointer;
-  }
-
-  .albumsSectionItemImgContainer {
-    background-color: black;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .albumsSectionItemButton {
-    padding-top: 0px;
-    font-size: 0.8em;
-    height: 26px;
-    width: 26px;
-    border-radius: 13px;
-    border: solid 1px white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .albumsSectionItemButton: hover {
-    padding-top: 0px;
-    font-size: 0.9em;
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
-    border: solid 1px white;
-  }
-
-  .albumsSectionItemTitle {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.7em;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 10px;
-  }
-
-  .albumTitle {
-    font-weight: 600;
-  }
-
-  .albumArtist {
-    font-weight: 300;
-    color: #868686;
-  }
-
   // Tracks section
 
   .tracksSection {
@@ -191,74 +89,7 @@ cursor: pointer;
     align-items: space-between;
     justify-content: flex-start;
     flex-wrap: wrap;
-  }
-
-  .tracksItem {
-    background-color: transparent;
-    width: 25%;
-  }
-
-  .tracksSectionItem {
-    background-color: transparent;
-    width: 95%;
-    height: 60px;
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 20px;
-  }
-
-  .tracksSectionItem:hover {
-    background-color: #86868610;
-    cursor: pointer;
-  }
-
-  .tracksSectionItemImgContainer {
-    background-color: black;
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tracksSectionItemButton {
-    padding-top: 0px;
-    font-size: 0.8em;
-    height: 26px;
-    width: 26px;
-    border-radius: 13px;
-    border: solid 1px white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .tracksSectionItemButton: hover {
-    padding-top: 0px;
-    font-size: 0.9em;
-    height: 30px;
-    width: 30px;
-    border-radius: 15px;
-    border: solid 1px white;
-  }
-
-  .tracksSectionItemTitle {
-    color: white;
-    display: flex;
-    flex-direction: column;
-    font-size: 0.7em;
-    justify-content: center;
-    align-items: flex-start;
-    padding-left: 10px;
-  }
-
-  .trackTitle {
-    font-weight: 600;
-  }
-
-  .trackArtist {
-    font-weight: 300;
-    color: #868686;
+text-align: center;
   }
 
   // Scroll bar
@@ -284,5 +115,11 @@ cursor: pointer;
 
   ::-webkit-scrollbar-corner {
     background-color: transparent;
+  }
+
+  .error {
+  margin-left: 49.4%;
+  transform: translate(-50%);
+  text-align: center;
   }
 `;

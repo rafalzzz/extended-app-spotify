@@ -35,6 +35,7 @@ type TableElementProps = {
     playlist: string,
     song: Song
   ) => (event: React.MouseEvent) => void;
+  setSongsArr: () => void;
 };
 
 type handleOnMouseEnterProps = {
@@ -58,6 +59,7 @@ export const TableElement = ({
   handleSetSong,
   handleAddSongToPlaylist,
   handleDeleteSongFromPlaylist,
+  setSongsArr,
 }: TableElementProps) => {
   const [favChecked, setFavChecked] = useState<boolean>(false);
   const [playingThisSongNow, setPlayingThisSongNow] = useState<boolean>(false);
@@ -125,6 +127,8 @@ export const TableElement = ({
         dispatch(setIndex(id));
         dispatch(setPlay(true));
       }
+
+      setSongsArr();
     },
     [currentSong, playOrNot]
   );

@@ -8,6 +8,9 @@ import {
   PLAY_PREV_SONG,
   OVERFLOW,
   TERM,
+  ARTIST,
+  ALBUM,
+  SONGS_LIST,
 } from "./consts";
 
 import { createAction } from "typesafe-actions";
@@ -101,5 +104,30 @@ export const setCurrentTerm = createAction(
   TERM,
   (term): TermProps => ({
     term,
+  })
+)();
+
+export const setArtist = createAction(
+  ARTIST,
+  (term): TermProps => ({
+    term,
+  })
+)();
+
+export const setAlbum = createAction(
+  ALBUM,
+  (term): TermProps => ({
+    term,
+  })
+)();
+
+export type SongsListProps = {
+  songsArray: Song[];
+};
+
+export const setSongsList = createAction(
+  SONGS_LIST,
+  (songsArray): SongsListProps => ({
+    songsArray,
   })
 )();
