@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 
 import { apiUrl } from "./consts";
 
@@ -6,8 +6,8 @@ const axiosCustom = axios.create({
   baseURL: apiUrl,
 });
 
-export const get = (url: string, term: any) =>
+export const get = (url: string, link?: AxiosRequestConfig | undefined) =>
   axiosCustom
-    .get(url, term)
+    .get(url, link)
     .then((res) => res.data)
     .catch((err) => Promise.reject(err));

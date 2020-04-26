@@ -31,7 +31,7 @@ export const albumsList = (
       console.log(action);
       return {
         ...state,
-        albums: action.payload.data,
+        albums: action.payload,
         isLoading: false,
         isError: false,
       };

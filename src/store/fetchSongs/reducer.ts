@@ -31,7 +31,7 @@ export const songsList = (
       console.log(action);
       return {
         ...state,
-        songs: action.payload.data,
+        songs: action.payload,
         isLoading: false,
         isError: false,
       };

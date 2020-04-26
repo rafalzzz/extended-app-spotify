@@ -31,7 +31,7 @@ export const artistsList = (
       console.log(action);
       return {
         ...state,
-        artists: action.payload.data,
+        artists: action.payload,
         isLoading: false,
         isError: false,
       };
