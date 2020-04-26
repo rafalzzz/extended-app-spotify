@@ -3,6 +3,8 @@ import React, { useCallback, useRef } from "react";
 import { SearchBarContainer } from "./searchbar.styled";
 
 type SearchBarProps = {
+  handlePrevButton: (e: React.MouseEvent) => void;
+  handleNextButton: (e: React.MouseEvent) => void;
   handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
@@ -12,24 +14,26 @@ type RefProps = {
 };
 
 export const SearchBar = ({
+  handlePrevButton,
+  handleNextButton,
   handleOnChange,
-  handleOnSubmit
+  handleOnSubmit,
 }: SearchBarProps) => {
   const ref: RefProps = useRef(null);
 
-  const handleFocus = useCallback(event => {
+  const handleFocus = useCallback((event) => {
     ref.current.focus();
   }, []);
 
   return (
-    <SearchBarContainer onClick={handleFocus}>
+    <SearchBarContainer>
       <button className="btn btnL">
-        <i className="icon-left-open" />
+        <i className="icon-left-open" onClick={handlePrevButton} />
       </button>
-      <button className="btn btnR">
+      <button className="btn btnR" onClick={handleNextButton}>
         <i className="icon-right-open" />
       </button>
-      <div className="search-container">
+      <div className="search-container" onClick={handleFocus}>
         <form onSubmit={handleOnSubmit}>
           <button type="submit" className="search-btn">
             <i className="icon-search"></i>

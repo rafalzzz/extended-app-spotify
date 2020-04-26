@@ -53,4 +53,14 @@ export const MenuContainer = styled.div`
   div:hover > .icon-note {
     color: white;
   }
+
+  .icon-heart {
+    font-size: 1.15em;
+    margin-right: 15.5px;
+    color: #868686;
+  }
+
+  div:hover > .icon-heart {
+    color: white;
+  }
 `;

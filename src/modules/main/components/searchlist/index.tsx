@@ -29,6 +29,7 @@ import {
   playThisSong,
   setArtist,
   setAlbum,
+  setSongsList,
 } from "../../../../store/items/actions";
 
 import { setPlay } from "../../../../store/player/actions";
@@ -39,6 +40,7 @@ import { Song } from "../../../../store/models";
 export const Search = () => {
   const term = useSelector(currentTerm);
 
+  const songsByTermArr = useSelector(songsList);
   const songsByAlbumArr = useSelector(songsListByAlbum);
 
   const artistsArrLength: number = useSelector(artistsArrayLength);
@@ -104,7 +106,7 @@ export const Search = () => {
   const handleSetCurrentSong = useCallback(
     (song: Song, id: number) => (event: React.MouseEvent) => {
       dispatch(setSong(song));
-      dispatch(setIndex(id));
+      dispatch(setIndex(id + 1));
       history.push("/user/search/tracks");
     },
     []
@@ -113,12 +115,12 @@ export const Search = () => {
   const handlePlayThisTrackNow = useCallback(
     (song: Song, id: number) => (event: React.MouseEvent) => {
       dispatch(setPlay(false));
+      dispatch(setSongsList(songsByTermArr));
       dispatch(playThisSong(song));
-      dispatch(setIndex(id));
       dispatch(setPlay(true));
       history.push("/user/search/tracks");
     },
-    []
+    [songsByTermArr]
   );
 
   return (

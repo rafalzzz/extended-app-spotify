@@ -137,7 +137,9 @@ export const TableElement = ({
 
   useEffect(() => {
     favList.map((favListItem: Song) => {
-      if (favListItem.previewUrl === song.previewUrl) setFavChecked(true);
+      if (favListItem.previewUrl === song.previewUrl) {
+        setFavChecked(true);
+      }
     });
   }, []);
 

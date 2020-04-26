@@ -11,6 +11,7 @@ import {
   setCategory,
   playThisSong,
   setIndex,
+  setSongsList,
 } from "../../../../store/items/actions";
 
 import { setPlay } from "../../../../store/player/actions";
@@ -39,6 +40,7 @@ export const Playlists = () => {
       playlistsList.map((playlist: Playlist) => {
         if (name === playlist.name) {
           if (playlist.songs.length !== 0) {
+            dispatch(setSongsList(playlist.songs));
             dispatch(playThisSong(playlist.songs[0]));
             dispatch(setIndex(1));
             dispatch(setPlay(true));

@@ -248,7 +248,6 @@ export const Table = memo(() => {
           songs.map((song, i = 0) => (
             <div key={i++}>
               <TableElement
-                key={i++}
                 id={i++}
                 song={song}
                 favList={favList}
@@ -262,6 +261,7 @@ export const Table = memo(() => {
                 handleAddSongToPlaylist={handleAddSongToPlaylist}
                 handleDeleteSongFromPlaylist={handleDeleteSongFromPlaylist}
                 setSongsArr={setSongsArr}
+                key={i++}
               />
             </div>
           ))}

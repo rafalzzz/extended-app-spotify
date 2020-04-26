@@ -1,4 +1,4 @@
-import React, { memo, useState } from "react";
+import React, { memo, useState, useCallback } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -31,8 +31,18 @@ export const Main = memo(() => {
     history.push(`/user/search`);
   };
 
+  const handlePrevButton = useCallback((event: React.MouseEvent) => {
+    history.goBack();
+  }, []);
+
+  const handleNextButton = useCallback((event: React.MouseEvent) => {
+    history.goForward();
+  }, []);
+
   return (
     <MainLayout
+      handlePrevButton={handlePrevButton}
+      handleNextButton={handleNextButton}
       handleOnChange={handleOnChange}
       handleOnSubmit={handleOnSubmit}
     />

@@ -107,7 +107,7 @@ export const SearchLayout = ({
             <div className="error">Album not found</div>
           )}
           {albums &&
-            albums.map((album, i = 100) => (
+            albums.map((album, i = 1000) => (
               <AlbumItem
                 album={album}
                 key={i++}
@@ -136,13 +136,13 @@ export const SearchLayout = ({
         <div className="tracksSection">
           {songsArrLength === 0 && <div className="error">Track not found</div>}
           {tracks &&
-            tracks.map((track, i = 100) => (
+            tracks.map((track, i = 0) => (
               <TrackItem
                 track={track}
-                key={i++}
                 id={i++}
                 handleSetCurrentSong={handleSetCurrentSong}
                 handlePlayThisTrackNow={handlePlayThisTrackNow}
+                key={i++}
               />
             ))}
         </div>

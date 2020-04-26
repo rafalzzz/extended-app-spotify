@@ -17,16 +17,22 @@ import { ArtistHeader } from "./components/artistHeader/index";
 import { AlbumHeader } from "./components/albumHeader/index";
 
 type MainLayoutProps = {
+  handlePrevButton: (e: React.MouseEvent) => void;
+  handleNextButton: (e: React.MouseEvent) => void;
   handleOnChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleOnSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
 };
 
 export const MainLayout = ({
+  handlePrevButton,
+  handleNextButton,
   handleOnChange,
   handleOnSubmit,
 }: MainLayoutProps) => (
   <MainContainer>
     <SearchBar
+      handlePrevButton={handlePrevButton}
+      handleNextButton={handleNextButton}
       handleOnChange={handleOnChange}
       handleOnSubmit={handleOnSubmit}
     />

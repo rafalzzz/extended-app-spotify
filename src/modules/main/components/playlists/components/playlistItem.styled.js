@@ -44,7 +44,6 @@ export const PlaylistItemContainer = styled.div`
     width: 36px;
     border-radius: 22.5px;
     padding-left: 4px;
-    border: solid 3px white;
     text-align: center;
     justify-content: center;
     align-items: center;

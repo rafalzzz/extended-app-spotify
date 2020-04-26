@@ -8,12 +8,12 @@ export const TableContainer = styled.div`
   position: absolute;
 
   .table {
-    /* background-color: #181818; */
     height: calc(100vh - 300px);
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
     border-top: solid 1px #252525;
+    padding-bottom: 50px;
   }
 
   .table::-webkit-scrollbar {

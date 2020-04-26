@@ -25,5 +25,11 @@ export const Menu = () => (
         Playlists
       </div>
     </Link>
+    <Link to="/user/favourite-list" style={{ textDecoration: "none" }}>
+      <div>
+        <i className="icon-heart" />
+        Favourities
+      </div>
+    </Link>
   </MenuContainer>
 );

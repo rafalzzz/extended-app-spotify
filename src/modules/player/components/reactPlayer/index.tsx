@@ -24,17 +24,9 @@ import { currentSongsArray } from "../../../../store/items/selectors";
 
 import {
   currentIndex,
-  currentCategory,
   currentPlaylist,
   NowPlayedSong,
 } from "../../../../store/items/selectors";
-
-import {
-  songsList,
-  songsListLength,
-} from "../../../../store/fetchSongs/selectors";
-
-import { favSongsList } from "../../../../store/favSongs/selectors";
 
 import { playlists } from "../../../../store/playlists/selectors";
 
@@ -54,17 +46,11 @@ export const ReactMusicPlayer = () => {
   // Functions consts
   const shuffleSongs: boolean = useSelector(shuffleRX);
   const songIndex: number = useSelector(currentIndex);
-  const category: string = useSelector(currentCategory);
-
-  const searchSongsArr: Song[] = useSelector(songsList);
-  const searchSongsArrLength: number = useSelector(songsListLength);
-  const favSongArr: Song[] = useSelector(favSongsList);
-  const currentPlaylistSongs: Playlist[] = useSelector(playlists);
-  const currentPlaylistName: string = useSelector(currentPlaylist);
 
   const currentSongsArr: Song[] = useSelector(currentSongsArray);
 
-  console.log(currentSongsArr);
+  const currentPlaylistSongs: Playlist[] = useSelector(playlists);
+  const currentPlaylistName: string = useSelector(currentPlaylist);
 
   const [currentPlaylistSongsList, setCurrentPlaylistSongsList] = useState<
     Song[]
@@ -94,72 +80,33 @@ export const ReactMusicPlayer = () => {
 
   const handleEnded = useCallback(() => {
     if (shuffleSongs === true) {
-      if (category === "search") {
-        let index = Math.floor(1 + (Math.random() * searchSongsArrLength - 1));
-        let song = searchSongsArr[index - 1];
+      let index = Math.floor(1 + Math.random() * currentSongsArr.length - 1);
+      let song = currentSongsArr[index - 1];
+      dispatch(playThisSong(song));
+      dispatch(setIndex(index));
+      dispatch(setPlay(true));
+    } else {
+      if (songIndex === currentSongsArr.length - 1) {
+        let song = currentSongsArr[0];
         dispatch(playThisSong(song));
-        dispatch(setIndex(index));
-      } else if (category === "favList") {
-        let index = Math.floor(1 + (Math.random() * favSongArr.length - 1));
-        let song = favSongArr[index - 1];
-        dispatch(playThisSong(song));
-        dispatch(setIndex(index));
-      } else if (category === "playlist") {
-        let index = Math.floor(
-          1 + (Math.random() * currentPlaylistSongsList.length - 1)
-        );
-        let song = currentPlaylistSongsList[index - 1];
-        dispatch(playThisSong(song));
-        dispatch(setIndex(index));
-      }
-    } else if (shuffleSongs === false && category === "search") {
-      if (songIndex < searchSongsArrLength - 1) {
-        let song = searchSongsArr[songIndex + 1];
+        dispatch(setIndex(1));
+        dispatch(setPlay(true));
+      } else {
+        dispatch(setPlay(false));
+        let song = currentSongsArr[songIndex + 1];
         dispatch(playThisSong(song));
         dispatch(playNextSong(1));
-      } else {
-        let song = searchSongsArr[0];
-        dispatch(playThisSong(song));
-        dispatch(setIndex(0));
-      }
-    } else if (shuffleSongs === false && category === "favList") {
-      if (songIndex < favSongArr.length - 1) {
-        let song = favSongArr[songIndex + 1];
-        dispatch(playThisSong(song));
-        dispatch(playNextSong(1));
-      } else {
-        let song = favSongArr[0];
-        dispatch(playThisSong(song));
-        dispatch(setIndex(0));
-      }
-    } else if (shuffleSongs === false && category === "playlist") {
-      if (songIndex < currentPlaylistSongsList.length - 1) {
-        let song = currentPlaylistSongsList[songIndex + 1];
-        dispatch(playThisSong(song));
-        dispatch(playNextSong(1));
-      } else {
-        let song = currentPlaylistSongsList[0];
-        dispatch(playThisSong(song));
-        dispatch(setIndex(0));
+        dispatch(setPlay(true));
       }
     }
-    dispatch(setPlay(true));
-  }, [
-    songIndex,
-    searchSongsArr,
-    favSongArr,
-    currentPlaylistSongsList,
-    category,
-    currentPlayedSong,
-    shuffleSongs,
-  ]);
+  }, [songIndex, shuffleSongs, currentSongsArr]);
 
   const ref: RefProps = useRef(null);
 
   const handleProgress = (value: any) => {
-    console.log("obecnyIndex", songIndex);
     let playedValue = parseFloat(value.played);
     dispatch(setPlayed(playedValue));
+    console.log(songIndex);
   };
 
   const handleDuration = (duration: number) => {

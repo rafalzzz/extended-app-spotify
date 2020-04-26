@@ -24,6 +24,8 @@ export const TrackItem = ({
   const [mouseIsOver, setMouseIsOver] = useState<boolean>(false);
   const imgUrl: string = track.artworkUrl100;
 
+  console.log(id);
+
   return (
     <TracksSectionItemContainer>
       <div

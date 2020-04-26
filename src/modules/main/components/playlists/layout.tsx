@@ -19,7 +19,6 @@ export const PlaylistLayout = ({
   handlePlayPlaylist,
   handleDeletePlaylist,
 }: PlaylistLayoutProps) => {
-  const asd = { name: "asd", songs: [] };
   return (
     <Switch>
       <Route path={`/user/playlist/list`}>
@@ -27,13 +26,6 @@ export const PlaylistLayout = ({
       </Route>
       <Route exact path="/user/playlist">
         <PlaylistLayoutContainer>
-          <PlaylistItem
-            playlist={asd}
-            handlePlayPlaylist={handlePlayPlaylist}
-            handleDeletePlaylist={handleDeletePlaylist}
-            key={11}
-            id={11}
-          />
           {playlistsList.map((playlist: Playlist, id: number = 0) => (
             <PlaylistItem
               playlist={playlist}

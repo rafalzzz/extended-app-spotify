@@ -24,7 +24,7 @@ export const PlaylistItem = ({
   const img = (playlist: Playlist) => {
     if (playlist.songs.length === 0) {
       setImgUrl(
-        "url(https://cdn.pixabay.com/photo/2018/05/08/21/28/spotify-3384002_960_720.png)"
+        "url(https://cdn.iconscout.com/icon/premium/png-256-thumb/empty-folder-1519007-1284948.png)"
       );
     } else if (playlist.songs.length !== 0) {
       setImgUrl(`url(${playlist.songs[0].artworkUrl100})`);
@@ -62,6 +62,11 @@ export const PlaylistItem = ({
             className="playlistItemPlay"
             style={{
               display: mouseIsOver ? "flex" : "none",
+              color: playlist.songs.length > 0 ? "white" : "transparent",
+              border:
+                playlist.songs.length > 0
+                  ? "solid 3px white"
+                  : "solid 3px transparent",
             }}
             onClick={handlePlayPlaylist(playlist.name)}
             onMouseEnter={(event: React.MouseEvent): void => {
