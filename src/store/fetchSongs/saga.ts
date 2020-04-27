@@ -4,13 +4,13 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import { get } from "../../common/axios";
 
 import { FETCH_SONGS_LIST } from "./consts";
-import { AnyAction } from "redux";
 
 export type FetchSongsProps = {
+  type: typeof FETCH_SONGS_LIST;
   payload: { term?: string; limit?: number };
 };
 
-export function* fetchSongs({ payload }: AnyAction) {
+export function* fetchSongs({ payload }: FetchSongsProps) {
   try {
     const { term, limit } = payload;
     const request = yield call(

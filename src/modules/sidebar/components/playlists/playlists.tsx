@@ -1,7 +1,7 @@
 import React from "react";
 
 import { PlaylistsContainer } from "./playlists.styled";
-import { Playlist } from "../../../store/models";
+import { Playlist } from "../../../../store/models";
 
 type PlaylistsProps = {
   playlists: Playlist[];

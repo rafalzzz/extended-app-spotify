@@ -5,8 +5,8 @@ import { Switch, Route } from "react-router-dom";
 import { MainContainer } from "./layout.styled";
 
 import { MainHeader } from "./components/mainHeader";
-import { About } from "./components/about";
-import { SearchBar } from "./components/searchbar";
+import { About } from "./components/about/about";
+import { SearchBar } from "./components/searchBar/searchbar";
 import { Search } from "./components/searchlist/index";
 import { FavsList } from "./components/favslist/index";
 import { Playlists } from "./components/playlists/index";

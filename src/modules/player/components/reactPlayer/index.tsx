@@ -43,7 +43,6 @@ type RefProps = {
 };
 
 export const ReactMusicPlayer = () => {
-  // Functions consts
   const shuffleSongs: boolean = useSelector(shuffleRX);
   const songIndex: number = useSelector(currentIndex);
 
@@ -56,7 +55,6 @@ export const ReactMusicPlayer = () => {
     Song[]
   >([]);
 
-  // Player consts
   const playing: boolean = useSelector(playRX);
   const currentPlayedSong: Song = useSelector(NowPlayedSong);
   let url: string = currentPlayedSong.previewUrl;
@@ -67,8 +65,6 @@ export const ReactMusicPlayer = () => {
   const seekTo: number = useSelector(seekToRX);
 
   const dispatch = useDispatch();
-
-  // ReactPlayer functions
 
   const handlePlay = useCallback((): void => {
     dispatch(setPlay(true));
@@ -113,14 +109,10 @@ export const ReactMusicPlayer = () => {
     dispatch(setDuration(duration));
   };
 
-  // Skip song to optional second
-
   useEffect(() => {
     ref.current.seekTo(seekTo);
     dispatch(setPlayed(seekTo));
   }, [seekTo]);
-
-  // Get current playlist songs
 
   useEffect(() => {
     currentPlaylistSongs.map((playlist) =>

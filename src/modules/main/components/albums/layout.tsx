@@ -5,7 +5,7 @@ import { AlbumItem } from "../searchlist/components/albumItem";
 import { AlbumsContainer } from "./layout.styled";
 import { Album } from "../../../../store/models";
 
-export type SearchLayoutProps = {
+export type AlbumsLayoutProps = {
   albums: Album[];
   handleFetchTracksByAlbumName: (
     term: string,
@@ -21,7 +21,7 @@ export const AlbumsLayout = ({
   albums,
   handleFetchTracksByAlbumName,
   handlePlayThisAlbumNow,
-}: SearchLayoutProps) => {
+}: AlbumsLayoutProps) => {
   return (
     <AlbumsContainer>
       <div className="sectionTitle">

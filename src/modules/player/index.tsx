@@ -1,5 +1,5 @@
 import React from "react";
 
-import { FooterLayout } from "./layout";
+import { PlayerLayout } from "./layout";
 
-export const Player = () => <FooterLayout />;
+export const Player = () => <PlayerLayout />;

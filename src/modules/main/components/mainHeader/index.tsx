@@ -1,4 +1,4 @@
-import React, { useState, useCallback, memo } from "react";
+import React, { useCallback, memo } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 
@@ -24,8 +24,6 @@ export const MainHeader = memo(() => {
 
   const dispatch = useDispatch();
 
-  // Redirect to FavList function
-
   let history = useHistory();
 
   const handleOpenFavList = useCallback((event: React.MouseEvent): void => {
@@ -35,8 +33,6 @@ export const MainHeader = memo(() => {
   const handleCloseFavList = useCallback((event: React.MouseEvent): void => {
     history.push("/user/search");
   }, []);
-
-  // PlayButton function
 
   const handlePlayPause = useCallback(
     (event: React.MouseEvent): void => {

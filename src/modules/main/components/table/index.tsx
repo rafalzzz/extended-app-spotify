@@ -100,8 +100,6 @@ export const Table = memo(() => {
   console.log("currentCategory", category);
   console.log("currentSongArrRedux", songsArr);
 
-  // FavSongs functions
-
   const handleAddSongToFav = useCallback((song: Song) => {
     dispatch(addSongToFav(song));
     handleSendFavSongToFirestore(song);
@@ -112,16 +110,12 @@ export const Table = memo(() => {
     handleDeleteFavSongFromFirestore(song);
   }, []);
 
-  // CurrentItems function
-
   const handleSetSong = useCallback(
     (song: Song) => (event: React.MouseEvent) => {
       dispatch(setSong(song));
     },
     [currentSongIndex]
   );
-
-  // Add or delete music from playlist
 
   const handleAddSongToPlaylist = useCallback(
     (playlist: string, song: Song) => (event: React.MouseEvent) => {
@@ -139,7 +133,6 @@ export const Table = memo(() => {
     []
   );
 
-  // Loading dependent from category
   useEffect(() => {
     if (category === "songsByArtist") {
       setNowIsLoading(loadingSongsByArtist);
@@ -158,7 +151,6 @@ export const Table = memo(() => {
     category,
   ]);
 
-  // Error dependent from category
   useEffect(() => {
     if (songsByArtistLength === 0) {
       setNotFound(true);
@@ -182,7 +174,6 @@ export const Table = memo(() => {
     category,
   ]);
 
-  // Songs dependent from category
   useEffect(() => {
     if (category === "songsByArtist") {
       setSongs(songsByArtist);
@@ -207,7 +198,6 @@ export const Table = memo(() => {
     category,
   ]);
 
-  //Set SongsArr
   const setSongsArr = useCallback(() => {
     if (category === "songsByArtist") {
       dispatch(setSongsList(songsByArtist));

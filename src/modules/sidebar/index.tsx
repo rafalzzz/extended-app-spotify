@@ -1,4 +1,4 @@
-import React, { useCallback, memo } from "react";
+import React, { useCallback } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -13,7 +13,7 @@ import { SidebarLayout } from "./layout";
 
 import { Playlist } from "../../store/models";
 
-export const Sidebar = memo(() => {
+export const Sidebar = () => {
   const playlistsList: Playlist[] = useSelector(playlists);
   const currentPlaylistName: string = useSelector(currentPlaylist);
 
@@ -39,4 +39,4 @@ export const Sidebar = memo(() => {
       />
     </div>
   );
-});
+};

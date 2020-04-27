@@ -10,7 +10,6 @@ export const TableElementContainer = styled.div`
 
   .row {
     text-align: left;
-    /* background-color: rgba(255,255,255,0.1); */
     margin-left: 5px;
     margin-right: 0px;
     padding-left: 0px;
@@ -205,7 +204,7 @@ export const TableElementContainer = styled.div`
     cursor: pointer;
   }
 
-  .moreOptItem:hover .playlistListItemsConstainer {
+  .moreOptItem:hover .playlistListItemsContainer {
     display: block;
   }
 

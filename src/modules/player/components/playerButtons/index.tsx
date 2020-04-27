@@ -53,8 +53,7 @@ export const PlayerButtons = () => {
   useEffect(() => {
     currentPlaylistSongs.map((playlist: Playlist) =>
       playlist.name === currentPlaylistName
-        ? /* setCurrentPlaylistSongsList(playlist.songs) */
-          dispatch(setSongsList(playlist.songs))
+        ? dispatch(setSongsList(playlist.songs))
         : null
     );
   }, [currentPlaylistName]);

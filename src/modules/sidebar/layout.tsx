@@ -2,8 +2,8 @@ import React from "react";
 
 import { SidebarContainer } from "./layout.styled";
 
-import { Menu } from "./components/menu";
-import { Playlists } from "./components/playlists";
+import { Menu } from "./components/menu/menu";
+import { Playlists } from "./components/playlists/playlists";
 import { NewPlaylist } from "./components/newplaylist/index";
 import { Playlist } from "../../store/models";
 

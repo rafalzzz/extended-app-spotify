@@ -11,21 +11,15 @@ import { VolumeLayout } from "./layout";
 export const Volume = () => {
   const [volumeIcon, setVolumeIcon] = useState("icon-volume-up");
 
-  // Selectors
-
   const muted: boolean = useSelector(mutedRX);
   const volume: number = useSelector(volumeRX);
 
   const dispatch = useDispatch();
 
-  // Change volume
-
   const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = parseFloat(e.target.value);
     dispatch(setVolume(value));
   };
-
-  // Mute or unmute
 
   const handleToggleMuted = useCallback(
     (event: React.MouseEvent) => {
@@ -33,8 +27,6 @@ export const Volume = () => {
     },
     [muted]
   );
-
-  // ChangeVolumeIcon
 
   const handleSetVolumeIcon = useCallback(
     (volume: number) => {

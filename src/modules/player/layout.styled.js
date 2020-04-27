@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const LayoutContainer = styled.div`
+export const PlayerLayoutContainer = styled.div`
   position: fixed;
   bottom: 0px;
   left: 0px;

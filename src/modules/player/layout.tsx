@@ -6,11 +6,11 @@ import { ReactMusicPlayer } from "./components/reactPlayer";
 import { Bar } from "./components/bar";
 import { Volume } from "./components/volume";
 
-import { LayoutContainer } from "./layout.styled";
+import { PlayerLayoutContainer } from "./layout.styled";
 
-export const FooterLayout = () => {
+export const PlayerLayout = () => {
   return (
-    <LayoutContainer>
+    <PlayerLayoutContainer>
       <SongInfo />
       <div className="musicPlayer">
         <PlayerButtons />
@@ -18,6 +18,6 @@ export const FooterLayout = () => {
         <Bar />
       </div>
       <Volume />
-    </LayoutContainer>
+    </PlayerLayoutContainer>
   );
 };
