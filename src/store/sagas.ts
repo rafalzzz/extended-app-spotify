@@ -5,6 +5,7 @@ import { artistsSaga } from "./fetchArtists/saga";
 import { songsByAlbumSaga } from "./fetchSongsByAlbum/saga";
 import { songsByArtistSaga } from "./fetchSongsByArtist/saga";
 import { songsSaga } from "./fetchSongs/saga";
+import { playAlbumSaga } from "./playThisAlbum/saga";
 
 export function* rootSaga(services = {}) {
   yield fork(albumsSaga);
@@ -12,4 +13,5 @@ export function* rootSaga(services = {}) {
   yield fork(songsByAlbumSaga);
   yield fork(songsByArtistSaga);
   yield fork(songsSaga);
+  yield fork(playAlbumSaga);
 }

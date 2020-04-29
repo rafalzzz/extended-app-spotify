@@ -15,6 +15,7 @@ import {
 import { ItemsState, items } from "./items/reducer";
 import { PlayerState, player } from "./player/reducer";
 import { PlaylistsState, playlists } from "./playlists/reducer";
+import { PlayThisAlbumState, playThisAlbum } from "./playThisAlbum/reducer";
 
 export type AppState = {
   albumsList: AlbumsListState;
@@ -26,6 +27,7 @@ export type AppState = {
   items: ItemsState;
   player: PlayerState;
   playlists: PlaylistsState;
+  playThisAlbum: PlayThisAlbumState;
 };
 
 export const reducer = combineReducers<AppState>({
@@ -38,6 +40,7 @@ export const reducer = combineReducers<AppState>({
   items,
   player,
   playlists,
+  playThisAlbum,
 });
 
 export type RootState = ReturnType<typeof reducer>;

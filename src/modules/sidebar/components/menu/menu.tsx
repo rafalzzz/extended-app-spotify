@@ -2,6 +2,8 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
+import "../../../../fontello/css/home.css";
+
 import { MenuContainer } from "./menu.styled";
 
 export const Menu = () => (

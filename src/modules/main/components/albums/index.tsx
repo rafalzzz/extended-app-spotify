@@ -11,6 +11,8 @@ import { songsListByAlbum } from "../../../../store/fetchSongsByAlbum/selectors"
 import { fetchSongsStarted } from "../../../../store/fetchSongs/actions";
 import { fetchSongsByAlbum } from "../../../../store/fetchSongsByAlbum/actions";
 
+import { playAlbum } from "../../../../store/playThisAlbum/actions";
+
 import { playThisSong, setAlbum } from "../../../../store/items/actions";
 
 import { setPlay } from "../../../../store/player/actions";
@@ -38,12 +40,13 @@ export const Albums = () => {
 
   const handlePlayThisAlbumNow = useCallback(
     (term: string, limit: number) => (event: React.MouseEvent) => {
-      dispatch(fetchSongsByAlbum(term, limit));
+      /* dispatch(fetchSongsByAlbum(term, limit));
       dispatch(setPlay(false));
       dispatch(playThisSong(songsByAlbumArr[0]));
       dispatch(setAlbum(term));
       dispatch(setPlay(true));
-      history.push(`/user/search/album/${term}/tracks`);
+      history.push(`/user/search/album/${term}/tracks`); */
+      dispatch(playAlbum(term, limit));
     },
     []
   );
