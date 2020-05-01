@@ -1,5 +1,13 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## About this app
+
+This App is extended version of app-spotifytest with few differences: <br /> 
+- in this app i used TypeScript to type modules,
+- fixed search section,
+- added new functions like playing full albums and searching tracks by album name,
+- I tried to organize code better than in simpler version of app-spotify.
+
 ## Available Scripts
 
 In the project directory, you can run:
