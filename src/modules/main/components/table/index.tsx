@@ -97,6 +97,7 @@ export const Table = memo(() => {
 
   const dispatch = useDispatch();
 
+  console.log("PlaylistsList", playlistsList);
   console.log("currentCategory", category);
   console.log("currentSongArrRedux", songsArr);
 
@@ -239,6 +240,7 @@ export const Table = memo(() => {
             <div key={i++}>
               <TableElement
                 id={i++}
+                key={i++}
                 song={song}
                 favList={favList}
                 playlistsList={playlistsList}
@@ -251,7 +253,6 @@ export const Table = memo(() => {
                 handleAddSongToPlaylist={handleAddSongToPlaylist}
                 handleDeleteSongFromPlaylist={handleDeleteSongFromPlaylist}
                 setSongsArr={setSongsArr}
-                key={i++}
               />
             </div>
           ))}

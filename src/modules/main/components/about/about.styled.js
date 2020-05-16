@@ -9,4 +9,9 @@ export const AboutContainer = styled.div`
   color: white;
   width: calc(100% - 200px);
   height: 100vh;
+
+  .pause {
+    text-align: left;
+    margin-left: 30%;
+  }
 `;

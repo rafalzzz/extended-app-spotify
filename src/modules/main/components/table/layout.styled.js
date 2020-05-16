@@ -177,7 +177,11 @@ export const TableElementContainer = styled.div`
     cursor: pointer;
   }
 
-  .playlistListItemsConstainer {
+  .moreOptItem:hover .playlistListItemsContainer {
+    display: block;
+  }
+
+  .playlistListItemsContainer {
     background-color: #2d2d2d;
     cursor: pointer;
     position: absolute;
@@ -202,10 +206,6 @@ export const TableElementContainer = styled.div`
   .playlistListItem:hover {
     background-color: #393939;
     cursor: pointer;
-  }
-
-  .moreOptItem:hover .playlistListItemsContainer {
-    display: block;
   }
 
   .time {

@@ -70,6 +70,7 @@ export const PlayerButtons = () => {
       dispatch(setPlay(false));
       if (played > 0.25) {
         dispatch(seekTo(0));
+        dispatch(setPlay(true));
       } else if (songIndex === 0) {
         let song: Song = currentSongsArr[currentSongsArr.length - 1];
         dispatch(playThisSong(song));

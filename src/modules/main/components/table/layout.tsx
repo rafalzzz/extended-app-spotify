@@ -309,11 +309,11 @@ export const TableElement = ({
             <div className="moreOptItem">
               {" "}
               Add music to playlist
-              <div className="playlistListItemsConstainer">
+              <div className="playlistListItemsContainer">
                 {playlistsList.map((playlist) => (
                   <div
                     className="playlistListItem"
-                    onClick={handleAddSongToPlaylist(playlist.name, song)}
+                    onClick={handleDeleteSongFromPlaylist(playlist.name, song)}
                   >
                     {playlist.name}
                   </div>
@@ -323,7 +323,7 @@ export const TableElement = ({
             <div className="moreOptItem">
               {" "}
               Delete music from playlist
-              <div className="playlistListItemsConstainer">
+              <div className="playlistListItemsContainer">
                 {playlistsList.map((playlist) => (
                   <div
                     className="playlistListItem"
