@@ -10,8 +10,6 @@ import { artistsArrayLength } from "../../../../store/fetchArtists/selectors";
 
 import { albumsArrayLength } from "../../../../store/fetchAlbums/selectors";
 
-import { songsListByAlbum } from "../../../../store/fetchSongsByAlbum/selectors";
-
 import {
   songsList,
   songsListLength,
@@ -20,8 +18,8 @@ import {
 import { fetchArtistsStarted } from "../../../../store/fetchArtists/actions";
 import { fetchAlbumsStarted } from "../../../../store/fetchAlbums/actions";
 import { fetchSongsStarted } from "../../../../store/fetchSongs/actions";
-import { fetchSongsByArtist } from "../../../../store/fetchSongsByArtist/actions";
-import { fetchSongsByAlbum } from "../../../../store/fetchSongsByAlbum/actions";
+import { fetchSongsByArtistName } from "../../../../store/fetchSongsByArtist/actions";
+import { fetchSongsByAlbumName } from "../../../../store/fetchSongsByAlbum/actions";
 
 import {
   setSong,
@@ -43,7 +41,6 @@ export const Search = () => {
   const term = useSelector(currentTerm);
 
   const songsByTermArr = useSelector(songsList);
-  const songsByAlbumArr = useSelector(songsListByAlbum);
 
   const artistsArrLength: number = useSelector(artistsArrayLength);
   const albumsArrLength: number = useSelector(albumsArrayLength);
@@ -78,7 +75,7 @@ export const Search = () => {
   const handleFetchTracksByArtistName = useCallback(
     (term: string, limit: number) => (event: React.MouseEvent) => {
       dispatch(setArtist(term));
-      dispatch(fetchSongsByArtist(term, 100));
+      dispatch(fetchSongsByArtistName(term, 100));
       history.push(`/user/search/artist/${term}/tracks`);
     },
     []
@@ -87,7 +84,7 @@ export const Search = () => {
   const handleFetchTracksByAlbumName = useCallback(
     (term: string, limit: number) => (event: React.MouseEvent) => {
       dispatch(setAlbum(term));
-      dispatch(fetchSongsByAlbum(term, limit));
+      dispatch(fetchSongsByAlbumName(term, limit));
       history.push(`/user/search/album/${term}/tracks`);
     },
     []

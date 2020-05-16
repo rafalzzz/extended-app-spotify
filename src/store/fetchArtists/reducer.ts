@@ -1,6 +1,8 @@
 import { FETCH_ARTIST_LIST } from "./consts";
 
 import { Action } from "../../helpers/actions";
+import { getType } from "typesafe-actions";
+import { fetchArtistsStarted } from "./actions";
 
 export type ArtistsListState = {
   isLoading: boolean;
@@ -19,8 +21,7 @@ export const artistsList = (
   action: Action
 ): ArtistsListState => {
   switch (action.type) {
-    case FETCH_ARTIST_LIST.started:
-      console.log(action);
+    case getType(fetchArtistsStarted):
       return {
         ...state,
         artists: action.payload,
@@ -28,7 +29,6 @@ export const artistsList = (
         isError: false,
       };
     case FETCH_ARTIST_LIST.success:
-      console.log(action);
       return {
         ...state,
         artists: action.payload,

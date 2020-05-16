@@ -1,6 +1,8 @@
 import { Action } from "../../helpers/actions";
 
-import { ADD_SONG_TO_FAV_LIST, DELETE_SONG_FROM_FAV_LIST } from "./consts";
+import { getType } from "typesafe-actions";
+
+import { addSongToFav, deleteSongFromFav } from "./actions";
 
 import { Song } from "../models";
 
@@ -13,11 +15,9 @@ export const favSongs = (
   action: Action
 ): FavSongsState => {
   switch (action.type) {
-    case ADD_SONG_TO_FAV_LIST:
-      console.log(action);
+    case getType(addSongToFav):
       return [...state, action.payload.song];
-    case DELETE_SONG_FROM_FAV_LIST:
-      console.log(action);
+    case getType(deleteSongFromFav):
       return state.filter(
         (song) => song.previewUrl !== action.payload.song.previewUrl
       );

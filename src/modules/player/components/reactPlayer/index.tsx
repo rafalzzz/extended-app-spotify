@@ -102,7 +102,6 @@ export const ReactMusicPlayer = () => {
   const handleProgress = (value: any) => {
     let playedValue = parseFloat(value.played);
     dispatch(setPlayed(playedValue));
-    console.log(songIndex);
   };
 
   const handleDuration = (duration: number) => {
@@ -120,7 +119,6 @@ export const ReactMusicPlayer = () => {
         ? setCurrentPlaylistSongsList(playlist.songs)
         : null
     );
-    console.log("playlistArr", currentPlaylistSongsList);
   }, [currentPlaylistName]);
 
   return (

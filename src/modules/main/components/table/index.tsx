@@ -97,10 +97,6 @@ export const Table = memo(() => {
 
   const dispatch = useDispatch();
 
-  console.log("PlaylistsList", playlistsList);
-  console.log("currentCategory", category);
-  console.log("currentSongArrRedux", songsArr);
-
   const handleAddSongToFav = useCallback((song: Song) => {
     dispatch(addSongToFav(song));
     handleSendFavSongToFirestore(song);
@@ -245,6 +241,7 @@ export const Table = memo(() => {
                 favList={favList}
                 playlistsList={playlistsList}
                 currentSong={currentSongName}
+                category={category}
                 NowIsPlaying={NowIsPlaying}
                 playOrNot={playOrNot}
                 handleAddSongToFav={handleAddSongToFav}

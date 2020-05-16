@@ -1,4 +1,4 @@
-import { FETCH_SONGS_BY_ALBUM } from "./consts";
+import { FETCH_SONGS_BY_ALBUM_NAME } from "./consts";
 
 import { createAction } from "typesafe-actions";
 
@@ -7,8 +7,8 @@ export type Props = {
   limit: number;
 };
 
-export const fetchSongsByAlbum = createAction(
-  FETCH_SONGS_BY_ALBUM.started,
+export const fetchSongsByAlbumName = createAction(
+  FETCH_SONGS_BY_ALBUM_NAME.started,
   (term, limit): Props => ({
     term,
     limit,

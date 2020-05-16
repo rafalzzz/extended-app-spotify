@@ -1,7 +1,10 @@
 import { PLAY_THIS_ALBUM } from "./consts";
 
+import { getType } from "typesafe-actions";
+
 import { Action } from "../../helpers/actions";
 import { Song } from "../models";
+import { playAlbum } from "./actions";
 
 export type PlayThisAlbumState = {
   isLoading: boolean;
@@ -30,8 +33,7 @@ export const playThisAlbum = (
   action: Action
 ): PlayThisAlbumState => {
   switch (action.type) {
-    case PLAY_THIS_ALBUM.started:
-      console.log(action);
+    case getType(playAlbum):
       return {
         ...state,
         song: action.payload,
@@ -39,7 +41,6 @@ export const playThisAlbum = (
         isError: false,
       };
     case PLAY_THIS_ALBUM.success:
-      console.log(action);
       return {
         ...state,
         song: action.payload,

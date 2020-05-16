@@ -19,9 +19,7 @@ export const Layout = () => {
     auth
       .signInWithPopup(provider)
       .then(function (result: any) {
-        console.log(result);
         setUser(result.user.displayName);
-        console.log(result.user.displayName);
         history.push("/user/about");
       })
       .catch(function (error: any) {

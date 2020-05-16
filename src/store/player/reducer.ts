@@ -1,20 +1,22 @@
 import { Action } from "../../helpers/actions";
 
+import { getType } from "typesafe-actions";
+
 import {
-  PLAY_OR_STOP,
-  SET_PLAYED,
-  SET_PIP,
-  SET_CONTROLS,
-  SET_LIGHT,
-  SET_VOLUME,
-  SET_MUTED,
-  SET_LOADED,
-  SET_DURATION,
-  SET_PLAYBACK_RATE,
-  SET_LOOP,
-  SEEK_TO,
-  SET_SHUFFLE,
-} from "./consts";
+  setPlay,
+  setPlayed,
+  setPip,
+  setControls,
+  setLight,
+  setVolume,
+  setMuted,
+  setLoaded,
+  setDuration,
+  setPlaybackRate,
+  setLoop,
+  seekTo,
+  setShuffle,
+} from "./actions";
 
 export type PlayerState = {
   play: boolean;
@@ -50,32 +52,31 @@ const initialState = {
 
 export const player = (state = initialState, action: Action): PlayerState => {
   switch (action.type) {
-    case PLAY_OR_STOP:
+    case getType(setPlay):
       return { ...state, play: action.payload.play };
-    case SET_PLAYED:
-      console.log(action);
+    case getType(setPlayed):
       return { ...state, played: action.payload.played };
-    case SET_PIP:
+    case getType(setPip):
       return { ...state, pip: action.payload.pip };
-    case SET_CONTROLS:
+    case getType(setControls):
       return { ...state, controls: action.payload.controls };
-    case SET_LIGHT:
+    case getType(setLight):
       return { ...state, light: action.payload.light };
-    case SET_VOLUME:
+    case getType(setVolume):
       return { ...state, volume: action.payload.volume };
-    case SET_MUTED:
+    case getType(setMuted):
       return { ...state, muted: action.payload.muted };
-    case SET_LOADED:
+    case getType(setLoaded):
       return { ...state, loaded: action.payload.loaded };
-    case SET_DURATION:
+    case getType(setDuration):
       return { ...state, duration: action.payload.duration };
-    case SET_PLAYBACK_RATE:
+    case getType(setPlaybackRate):
       return { ...state, playbackRate: action.payload.playbackRate };
-    case SET_LOOP:
+    case getType(setLoop):
       return { ...state, loop: action.payload.loop };
-    case SEEK_TO:
+    case getType(seekTo):
       return { ...state, seekTo: action.payload.seekTo };
-    case SET_SHUFFLE:
+    case getType(setShuffle):
       return { ...state, shuffle: action.payload.shuffle };
     default:
       return state;

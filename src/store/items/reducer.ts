@@ -2,20 +2,22 @@ import { Action } from "../../helpers/actions";
 
 import { Song } from "../models";
 
+import { getType } from "typesafe-actions";
+
 import {
-  SET_SONG,
-  SET_INDEX,
-  SET_PLAYLIST,
-  SET_CATEGORY,
-  PLAY_THIS_SONG,
-  PLAY_NEXT_SONG,
-  PLAY_PREV_SONG,
-  OVERFLOW,
-  TERM,
-  ARTIST,
-  ALBUM,
-  SONGS_LIST,
-} from "./consts";
+  setSong,
+  setIndex,
+  setCategory,
+  setPlaylist,
+  playThisSong,
+  playNextSong,
+  playPrevSong,
+  overflow,
+  setCurrentTerm,
+  setArtist,
+  setAlbum,
+  setSongsList,
+} from "./actions";
 
 export type ItemsState = {
   song: Song;
@@ -65,38 +67,29 @@ const initialState = {
 
 export const items = (state = initialState, action: Action): ItemsState => {
   switch (action.type) {
-    case SET_SONG:
+    case getType(setSong):
       return { ...state, song: action.payload.song };
-    case SET_INDEX:
-      console.log(action);
+    case getType(setIndex):
       return { ...state, index: action.payload.id - 1 };
-    case SET_CATEGORY:
-      console.log(action);
+    case getType(setCategory):
       return { ...state, category: action.payload.category };
-    case SET_PLAYLIST:
+    case getType(setPlaylist):
       return { ...state, playlist: action.payload.name };
-    case PLAY_THIS_SONG:
+    case getType(playThisSong):
       return { ...state, currentPlayed: action.payload.song };
-    case PLAY_NEXT_SONG:
-      console.log(action);
+    case getType(playNextSong):
       return { ...state, index: state.index + action.payload.value };
-    case PLAY_PREV_SONG:
-      console.log(action);
+    case getType(playPrevSong):
       return { ...state, index: state.index - action.payload.value };
-    case OVERFLOW:
-      console.log(action);
+    case getType(overflow):
       return { ...state, overflow: action.payload.show };
-    case TERM:
-      console.log(action);
+    case getType(setCurrentTerm):
       return { ...state, term: action.payload.term };
-    case ARTIST:
-      console.log(action);
+    case getType(setArtist):
       return { ...state, artist: action.payload.term };
-    case ALBUM:
-      console.log(action);
+    case getType(setAlbum):
       return { ...state, album: action.payload.term };
-    case SONGS_LIST:
-      console.log(action);
+    case getType(setSongsList):
       return { ...state, currentSongsArray: action.payload.songsArray };
     default:
       return state;

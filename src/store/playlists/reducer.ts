@@ -1,13 +1,15 @@
 import { Action } from "../../helpers/actions";
 
-import {
-  ADD_SONG_TO_PLAYLIST,
-  DELETE_MUSIC_FROM_PLAYLIST,
-  CREATE_PLAYLIST,
-  DELETE_PLAYLIST,
-} from "./consts";
-
 import { Playlist } from "../models";
+
+import { getType } from "typesafe-actions";
+
+import {
+  addSongToPlaylist,
+  deleteSongFromPlaylist,
+  createPlaylist,
+  deletePlaylist,
+} from "./actions";
 
 export type PlaylistsState = Playlist[];
 
@@ -18,8 +20,7 @@ export const playlists = (
   action: Action
 ): PlaylistsState => {
   switch (action.type) {
-    case ADD_SONG_TO_PLAYLIST:
-      console.log(action);
+    case getType(addSongToPlaylist):
       return state.map((playlist) => ({
         ...playlist,
         songs:
@@ -27,8 +28,7 @@ export const playlists = (
             ? [...playlist.songs, action.payload.song]
             : [...playlist.songs],
       }));
-    case DELETE_MUSIC_FROM_PLAYLIST:
-      console.log(action);
+    case getType(deleteSongFromPlaylist):
       return state.map((playlist) => ({
         ...playlist,
         songs:
@@ -38,8 +38,7 @@ export const playlists = (
               )
             : [...playlist.songs],
       }));
-    case CREATE_PLAYLIST:
-      console.log(action);
+    case getType(createPlaylist):
       return [
         ...state,
         {
@@ -47,8 +46,7 @@ export const playlists = (
           songs: [],
         },
       ];
-    case DELETE_PLAYLIST:
-      console.log(action);
+    case getType(deletePlaylist):
       return state.filter((playlist) => playlist.name !== action.payload.name);
     default:
       return state;

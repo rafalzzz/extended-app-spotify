@@ -22,6 +22,7 @@ type TableElementProps = {
   favList: Song[];
   playlistsList: Playlist[];
   currentSong: Song;
+  category: string;
   NowIsPlaying: Song;
   playOrNot: boolean;
   handleAddSongToFav: (song: Song) => void;
@@ -52,6 +53,7 @@ export const TableElement = ({
   favList,
   playlistsList,
   currentSong,
+  category,
   NowIsPlaying,
   playOrNot,
   handleAddSongToFav,
@@ -133,6 +135,12 @@ export const TableElement = ({
         setFavChecked(true);
       }
     });
+  }, []);
+
+  useEffect(() => {
+    if (category === "favList") {
+      setFavChecked(true);
+    }
   }, []);
 
   useEffect(() => {

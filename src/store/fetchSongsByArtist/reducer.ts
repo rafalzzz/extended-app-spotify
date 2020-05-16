@@ -1,6 +1,8 @@
 import { FETCH_SONGS_BY_ARTIST } from "./consts";
+import { fetchSongsByArtistName } from "./actions";
 
 import { Action } from "../../helpers/actions";
+import { getType } from "typesafe-actions";
 
 export type SongsListByArtistState = {
   isLoading: boolean;
@@ -19,8 +21,7 @@ export const songsListByArtist = (
   action: Action
 ): SongsListByArtistState => {
   switch (action.type) {
-    case FETCH_SONGS_BY_ARTIST.started:
-      console.log(action);
+    case getType(fetchSongsByArtistName):
       return {
         ...state,
         songs: action.payload,
@@ -28,7 +29,6 @@ export const songsListByArtist = (
         isError: false,
       };
     case FETCH_SONGS_BY_ARTIST.success:
-      console.log(action);
       return {
         ...state,
         songs: action.payload,

@@ -24,7 +24,6 @@ export const Sidebar = () => {
   const handleSetPlaylist = useCallback(
     (name: string) => (event: React.MouseEvent) => {
       dispatch(setPlaylist(name));
-      console.log(currentPlaylistName);
       history.push(`/user/playlist/list/${name}`);
     },
     []

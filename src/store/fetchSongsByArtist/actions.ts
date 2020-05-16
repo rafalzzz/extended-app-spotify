@@ -7,7 +7,7 @@ export type Props = {
   limit: number;
 };
 
-export const fetchSongsByArtist = createAction(
+export const fetchSongsByArtistName = createAction(
   FETCH_SONGS_BY_ARTIST.started,
   (term, limit): Props => ({
     term,
