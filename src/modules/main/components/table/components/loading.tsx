@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import { LoadingContainer } from "./loading.styled";
+import { LoadingContainer } from './loading.styled';
 
 export const Loading = () => (
-  <LoadingContainer>
-    <div className="loading">Loading ...</div>
-  </LoadingContainer>
+   <LoadingContainer>
+      <div className="loading">Loading ...</div>
+   </LoadingContainer>
 );
