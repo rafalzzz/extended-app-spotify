@@ -1,16 +1,16 @@
-import { PLAY_THIS_ALBUM } from "./consts";
+import { PLAY_THIS_ALBUM } from './consts';
 
-import { createAction } from "typesafe-actions";
+import { createAction } from 'typesafe-actions';
 
 export type Props = {
-  term: string;
-  limit: number;
+   term: string;
+   limit: number;
 };
 
 export const playAlbum = createAction(
-  PLAY_THIS_ALBUM.started,
-  (term, limit): Props => ({
-    term,
-    limit,
-  })
+   PLAY_THIS_ALBUM.started,
+   (term, limit): Props => ({
+      term,
+      limit,
+   }),
 )();

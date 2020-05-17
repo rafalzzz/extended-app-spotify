@@ -1,3 +1,3 @@
-import { createActionType } from "../../helpers/actions";
+import { createActionType } from '../../helpers/actions';
 
-export const FETCH_SONGS_LIST = createActionType("FETCH_SONGS_LIST");
+export const FETCH_SONGS_LIST = createActionType('FETCH_SONGS_LIST');

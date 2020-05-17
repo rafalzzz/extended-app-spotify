@@ -1,133 +1,133 @@
 import {
-  SET_SONG,
-  SET_INDEX,
-  SET_CATEGORY,
-  SET_PLAYLIST,
-  PLAY_THIS_SONG,
-  PLAY_NEXT_SONG,
-  PLAY_PREV_SONG,
-  OVERFLOW,
-  TERM,
-  ARTIST,
-  ALBUM,
-  SONGS_LIST,
-} from "./consts";
+   SET_SONG,
+   SET_INDEX,
+   SET_CATEGORY,
+   SET_PLAYLIST,
+   PLAY_THIS_SONG,
+   PLAY_NEXT_SONG,
+   PLAY_PREV_SONG,
+   OVERFLOW,
+   TERM,
+   ARTIST,
+   ALBUM,
+   SONGS_LIST,
+} from './consts';
 
-import { createAction } from "typesafe-actions";
-import { Song } from "../models";
+import { createAction } from 'typesafe-actions';
+import { Song } from '../models';
 
 export type SongProps = {
-  song: Song;
+   song: Song;
 };
 
 export const setSong = createAction(
-  SET_SONG,
-  (song): SongProps => ({
-    song,
-  })
+   SET_SONG,
+   (song): SongProps => ({
+      song,
+   }),
 )();
 
 export type IdProps = {
-  id: number;
+   id: number;
 };
 
 export const setIndex = createAction(
-  SET_INDEX,
-  (id): IdProps => ({
-    id,
-  })
+   SET_INDEX,
+   (id): IdProps => ({
+      id,
+   }),
 )();
 
 export type CategoryProps = {
-  category: string;
+   category: string;
 };
 
 export const setCategory = createAction(
-  SET_CATEGORY,
-  (category): CategoryProps => ({
-    category,
-  })
+   SET_CATEGORY,
+   (category): CategoryProps => ({
+      category,
+   }),
 )();
 
 export type NameProps = {
-  name: string;
+   name: string;
 };
 
 export const setPlaylist = createAction(
-  SET_PLAYLIST,
-  (name): NameProps => ({
-    name,
-  })
+   SET_PLAYLIST,
+   (name): NameProps => ({
+      name,
+   }),
 )();
 
 export const playThisSong = createAction(
-  PLAY_THIS_SONG,
-  (song): SongProps => ({
-    song,
-  })
+   PLAY_THIS_SONG,
+   (song): SongProps => ({
+      song,
+   }),
 )();
 
 export type ValueProps = {
-  value: number;
+   value: number;
 };
 
 export const playNextSong = createAction(
-  PLAY_NEXT_SONG,
-  (value): ValueProps => ({
-    value,
-  })
+   PLAY_NEXT_SONG,
+   (value): ValueProps => ({
+      value,
+   }),
 )();
 
 export const playPrevSong = createAction(
-  PLAY_PREV_SONG,
-  (value): ValueProps => ({
-    value,
-  })
+   PLAY_PREV_SONG,
+   (value): ValueProps => ({
+      value,
+   }),
 )();
 
 export type OverflowProps = {
-  show: boolean;
+   show: boolean;
 };
 
 export const overflow = createAction(
-  OVERFLOW,
-  (show): OverflowProps => ({
-    show,
-  })
+   OVERFLOW,
+   (show): OverflowProps => ({
+      show,
+   }),
 )();
 
 export type TermProps = {
-  term: string;
+   term: string;
 };
 
 export const setCurrentTerm = createAction(
-  TERM,
-  (term): TermProps => ({
-    term,
-  })
+   TERM,
+   (term): TermProps => ({
+      term,
+   }),
 )();
 
 export const setArtist = createAction(
-  ARTIST,
-  (term): TermProps => ({
-    term,
-  })
+   ARTIST,
+   (term): TermProps => ({
+      term,
+   }),
 )();
 
 export const setAlbum = createAction(
-  ALBUM,
-  (term): TermProps => ({
-    term,
-  })
+   ALBUM,
+   (term): TermProps => ({
+      term,
+   }),
 )();
 
 export type SongsListProps = {
-  songsArray: Song[];
+   songsArray: Song[];
 };
 
 export const setSongsList = createAction(
-  SONGS_LIST,
-  (songsArray): SongsListProps => ({
-    songsArray,
-  })
+   SONGS_LIST,
+   (songsArray): SongsListProps => ({
+      songsArray,
+   }),
 )();

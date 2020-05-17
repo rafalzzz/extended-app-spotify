@@ -1,14 +1,14 @@
-import { AppState } from "../reducer";
-import { Song } from "../models";
+import { AppState } from '../reducer';
+import { Song } from '../models';
 
 export const songsListByAlbumLength = (state: AppState): number =>
-  state.songsListByAlbum.songs.resultCount;
+   state.songsListByAlbum.songs.resultCount;
 
 export const songsListByAlbum = (state: AppState): Song[] =>
-  state.songsListByAlbum.songs.results;
+   state.songsListByAlbum.songs.results;
 
 export const songsListByAlbumIsLoading = (state: AppState): boolean =>
-  state.songsListByAlbum.isLoading;
+   state.songsListByAlbum.isLoading;
 
 export const songsListByAlbumIsError = (state: AppState): boolean =>
-  state.songsListByAlbum.isError;
+   state.songsListByAlbum.isError;
