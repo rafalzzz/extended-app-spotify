@@ -12,22 +12,20 @@ export const LogoutMenu = ({ handleSignOut, username }: LogoutMenuProps) => {
 
   return (
     <LogoutContainer>
-      <div>
-        <span
-          className="dots"
-          style={{ color: signOutMenuIsOpen ? "white" : "#868686" }}
-          onClick={() => setSignOutMenuIsOpen(!signOutMenuIsOpen)}
-        >
-          ...
-        </span>
-        <div
-          className="logoutMenu"
-          style={{ display: signOutMenuIsOpen ? "block" : "none" }}
-        >
-          <div>Welcome</div>
-          <div>{username}</div>
-          <button onClick={handleSignOut}>Sign out</button>
-        </div>
+      <button
+        className="dots"
+        style={{ color: signOutMenuIsOpen ? "white" : "#868686" }}
+        onClick={() => setSignOutMenuIsOpen(!signOutMenuIsOpen)}
+      >
+        ...
+      </button>
+      <div
+        className="logoutMenu"
+        style={{ display: signOutMenuIsOpen ? "block" : "none" }}
+      >
+        <div>Welcome</div>
+        <div>{username}</div>
+        <button onClick={handleSignOut}>Sign out</button>
       </div>
     </LogoutContainer>
   );

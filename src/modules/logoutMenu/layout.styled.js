@@ -5,22 +5,36 @@ export const LogoutContainer = styled.div`
   left: 0px;
   top: 0px;
   width: 150px;
-  height: 50px;
+  height: 40px;
   color: white;
-  font-size: 1.4em;
   letter-spacing: 2px;
   padding-left: 19px;
   text-align: left;
   z-index: 3;
 
   .dots {
-    width: 270px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     color: #868686;
+    margin-top: 0px;
+    border: none;
+    margin-left: 0px;
+    font-size: 1.4em;
   }
 
   .dots:hover {
     color: white;
+    outline: none;
+  }
+
+  .dots:active {
+    border: none;
+    outline: none;
+  }
+
+  .dots:focus {
+    border: none;
+    outline: none;
   }
 
   .logoutMenu {
